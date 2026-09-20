@@ -57,10 +57,10 @@ fun buildproperty(propertyName: String, fallbackEnv: String? = null): String? {
 
 android {
     compileSdk = libs.versions.compileSdk.get().toInt()
-    namespace = "chat.stoat"
+    namespace = "tech.starknetchat"
 
     defaultConfig {
-        applicationId = "chat.revolt"
+        applicationId = "tech.starknetchat.app"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = Integer.parseInt("001_007_002".replace("_", ""), 10)
