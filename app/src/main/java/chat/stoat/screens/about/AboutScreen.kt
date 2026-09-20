@@ -120,12 +120,11 @@ fun AboutScreen(navController: NavController, viewModel: AboutViewModel = viewMo
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Image(
-                    painter = painterResource(R.drawable.stoat_logo_white),
-                    contentDescription = stringResource(R.string.about_full_name),
-                    colorFilter = ColorFilter.tint(LocalContentColor.current),
-                    modifier = Modifier
-                        .width(250.dp)
+                Text(
+                    text = "StarknetChat",
+                    style = MaterialTheme.typography.displaySmall,
+                    fontWeight = FontWeight.ExtraBold,
+                    textAlign = TextAlign.Center
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
