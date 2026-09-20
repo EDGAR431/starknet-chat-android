@@ -57,7 +57,7 @@ fun buildproperty(propertyName: String, fallbackEnv: String? = null): String? {
 
 android {
     compileSdk = libs.versions.compileSdk.get().toInt()
-    namespace = "tech.starknetchat"
+    namespace = "chat.stoat"
 
     defaultConfig {
         applicationId = "tech.starknetchat.app"
