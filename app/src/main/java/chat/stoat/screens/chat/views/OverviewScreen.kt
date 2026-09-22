@@ -330,58 +330,11 @@ fun OverviewScreen(
                             )
                         }
 
-                        item(key = "changelog") {
-                            OverviewScreenLink(
-                                onClick = {
-                                    navController.navigate("changelog/latest")
-                                },
-                                backgroundColour = MaterialTheme.colorScheme.errorContainer,
-                                foregroundColour = MaterialTheme.colorScheme.onErrorContainer,
-                                title = {
-                                    Row(
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        horizontalArrangement = Arrangement.spacedBy(8.dp)
-                                    ) {
-                                        Icon(
-                                            painter = painterResource(R.drawable.ic_campaign_24dp),
-                                            contentDescription = null,
-                                            modifier = Modifier.size(22.dp)
-                                        )
-                                        Text(stringResource(R.string.overview_screen_changelog))
-                                    }
-                                },
-                                body = { Text(stringResource(R.string.overview_screen_changelog_description)) }
-                            )
-                        }
-
-                        item(key = "join-lounge") {
-                            OverviewScreenLink(
-                                onClick = {
-                                    val intent = Intent(
-                                        context,
-                                        InviteActivity::class.java
-                                    ).setAction(Intent.ACTION_VIEW)
-
-                                    intent.data = "https://stt.gg/Testers".toUri()
-                                    context.startActivity(intent)
-                                },
-                                backgroundColour = MaterialTheme.colorScheme.primary,
-                                foregroundColour = MaterialTheme.colorScheme.onPrimary,
-                                title = {
-                                    Row(
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        horizontalArrangement = Arrangement.spacedBy(8.dp)
-                                    ) {
-                                        Icon(
-                                            painter = painterResource(R.drawable.ic_waving_hand_24dp),
-                                            contentDescription = null,
-                                            modifier = Modifier.size(22.dp)
-                                        )
-                                        Text(stringResource(R.string.overview_screen_join_lounge))
-                                    }
-                                },
-                                body = { Text(stringResource(R.string.overview_screen_join_lounge_description)) }
-                            )
+                        item(key = "scroll-spacer-placeholder-removed-blocks") {
+                            // Las tarjetas de "Novedades" (changelog oficial de Stoat) y
+                            // "Únete al Lounge de Stoat" se eliminaron aquí — apuntaban
+                            // a la comunidad y contenido real del equipo de Stoat, ajenos
+                            // a esta instancia privada.
                         }
                     }
 
