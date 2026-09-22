@@ -202,11 +202,11 @@ fun UserCard(
             ) {
                 val (heading, nameLabel, name, usernameLabel, username, joinDateLabel, joinDate, qrLabel, qr, photoLabel, photo, url) = createRefs()
 
-                Image(
-                    painter = painterResource(R.drawable.usercard_heading),
-                    contentDescription = null,
+                Text(
+                    "StarknetChat",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.ExtraBold,
                     modifier = Modifier
-                        .fillMaxWidth(0.5f)
                         .constrainAs(heading) {
                             top.linkTo(parent.top)
                             start.linkTo(parent.start)
@@ -361,7 +361,7 @@ fun UserCard(
                 }
 
                 Text(
-                    "stoat.chat",
+                    "starknet-chat.tech",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
