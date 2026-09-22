@@ -11,8 +11,8 @@
     <string name="lets_go">Vamos</string>
     <string name="email">Correo electrónico</string>
     <string name="password">Contraseña</string>
-    <string name="login">Acceso</string>
-    <string name="signup">Iniciar Sesión</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="signup">Registrarse</string>
     <string name="resend">Reenviar</string>
     <string name="send_email">Enviar correo electrónico</string>
     <string name="login_heading">Vamos a iniciar sesión</string>
