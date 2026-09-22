@@ -70,13 +70,11 @@ fun LoginGreetingScreen(navController: NavController) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.stoat_logo_white),
-                colorFilter = ColorFilter.tint(LocalContentColor.current),
-                contentDescription = "Stoat",
-                contentScale = ContentScale.Fit,
+            Text(
+                text = "StarknetChat",
+                style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.ExtraBold,
                 modifier = Modifier
-                    .height(100.dp)
                     .padding(bottom = 15.dp)
                     .combinedClickable(
                         interactionSource = remember(::MutableInteractionSource),
