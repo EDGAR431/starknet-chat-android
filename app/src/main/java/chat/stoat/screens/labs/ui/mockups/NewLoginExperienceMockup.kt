@@ -28,6 +28,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
@@ -93,13 +94,11 @@ fun NewLoginExperienceMockup(navController: NavController) {
                             .padding(horizontal = 16.dp)
                     ) {
                         Spacer(modifier = Modifier.height(64.dp))
-                        Image(
-                            painter = painterResource(R.drawable.stoat_wordmark_white),
-                            contentDescription = null,
-                            colorFilter = if (LoadedSettings.theme == Theme.M3Dynamic) ColorFilter.tint(
-                                MaterialTheme.colorScheme.onBackground
-                            ) else null,
-                            modifier = Modifier.fillMaxWidth(0.5f)
+                        Text(
+                            "StarknetChat",
+                            style = MaterialTheme.typography.headlineMedium,
+                            fontWeight = FontWeight.ExtraBold,
+                            color = MaterialTheme.colorScheme.onBackground
                         )
                         Spacer(modifier = Modifier.height(64.dp))
                         Text(

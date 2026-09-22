@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -98,14 +99,11 @@ private fun LeadPart(windowSizeClass: WindowSizeClass) {
         if (windowSizeClass.heightSizeClass >= WindowHeightSizeClass.Compact) {
             Spacer(Modifier.height(64.dp))
         }
-        Image(
-            painter = painterResource(R.drawable.stoat_logo_white),
-            contentDescription = null,
-            colorFilter = ColorFilter.tint(
-                MaterialTheme.colorScheme.onBackground
-            ),
-            modifier = if (windowSizeClass.widthSizeClass <= WindowWidthSizeClass.Compact)
-                Modifier.fillMaxWidth(0.5f) else Modifier.height(32.dp)
+        Text(
+            "StarknetChat",
+            style = MaterialTheme.typography.headlineLarge,
+            fontWeight = FontWeight.ExtraBold,
+            color = MaterialTheme.colorScheme.onBackground
         )
         Spacer(modifier = Modifier.height(64.dp))
         Text(
