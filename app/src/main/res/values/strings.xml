@@ -26,6 +26,12 @@
     <string name="show_password">Show password</string>
 
     <string name="login">Log In</string>
+    <string name="update_downloaded_ready">An update has been downloaded and is ready to install.</string>
+    <string name="update_restart_now">Restart</string>
+    <string name="settings_check_for_updates">Check for Updates</string>
+    <string name="settings_check_for_updates_description">See if a newer version is available.</string>
+    <string name="update_checking">Checking for updates…</string>
+    <string name="update_none_available">You\'re already on the latest version.</string>
     <string name="signup">Sign Up</string>
     <string name="resend">Resend</string>
     <string name="send_email">Send email</string>

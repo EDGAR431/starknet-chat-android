@@ -23,6 +23,15 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import android.app.Activity
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import chat.stoat.internals.AppUpdateChecker
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -69,6 +78,13 @@ fun SettingsScreen(
 ) {
     val context = LocalContext.current
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+
+    val activity = context as? Activity
+    val updateChecker = remember(activity) { activity?.let { AppUpdateChecker(it) } }
+    var checkingForUpdate by remember { mutableStateOf(false) }
+    val updateLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.StartIntentSenderForResult()
+    ) { checkingForUpdate = false }
 
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -321,6 +337,36 @@ fun SettingsScreen(
                     // Entradas de "Novedades" (changelog de Stoat) y "Feedback"
                     // (enlace real al servidor de Stoat) eliminadas — no aplican
                     // a esta instancia privada.
+                    Spacer(Modifier.height(2.dp))
+                    SettingsListItem(
+                        headlineContent = {
+                            Text(
+                                text = if (checkingForUpdate)
+                                    stringResource(R.string.update_checking)
+                                else
+                                    stringResource(R.string.settings_check_for_updates)
+                            )
+                        },
+                        supportingContent = {
+                            Text(text = stringResource(R.string.settings_check_for_updates_description))
+                        },
+                        modifier = Modifier.clickable(enabled = !checkingForUpdate) {
+                            checkingForUpdate = true
+                            updateChecker?.checkForUpdate(updateLauncher) { available ->
+                                if (!available) {
+                                    checkingForUpdate = false
+                                    Toast.makeText(
+                                        context,
+                                        context.getString(R.string.update_none_available),
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                                // Si sí hay actualización, el propio diálogo de Play
+                                // Store toma el control — checkingForUpdate se
+                                // resetea cuando ese diálogo se cierre.
+                            }
+                        }
+                    )
                     Spacer(Modifier.height(2.dp))
                     SettingsListItem(
                         last = true,
