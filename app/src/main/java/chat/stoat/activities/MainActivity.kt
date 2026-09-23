@@ -130,6 +130,10 @@ import chat.stoat.screens.settings.channel.ChannelSettingsOverview
 import chat.stoat.screens.settings.channel.ChannelSettingsPermissions
 import chat.stoat.ui.theme.StoatTheme
 import chat.stoat.voice.VoiceCallManager
+import chat.stoat.internals.AppUpdateChecker
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.IntentSenderRequest
+import com.google.android.material.snackbar.Snackbar
 import io.ktor.client.request.get
 import io.sentry.android.core.SentryAndroid
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -329,6 +333,19 @@ class MainActivityViewModel(
 class MainActivity : AppCompatActivity() {
     private val viewModel: MainActivityViewModel by viewModel()
 
+    private val appUpdateChecker: AppUpdateChecker by lazy { AppUpdateChecker(this) }
+    private val updateLauncher =
+        registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) {
+            // No hace falta hacer nada especial con el resultado — si el
+            // usuario cancela el diálogo de Play Store, simplemente no pasa
+            // nada y se le puede volver a ofrecer la próxima vez.
+        }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        appUpdateChecker.dispose()
+    }
+
     // The window can lose its transparent status bar after the activity is re-shown
     // See the other one in DefaultDestinationScreen.kt
     override fun onResume() {
@@ -381,10 +398,25 @@ class MainActivity : AppCompatActivity() {
 
         StoatAPI.hydrateFromPersistentCache()
 
+        appUpdateChecker.checkForUpdate(updateLauncher)
+
         handleNavigationIntent(intent)
 
         setContent {
             val windowSizeClass = calculateWindowSizeClass(this)
+
+            LaunchedEffect(appUpdateChecker.updateReadyToInstall.value) {
+                if (appUpdateChecker.updateReadyToInstall.value) {
+                    Snackbar.make(
+                        findViewById(android.R.id.content),
+                        getString(R.string.update_downloaded_ready),
+                        Snackbar.LENGTH_INDEFINITE,
+                    ).setAction(getString(R.string.update_restart_now)) {
+                        appUpdateChecker.completeUpdate()
+                    }.show()
+                }
+            }
+
             AppEntrypoint(
                 windowSizeClass,
                 viewModel.nextDestination.collectAsState().value,
