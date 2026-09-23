@@ -233,7 +233,7 @@ fun AboutScreen(navController: NavController, viewModel: AboutViewModel = viewMo
                                     scope.launch {
                                         clipboard.setClipEntry(
                                             ClipData.newPlainText(
-                                                "Stoat Debug Information",
+                                                "StarknetChat Debug Information",
                                                 StoatJson.encodeToString(viewModel.debugInfo)
                                             ).toClipEntry()
                                         )
