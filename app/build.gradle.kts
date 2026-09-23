@@ -293,6 +293,7 @@ aboutLibraries {
             "MIT",
             "ML Kit Terms of Service",
             "OFL",
+            "PCSDKToS", "Play Core Software Development Kit Terms of Service",
             "Public Domain"
         )
         additionalLicenses.addAll("ofl")
