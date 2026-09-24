@@ -310,7 +310,7 @@
     <string name="settings_changelogs_historical_version_header_placeholder">ця версія</string>
     <string name="settings_changelogs_historical_version_header">Список змін для %1$s</string>
     <string name="system_message_channel_icon_changed_alt">Значок каналу змінено</string>
-    <string name="about_brought_to_you_by">Створено з ❤️ для вас командою Stoat.</string>
+    <string name="about_brought_to_you_by">Створено з ❤️ для вас командою StarknetChat.</string>
     <string name="emoji_category_smileys">Смайлики та емоції</string>
     <string name="emoji_category_people">Люди та тіла</string>
     <string name="emoji_category_travel">Подорожі та місця</string>

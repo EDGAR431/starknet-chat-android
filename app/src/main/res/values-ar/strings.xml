@@ -49,7 +49,7 @@
     <string name="mfa_password_lead">أدخل كلمة المرور الخاصة بك للاستمرار.</string>
     <string name="about">عن</string>
     <string name="about_full_name">StarknetChat علي Android</string>
-    <string name="about_brought_to_you_by">مقدم إليك ب❤️ من قبل فريق Stoat.</string>
+    <string name="about_brought_to_you_by">مقدم إليك ب❤️ من قبل فريق StarknetChat.</string>
     <string name="about_tab_version">إصدار</string>
     <string name="about_tab_details">معلومات تفصيلية</string>
     <string name="oss_attribution">إسناد البرامج مفتوحة المصدر</string>

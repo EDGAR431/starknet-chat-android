@@ -32,7 +32,7 @@
     <string name="service_health_alert_body_default">我們的服務目前遇到了問題。請查看我們的狀態頁面以了解更多資訊。</string>
     <string name="settings">設定</string>
     <string name="about">關於</string>
-    <string name="about_brought_to_you_by">來自 Stoat 團隊用❤️為您獻上。</string>
+    <string name="about_brought_to_you_by">來自 StarknetChat 團隊用❤️為您獻上。</string>
     <string name="about_tab_details">細節</string>
     <string name="oss_attribution_body">Stoat 是在這些出色的開源專案的幫助下建立的。</string>
     <string name="overview_screen_settings">打開設定</string>

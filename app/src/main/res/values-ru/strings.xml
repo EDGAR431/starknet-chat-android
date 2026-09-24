@@ -246,7 +246,7 @@
     <string name="oss_attribution_body_2">Мы благодарны разработчикам этих проектов за то, что они сделали свою работу доступной всему миру.</string>
     <string name="badge_platform_moderation_alt">Модерация платформы</string>
     <string name="pick_emoji_alt">Выбрать эмодзи</string>
-    <string name="about_brought_to_you_by">Создано с ❤️ командой Stoat.</string>
+    <string name="about_brought_to_you_by">Создано с ❤️ командой StarknetChat.</string>
     <string name="about_tab_details">Подробности</string>
     <string name="oss_attribution_generation_date">Последнее обновление: %1$s</string>
     <string name="emoji_category_smileys">Смайлики и эмоции</string>

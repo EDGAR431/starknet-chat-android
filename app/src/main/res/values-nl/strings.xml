@@ -77,7 +77,7 @@
     <string name="mfa_password_lead">Voer je wachtwoord in om door te gaan.</string>
     <string name="about">Over</string>
     <string name="about_full_name">StarknetChat op Android</string>
-    <string name="about_brought_to_you_by">Met ❤️ aan je gebracht door de Stoat team.</string>
+    <string name="about_brought_to_you_by">Met ❤️ aan je gebracht door de StarknetChat team.</string>
     <string name="about_tab_version">Versie</string>
     <string name="about_tab_details">Details</string>
     <string name="mfa_totp_code">Code</string>

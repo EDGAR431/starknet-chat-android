@@ -257,7 +257,7 @@
     <string name="could_not_log_in_body">Olet ehkä kirjautunut ulos jostain toisesta laitteesta, tai internet-yhteytesi saattaa olla poikki.</string>
     <string name="could_not_log_in_cta_try_again">Yritä uudelleen</string>
     <string name="about_tab_details">Tiedot</string>
-    <string name="about_brought_to_you_by">Tuotu sinulle ❤️ Stoatin tiimin toimesta.</string>
+    <string name="about_brought_to_you_by">Tuotu sinulle ❤️ StarknetChatin tiimin toimesta.</string>
     <string name="oss_attribution_body">Stoat on rakennettu näiden mahtavien avoimen lähdekoodin projektien avulla.</string>
     <string name="oss_attribution_body_2">Olemme kiitollisia näiden projektien kehittäjille siitä, että he ovat tehneet työnsä saataville koko maailmalle.</string>
     <string name="oss_attribution_tap_to_view_license">Napauta nähdäksesi lisenssin</string>

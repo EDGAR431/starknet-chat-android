@@ -220,7 +220,7 @@
     <string name="oss_attribution_generation_date">Legutóbb frissítve: %1$s</string>
     <string name="oss_attribution_tap_to_view_license">Koppints a licenchez</string>
     <string name="about_full_name">Androidos StarknetChat</string>
-    <string name="about_brought_to_you_by">❤️-tel készítette el Neked a Stoat csapata.</string>
+    <string name="about_brought_to_you_by">❤️-tel készítette el Neked a StarknetChat csapata.</string>
     <string name="about_tab_version">Verzió</string>
     <string name="about_tab_details">Részletek</string>
     <string name="pick_emoji_alt">Válassz emodzsit</string>

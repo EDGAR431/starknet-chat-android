@@ -207,7 +207,7 @@
     <string name="settings_appearance">外观</string>
     <string name="settings_appearance_theme_m3dynamic">Material You</string>
     <string name="settings_feedback">反馈</string>
-    <string name="about_brought_to_you_by">由 Stoat 团队用 ❤️ 为您呈现。</string>
+    <string name="about_brought_to_you_by">由 StarknetChat 团队用 ❤️ 为您呈现。</string>
     <string name="about_tab_version">版本</string>
     <string name="about_tab_details">详情</string>
     <string name="oss_attribution_warning">下面的列表是自动生成的。可能会不完整或不准确。</string>
