@@ -18,6 +18,8 @@ import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -103,12 +105,15 @@ fun VoiceSheet(onDisconnect: () -> Unit) {
     CompositionLocalProvider(RoomLocal provides room) {
         val roomState by room::state.flow.collectAsState()
         val isMicOn by room.localParticipant::isMicrophoneEnabled.flow.collectAsState()
+        val isPushToTalk = VoiceCallManager.isPushToTalkEnabled
+        val isPushToTalkActive = VoiceCallManager.isPushToTalkActive
         val isCameraOn by room.localParticipant::isCameraEnabled.flow.collectAsState()
         val isScreenShared by room.localParticipant::isScreenShareEnabled.flow.collectAsState()
         val activeSpeakers by room::activeSpeakers.flow.collectAsState()
         val participants by rememberParticipants(room)
         val trackRefs by rememberTracks(passedRoom = room)
         val isDeafened = VoiceCallManager.isDeafened
+        val pingMs = VoiceCallManager.pingMs
 
         val audioHandler = room.audioSwitchHandler
         var audioDevices by remember {
@@ -127,6 +132,14 @@ fun VoiceSheet(onDisconnect: () -> Unit) {
         }
 
         Column {
+            if (pingMs != null) {
+                Text(
+                    text = stringResource(R.string.voice_ping_ms, pingMs),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(start = 16.dp, top = 4.dp)
+                )
+            }
             LazyColumn(
                 modifier = Modifier
                     // don't push the toolbar off-screen
@@ -540,7 +553,7 @@ fun VoiceSheet(onDisconnect: () -> Unit) {
                 )
             ) {
                 Button(
-                    onClick = { VoiceCallManager.toggleMicrophone() },
+                    onClick = { if (!isPushToTalk) VoiceCallManager.toggleMicrophone() },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = if (isMicOn) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.secondaryContainer,
                         contentColor = if (isMicOn) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSecondaryContainer,
@@ -549,13 +562,29 @@ fun VoiceSheet(onDisconnect: () -> Unit) {
                     modifier = Modifier
                         .weight(1f)
                         .height(64.dp)
+                        .then(
+                            if (isPushToTalk) {
+                                Modifier.pointerInput(Unit) {
+                                    detectTapGestures(
+                                        onPress = {
+                                            VoiceCallManager.onPushToTalkPressed()
+                                            tryAwaitRelease()
+                                            VoiceCallManager.onPushToTalkReleased()
+                                        }
+                                    )
+                                }
+                            } else {
+                                Modifier
+                            }
+                        )
                 ) {
                     Icon(
                         painter = if (isMicOn) painterResource(R.drawable.ic_mic_24dp) else painterResource(
                             R.drawable.ic_mic_off_24dp
                         ),
                         contentDescription = stringResource(
-                            if (isMicOn) R.string.voice_action_mute else R.string.voice_action_unmute
+                            if (isPushToTalk) R.string.voice_action_push_to_talk
+                            else if (isMicOn) R.string.voice_action_mute else R.string.voice_action_unmute
                         )
                     )
                 }

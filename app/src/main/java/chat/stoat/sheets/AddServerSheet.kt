@@ -21,13 +21,18 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.foundation.verticalScroll
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import com.journeyapps.barcodescanner.ScanContract
+import com.journeyapps.barcodescanner.ScanOptions
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -332,6 +337,44 @@ fun AddServerSheet(onDismiss: () -> Unit) {
                             Text(
                                 text = stringResource(id = R.string.add_server_sheet_step_1j_join)
                             )
+                        }
+
+                        val qrScanLauncher = rememberLauncherForActivityResult(ScanContract()) { result ->
+                            val scannedText = result.contents ?: return@rememberLauncherForActivityResult
+                            val intent = Intent(context, InviteActivity::class.java)
+                            intent.data = try {
+                                if (scannedText.startsWith("https://")) {
+                                    scannedText.toUri()
+                                } else {
+                                    "https://$STOAT_WEB_APP/invite/$scannedText".toUri()
+                                }
+                            } catch (e: Exception) {
+                                Log.e("AddServerSheet", "Invalid QR content: $scannedText", e)
+                                return@rememberLauncherForActivityResult
+                            }
+                            context.startActivity(intent)
+                            onDismiss()
+                        }
+
+                        OutlinedButton(
+                            onClick = {
+                                qrScanLauncher.launch(
+                                    ScanOptions()
+                                        .setDesiredBarcodeFormats(ScanOptions.QR_CODE)
+                                        .setBeepEnabled(false)
+                                        .setOrientationLocked(false)
+                                        .setPrompt(context.getString(R.string.add_server_sheet_scan_qr_prompt))
+                                )
+                            },
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_qr_code_scanner_24dp),
+                                contentDescription = null,
+                                modifier = Modifier.size(20.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(text = stringResource(id = R.string.add_server_sheet_scan_qr))
                         }
                     }
                 } else if (step == AddServerSheetStep.CreateServer) {

@@ -552,6 +552,8 @@
     <string name="add_server_sheet_step_1j_example_3" translatable="false">stoat.chat/invite/Testers</string>
     <string name="add_server_sheet_step_1j_label">Invite code or link</string>
     <string name="add_server_sheet_step_1j_join">Join</string>
+    <string name="add_server_sheet_scan_qr">Scan QR Code</string>
+    <string name="add_server_sheet_scan_qr_prompt">Point your camera at an invite QR code</string>
     <string name="add_server_sheet_step_1c_title">Create a Server</string>
     <string name="add_server_sheet_step_1c_description">You can always customise the name or icon and invite your friends later.</string>
     <string name="add_server_sheet_step_1c_name">Server Name</string>
@@ -719,6 +721,16 @@
     <string name="voice_action_disconnect">Disconnect</string>
 
     <string name="voice_action_mute">Mute</string>
+    <string name="voice_message_record_alt">Hold to record a voice message</string>
+    <string name="voice_action_push_to_talk">Hold to talk</string>
+    <string name="voice_ping_ms">%1$d ms</string>
+    <string name="settings_voice_push_to_talk">Push-to-Talk</string>
+    <string name="settings_voice_push_to_talk_description">Hold a button to talk instead of using an always-on microphone.</string>
+    <string name="settings_voice_audio_processing">Audio processing</string>
+    <string name="settings_voice_noise_suppression">Noise suppression</string>
+    <string name="settings_voice_echo_cancellation">Echo cancellation</string>
+    <string name="settings_voice_auto_gain_control">Automatic gain control</string>
+    <string name="settings_category_voice">Voice</string>
     <string name="voice_action_unmute">Unmute</string>
     <string name="voice_action_deafen">Deafen</string>
     <string name="voice_action_undeafen">Undeafen</string>

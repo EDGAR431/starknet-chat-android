@@ -12,6 +12,16 @@
     <string name="email">Correo electrónico</string>
     <string name="password">Contraseña</string>
     <string name="login">Iniciar sesión</string>
+    <string name="voice_action_push_to_talk">Mantén pulsado para hablar</string>
+    <string name="voice_message_record_alt">Mantén pulsado para grabar una nota de voz</string>
+    <string name="voice_ping_ms">%1$d ms</string>
+    <string name="settings_voice_push_to_talk">Push-to-Talk</string>
+    <string name="settings_voice_push_to_talk_description">Mantén pulsado un botón para hablar, en vez de un micrófono siempre encendido.</string>
+    <string name="settings_voice_audio_processing">Procesado de audio</string>
+    <string name="settings_voice_noise_suppression">Supresión de ruido</string>
+    <string name="settings_voice_echo_cancellation">Cancelación de eco</string>
+    <string name="settings_voice_auto_gain_control">Control automático de ganancia</string>
+    <string name="settings_category_voice">Voz</string>
     <string name="app_lock_prompt_title">Desbloquear StarknetChat</string>
     <string name="app_lock_settings_title">Bloqueo de la app</string>
     <string name="app_lock_settings_description">Pide tu huella, cara o PIN del dispositivo para abrir la app.</string>
@@ -618,6 +628,8 @@
     <string name="add_server_sheet_step_1j_examples_heading">Ejemplos de códigos de invitación incluyen:</string>
     <string name="add_server_sheet_step_1j_label">Codigo de invitación o enlace</string>
     <string name="add_server_sheet_step_1j_join">Unirse</string>
+    <string name="add_server_sheet_scan_qr">Escanear código QR</string>
+    <string name="add_server_sheet_scan_qr_prompt">Apunta la cámara a un código QR de invitación</string>
     <string name="add_server_sheet_step_1c_title">Crea un servidor</string>
     <string name="add_server_sheet_step_1c_name">Nombre del servidor</string>
     <string name="add_server_sheet_step_1c_name_placeholder">Mi servidor</string>
