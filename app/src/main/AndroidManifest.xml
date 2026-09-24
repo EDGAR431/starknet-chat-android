@@ -203,7 +203,7 @@
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.Stoat"
-            tools:replace="screenOrientation" />
+            tools:replace="screenOrientation,android:theme" />
 
         <activity
             android:name=".activities.voice.IncomingActivity"
