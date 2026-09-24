@@ -12,6 +12,12 @@
     <string name="email">Correo electrónico</string>
     <string name="password">Contraseña</string>
     <string name="login">Iniciar sesión</string>
+    <string name="app_lock_prompt_title">Desbloquear StarknetChat</string>
+    <string name="app_lock_settings_title">Bloqueo de la app</string>
+    <string name="app_lock_settings_description">Pide tu huella, cara o PIN del dispositivo para abrir la app.</string>
+    <string name="app_lock_locked_message">StarknetChat está bloqueada</string>
+    <string name="app_lock_unlock_button">Desbloquear</string>
+    <string name="app_lock_unavailable">Configura una huella, desbloqueo facial o PIN en tu dispositivo para usar esta función.</string>
     <string name="update_downloaded_ready">Se ha descargado una actualización y está lista para instalarse.</string>
     <string name="update_restart_now">Reiniciar</string>
     <string name="settings_check_for_updates">Buscar actualizaciones</string>

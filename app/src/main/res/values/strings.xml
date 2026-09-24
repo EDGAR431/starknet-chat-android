@@ -26,6 +26,12 @@
     <string name="show_password">Show password</string>
 
     <string name="login">Log In</string>
+    <string name="app_lock_prompt_title">Unlock StarknetChat</string>
+    <string name="app_lock_settings_title">App Lock</string>
+    <string name="app_lock_settings_description">Require your fingerprint, face, or device PIN to open the app.</string>
+    <string name="app_lock_locked_message">StarknetChat is locked</string>
+    <string name="app_lock_unlock_button">Unlock</string>
+    <string name="app_lock_unavailable">Set up a fingerprint, face unlock, or PIN on your device to use this feature.</string>
     <string name="update_downloaded_ready">An update has been downloaded and is ready to install.</string>
     <string name="update_restart_now">Restart</string>
     <string name="settings_check_for_updates">Check for Updates</string>
