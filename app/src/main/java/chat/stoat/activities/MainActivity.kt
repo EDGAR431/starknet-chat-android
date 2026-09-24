@@ -126,6 +126,7 @@ import chat.stoat.screens.settings.NotificationsSettingsScreen
 import chat.stoat.screens.settings.ProfileSettingsScreen
 import chat.stoat.screens.settings.SessionSettingsScreen
 import chat.stoat.screens.settings.SettingsScreen
+import chat.stoat.screens.settings.VoiceSettingsScreen
 import chat.stoat.screens.settings.channel.ChannelSettingsHome
 import chat.stoat.screens.settings.channel.ChannelSettingsOverview
 import chat.stoat.screens.settings.channel.ChannelSettingsPermissions
@@ -806,6 +807,7 @@ fun AppEntrypoint(
                     composable("settings/notifications") { NotificationsSettingsScreen(navController) }
                     composable("settings/debug") { DebugSettingsScreen(navController) }
                     composable("settings/experiments") { ExperimentsSettingsScreen(navController) }
+                    composable("settings/voice") { VoiceSettingsScreen(navController) }
                     composable("settings/language") { LanguagePickerSettingsScreen(navController) }
 
                     composable("settings/channel/{channelId}") { backStackEntry ->
