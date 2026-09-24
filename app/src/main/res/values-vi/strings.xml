@@ -57,7 +57,7 @@
     <string name="mfa_password_header">Nhập mật khẩu</string>
     <string name="about">Giới thiệu</string>
     <string name="about_full_name">StarknetChat cho Android</string>
-    <string name="about_brought_to_you_by">Đem đến cho bạn, bằng cả ❤️từ nhóm phát triển Stoat.</string>
+    <string name="about_brought_to_you_by">Đem đến cho bạn, bằng cả ❤️từ nhóm phát triển StarknetChat.</string>
     <string name="about_tab_version">Phiên bản</string>
     <string name="about_tab_details">Chi tiết</string>
     <string name="oss_attribution">Ghi công OSS</string>

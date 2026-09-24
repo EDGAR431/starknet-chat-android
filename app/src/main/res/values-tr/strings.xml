@@ -241,7 +241,7 @@
     <string name="status_online">Aktif</string>
     <string name="invite_dialog_description">Bu linki insanlara gönder ve onları bu kanala davet et.</string>
     <string name="message_context_sheet_actions_delete_confirmation_yes">Sil</string>
-    <string name="about_brought_to_you_by">Stoat ekibi tarafından ❤️ ile geliştirildi.</string>
+    <string name="about_brought_to_you_by">StarknetChat ekibi tarafından ❤️ ile geliştirildi.</string>
     <string name="status_invisible">Görünmez</string>
     <string name="status_focus">Odak</string>
     <string name="status_dnd">Rahatsız Etme</string>

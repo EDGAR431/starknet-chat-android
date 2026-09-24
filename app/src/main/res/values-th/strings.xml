@@ -54,7 +54,7 @@
     <string name="onboarding_changeable">แต่ถ้าคุณเปลี่ยนใจ คุณสามารถเปลี่ยนชื่อผู้ใช้ได้ตลอดในการตั้งค่าผู้ใช้</string>
     <string name="mfa_recovery_header">ใส่โค้ดการกู้คืน</string>
     <string name="mfa_password_header">ใส่รหัสผ่านของคุณ</string>
-    <string name="about_brought_to_you_by">ให้คุณด้วย ❤️ โดยทีมงาน Stoat</string>
+    <string name="about_brought_to_you_by">ให้คุณด้วย ❤️ โดยทีมงาน StarknetChat</string>
     <string name="oss_attribution">การระบุแหล่งที่มาของ OSS</string>
     <string name="oss_attribution_body">Stoat ได้ถูกสร้างโดยใช้ผลงานโปรแกรมโอเพนซอร์สสุดเจ๋งมากมาย ดังนี้</string>
     <string name="community_guidelines">มาตรฐานชุมชน</string>

@@ -50,7 +50,7 @@
     <string name="mfa_password_lead">輸入密碼以繼續。</string>
     <string name="about">關於</string>
     <string name="about_full_name">StarknetChat Android版</string>
-    <string name="about_brought_to_you_by">由 Stoat 團隊用❤️為您獻上。</string>
+    <string name="about_brought_to_you_by">由 StarknetChat 團隊用❤️為您獻上。</string>
     <string name="about_tab_details">詳細</string>
     <string name="oss_attribution_body_2">我們感謝這些專案的開發者向全世界展示他們的成果。</string>
     <string name="oss_attribution_warning">以下清單是自動產生。它可能不完整或不準確。</string>

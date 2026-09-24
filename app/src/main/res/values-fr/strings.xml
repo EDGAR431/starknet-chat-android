@@ -211,7 +211,7 @@
     <string name="settings_appearance_colour_overrides_outline">Contour</string>
     <string name="oss_attribution_body">Stoat est construit avec l\'aide de ces formidables projets open source.</string>
     <string name="about_full_name">StarknetChat pour Android</string>
-    <string name="about_brought_to_you_by">Présenté avec ❤️ par l\'équipe Stoat.</string>
+    <string name="about_brought_to_you_by">Présenté avec ❤️ par l\'équipe StarknetChat.</string>
     <string name="about_tab_version">Version</string>
     <string name="about_tab_details">Détails</string>
     <string name="oss_attribution_generation_date">Dernière mise à jour : %1$s</string>

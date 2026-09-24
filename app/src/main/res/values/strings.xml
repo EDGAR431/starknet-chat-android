@@ -111,7 +111,7 @@
 
     <string name="about">About</string>
     <string name="about_full_name">StarknetChat for Android</string>
-    <string name="about_brought_to_you_by">Brought to you with ❤️ by the Stoat team.</string>
+    <string name="about_brought_to_you_by">Brought to you with ❤️ by the StarknetChat team.</string>
     <string name="about_section_debug_information">Debug Information</string>
     <string name="about_section_debug_information_description">If you\'re experiencing issues with the app, this information may be helpful to include when contacting support or submitting a bug report.</string>
     <string name="about_section_debug_information_copy_as_json">Copy as JSON</string>

@@ -178,7 +178,7 @@
     <string name="mfa_recovery_lead">Inserisci uno dei tuoi codici di recupero.</string>
     <string name="mfa_password_header">Inserisci la tua password</string>
     <string name="about">A riguardo</string>
-    <string name="about_brought_to_you_by">Portato fino a te con ❤️ dal team di Stoat.</string>
+    <string name="about_brought_to_you_by">Portato fino a te con ❤️ dal team di StarknetChat.</string>
     <string name="about_tab_details">Dettagli</string>
     <string name="oss_attribution">Attribuzioni Open Source</string>
     <string name="oss_attribution_body_2">Siamo grati agli sviluppatori di questi progetti per aver reso il loro lavoro disponibile al mondo.</string>

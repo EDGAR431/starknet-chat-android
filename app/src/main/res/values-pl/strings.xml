@@ -227,7 +227,7 @@
     <string name="oss_attribution_body">Stoat jest zbudowany przy pomocy tych niesamowitych projektów open-source.</string>
     <string name="oss_attribution_body_2">Jesteśmy wdzięczni twórcom tych projektów za udostępnienie ich pracy światu.</string>
     <string name="oss_attribution_warning">Poniższa lista jest generowana automatycznie. Może być niekompletna lub niedokładna.</string>
-    <string name="about_brought_to_you_by">Dostarczone z ❤️ przez zespół Stoat.</string>
+    <string name="about_brought_to_you_by">Dostarczone z ❤️ przez zespół StarknetChat.</string>
     <string name="about_tab_version">Wersja</string>
     <string name="about_tab_details">Szczegóły</string>
     <string name="oss_attribution_tap_to_view_license">Dotknij, aby wyświetlić licencję</string>
