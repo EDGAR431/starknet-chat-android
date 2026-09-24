@@ -11,6 +11,8 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.foundation.content.ReceiveContentListener
 import androidx.compose.foundation.content.consume
 import androidx.compose.foundation.content.contentReceiver
@@ -163,6 +165,9 @@ fun MessageField(
     initialValueDirtyMarker: Any = Unit,
     cancelEdit: () -> Unit = {},
     onFocusChange: (Boolean) -> Unit = {},
+    voiceMessageEnabled: Boolean = false,
+    onVoiceMessagePress: () -> Unit = {},
+    onVoiceMessageRelease: () -> Unit = {},
 ) {
     val placeholderResource = when (channelType) {
         ChannelType.DirectMessage -> R.string.message_field_placeholder_dm
@@ -598,6 +603,43 @@ fun MessageField(
                     .padding(4.dp)
                     .testTag("pick_emoji")
             )
+
+            Spacer(modifier = Modifier.width(8.dp))
+
+            AnimatedVisibility(
+                voiceMessageEnabled && !sendButtonVisible,
+                enter = expandIn(initialSize = { full -> IntSize(0, full.height) }) +
+                    slideInHorizontally(
+                        animationSpec = StoatTweenInt,
+                        initialOffsetX = { -it }
+                    ) + fadeIn(animationSpec = StoatTweenFloat),
+                exit = shrinkOut(targetSize = { full -> IntSize(0, full.height) }) +
+                    slideOutHorizontally(
+                        animationSpec = StoatTweenInt,
+                        targetOffsetX = { it }
+                    ) + fadeOut(animationSpec = StoatTweenFloat)
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_mic_24dp),
+                    tint = MaterialTheme.colorScheme.primary,
+                    contentDescription = stringResource(id = R.string.voice_message_record_alt),
+                    modifier = Modifier
+                        .padding(end = 8.dp)
+                        .clip(CircleShape)
+                        .pointerInput(Unit) {
+                            detectTapGestures(
+                                onPress = {
+                                    onVoiceMessagePress()
+                                    tryAwaitRelease()
+                                    onVoiceMessageRelease()
+                                }
+                            )
+                        }
+                        .size(32.dp)
+                        .padding(4.dp)
+                        .testTag("record_voice_message")
+                )
+            }
 
             Spacer(modifier = Modifier.width(8.dp))
 

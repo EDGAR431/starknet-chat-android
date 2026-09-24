@@ -13,6 +13,9 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
+import android.Manifest
+import androidx.core.content.ContextCompat
+import chat.stoat.internals.VoiceMessageRecorder
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedContent
@@ -230,6 +233,43 @@ fun ChannelScreen(
     val context = LocalContext.current
     val resources = LocalResources.current
     val config = LocalConfiguration.current
+
+    val voiceMessageRecorder = remember { VoiceMessageRecorder(context) }
+    var pendingVoiceMessageRecord by remember { mutableStateOf(false) }
+    val micPermissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        if (granted && pendingVoiceMessageRecord) {
+            voiceMessageRecorder.start()
+        }
+        pendingVoiceMessageRecord = false
+    }
+
+    fun beginVoiceMessageRecording() {
+        val hasMicPermission = ContextCompat.checkSelfPermission(
+            context,
+            Manifest.permission.RECORD_AUDIO
+        ) == android.content.pm.PackageManager.PERMISSION_GRANTED
+
+        if (hasMicPermission) {
+            voiceMessageRecorder.start()
+        } else {
+            pendingVoiceMessageRecord = true
+            micPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
+        }
+    }
+
+    fun finishVoiceMessageRecording() {
+        val file = voiceMessageRecorder.stop() ?: return
+        viewModel.draftAttachments.add(
+            FileArgs(
+                file = file,
+                filename = "voice-message.m4a",
+                contentType = "audio/mp4",
+            )
+        )
+        viewModel.sendPendingMessage()
+    }
 
     DisposableEffect(Unit) {
         val job = scope.launch { viewModel.listenToUiCallbacks() }
@@ -1352,6 +1392,9 @@ fun ChannelScreen(
                                             },
                                             forceSendButton = viewModel.draftAttachments.isNotEmpty(),
                                             canAttach = (channelPermissions has PermissionBit.UploadFiles) && viewModel.editingMessage == null,
+                                            voiceMessageEnabled = (channelPermissions has PermissionBit.UploadFiles) && viewModel.editingMessage == null,
+                                            onVoiceMessagePress = { beginVoiceMessageRecording() },
+                                            onVoiceMessageRelease = { finishVoiceMessageRecording() },
                                             serverId = viewModel.channel?.server,
                                             channelId = channelId,
                                             failedValidation = viewModel.draftContent.length > 2000,

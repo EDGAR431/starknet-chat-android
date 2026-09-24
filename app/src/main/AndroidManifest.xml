@@ -200,6 +200,12 @@
             android:theme="@style/Theme.Stoat" />
 
         <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.Stoat"
+            tools:replace="screenOrientation" />
+
+        <activity
             android:name=".activities.voice.IncomingActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/Theme.Stoat" />

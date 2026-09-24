@@ -34,6 +34,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import chat.stoat.internals.AppUpdateChecker
 import chat.stoat.internals.AppLock
+import chat.stoat.internals.VoiceAudioSettings
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -328,6 +329,87 @@ fun SettingsScreen(
                                 .clickable { navController.navigate("settings/experiments") }
                         )
                     }
+
+                    ListHeader {
+                        Text(text = stringResource(R.string.settings_category_voice))
+                    }
+
+                    var pushToTalkEnabled by remember {
+                        mutableStateOf(VoiceAudioSettings.isPushToTalkEnabled(context))
+                    }
+                    SettingsListItem(
+                        first = true,
+                        headlineContent = {
+                            Text(text = stringResource(R.string.settings_voice_push_to_talk))
+                        },
+                        supportingContent = {
+                            Text(text = stringResource(R.string.settings_voice_push_to_talk_description))
+                        },
+                        trailingContent = {
+                            Switch(checked = pushToTalkEnabled, onCheckedChange = null)
+                        },
+                        modifier = Modifier.clickable {
+                            pushToTalkEnabled = !pushToTalkEnabled
+                            VoiceAudioSettings.setPushToTalkEnabled(context, pushToTalkEnabled)
+                        }
+                    )
+
+                    Spacer(Modifier.height(2.dp))
+                    Text(
+                        text = stringResource(R.string.settings_voice_audio_processing),
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(start = 16.dp, top = 12.dp, bottom = 4.dp)
+                    )
+
+                    var noiseSuppressionEnabled by remember {
+                        mutableStateOf(VoiceAudioSettings.isNoiseSuppressionEnabled(context))
+                    }
+                    SettingsListItem(
+                        headlineContent = {
+                            Text(text = stringResource(R.string.settings_voice_noise_suppression))
+                        },
+                        trailingContent = {
+                            Switch(checked = noiseSuppressionEnabled, onCheckedChange = null)
+                        },
+                        modifier = Modifier.clickable {
+                            noiseSuppressionEnabled = !noiseSuppressionEnabled
+                            VoiceAudioSettings.setNoiseSuppressionEnabled(context, noiseSuppressionEnabled)
+                        }
+                    )
+                    Spacer(Modifier.height(2.dp))
+                    var echoCancellationEnabled by remember {
+                        mutableStateOf(VoiceAudioSettings.isEchoCancellationEnabled(context))
+                    }
+                    SettingsListItem(
+                        headlineContent = {
+                            Text(text = stringResource(R.string.settings_voice_echo_cancellation))
+                        },
+                        trailingContent = {
+                            Switch(checked = echoCancellationEnabled, onCheckedChange = null)
+                        },
+                        modifier = Modifier.clickable {
+                            echoCancellationEnabled = !echoCancellationEnabled
+                            VoiceAudioSettings.setEchoCancellationEnabled(context, echoCancellationEnabled)
+                        }
+                    )
+                    Spacer(Modifier.height(2.dp))
+                    var autoGainControlEnabled by remember {
+                        mutableStateOf(VoiceAudioSettings.isAutoGainControlEnabled(context))
+                    }
+                    SettingsListItem(
+                        last = true,
+                        headlineContent = {
+                            Text(text = stringResource(R.string.settings_voice_auto_gain_control))
+                        },
+                        trailingContent = {
+                            Switch(checked = autoGainControlEnabled, onCheckedChange = null)
+                        },
+                        modifier = Modifier.clickable {
+                            autoGainControlEnabled = !autoGainControlEnabled
+                            VoiceAudioSettings.setAutoGainControlEnabled(context, autoGainControlEnabled)
+                        }
+                    )
 
                     ListHeader {
                         Text(

@@ -63,8 +63,8 @@ android {
         applicationId = "com.edgar.starknetchat"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = Integer.parseInt("001_007_006".replace("_", ""), 10)
-        versionName = "1.7.6"
+        versionCode = Integer.parseInt("001_007_007".replace("_", ""), 10)
+        versionName = "1.7.7"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -239,6 +239,9 @@ dependencies {
     implementation(libs.haze.materials)
 
     implementation(libs.zxing.core)
+    implementation(libs.zxing.android.embedded) {
+        isTransitive = false
+    }
     implementation(libs.quickie.bundled)
 
     implementation(libs.sqldelight.android.driver)

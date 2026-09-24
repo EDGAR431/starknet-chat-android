@@ -15,6 +15,7 @@ import chat.stoat.api.routes.voice.JoinCallResponse
 import chat.stoat.api.routes.voice.joinCall
 import chat.stoat.composables.voice.VoiceSound
 import chat.stoat.composables.voice.VoiceSoundPlayer
+import chat.stoat.internals.VoiceAudioSettings
 import chat.stoat.services.OngoingCallService
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
@@ -24,6 +25,7 @@ import io.livekit.android.LiveKit
 import io.livekit.android.RoomOptions
 import io.livekit.android.events.RoomEvent
 import io.livekit.android.room.Room
+import io.livekit.android.room.track.LocalAudioTrackOptions
 import io.livekit.android.room.track.LocalVideoTrackOptions
 import io.livekit.android.room.track.RemoteAudioTrack
 import io.livekit.android.room.track.ScreenSharePresets
@@ -36,6 +38,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
@@ -69,6 +72,19 @@ object VoiceCallManager {
     var requestedChannelId: String? by mutableStateOf(null)
         private set
 
+    /** Si está activado, el micrófono empieza apagado y solo se activa
+     *  mientras se mantiene pulsado el botón de hablar. */
+    val isPushToTalkEnabled: Boolean get() = VoiceAudioSettings.isPushToTalkEnabled(context)
+
+    var isPushToTalkActive: Boolean by mutableStateOf(false)
+        private set
+
+    /** Ping real en ms a la sala de LiveKit, actualizado cada 2 segundos. */
+    var pingMs: Int? by mutableStateOf<Int?>(null)
+        private set
+
+    private var pingJob: Job? = null
+
     fun openSheet(channelId: String) {
         requestedChannelId = channelId
         isSheetVisible = true
@@ -101,6 +117,11 @@ object VoiceCallManager {
         val newRoom = LiveKit.create(
             context.applicationContext,
             RoomOptions(
+                audioTrackCaptureDefaults = LocalAudioTrackOptions(
+                    noiseSuppression = VoiceAudioSettings.isNoiseSuppressionEnabled(context),
+                    echoCancellation = VoiceAudioSettings.isEchoCancellationEnabled(context),
+                    autoGainControl = VoiceAudioSettings.isAutoGainControlEnabled(context),
+                ),
                 screenShareTrackCaptureDefaults = LocalVideoTrackOptions(
                     isScreencast = true,
                     captureParams = ScreenSharePresets.H720_FPS30.capture
@@ -118,7 +139,8 @@ object VoiceCallManager {
             val connection = fetchVoiceToken(channelId) ?: return@launch
             try {
                 newRoom.connect(connection.url, connection.token)
-                newRoom.localParticipant.setMicrophoneEnabled(true)
+                newRoom.localParticipant.setMicrophoneEnabled(!isPushToTalkEnabled)
+                startPingPolling(newRoom)
             } catch (e: Exception) {
                 logcat(LogPriority.ERROR) { "Could not connect to LiveKit room\n" + e.asLog() }
                 errorResource = R.string.voice_error_generic
@@ -135,6 +157,8 @@ object VoiceCallManager {
     private fun endSession() {
         sessionJob?.cancel()
         sessionJob = null
+        stopPingPolling()
+        isPushToTalkActive = false
 
         val leftRoom = room
         room = null
@@ -163,6 +187,68 @@ object VoiceCallManager {
         scope.launch {
             room.localParticipant.setMicrophoneEnabled(!isMicOn)
         }
+    }
+
+    /**
+     * Activa el micrófono mientras se mantiene pulsado el botón de
+     * Push-to-Talk, y lo apaga al soltar — sin los sonidos de
+     * silenciar/activar normales, para no ser molesto al hablar a
+     * ráfagas.
+     */
+    fun onPushToTalkPressed() {
+        val room = room ?: return
+        if (isPushToTalkActive) return
+        isPushToTalkActive = true
+        scope.launch {
+            room.localParticipant.setMicrophoneEnabled(true)
+        }
+    }
+
+    fun onPushToTalkReleased() {
+        val room = room ?: return
+        if (!isPushToTalkActive) return
+        isPushToTalkActive = false
+        scope.launch {
+            room.localParticipant.setMicrophoneEnabled(false)
+        }
+    }
+
+    /**
+     * LiveKit no da un número de ping ya calculado — se saca de las
+     * estadísticas WebRTC de la propia conexión (no de un track en
+     * concreto), así que funciona haya o no micrófono/cámara
+     * publicados.
+     */
+    private fun startPingPolling(room: Room) {
+        stopPingPolling()
+        pingJob = scope.launch {
+            while (true) {
+                try {
+                    room.getPublisherRTCStats { report ->
+                        for (stats in report.statsMap.values) {
+                            if (stats.type == "candidate-pair" &&
+                                stats.members["state"] == "succeeded"
+                            ) {
+                                val rtt = stats.members["currentRoundTripTime"] as? Double
+                                if (rtt != null) {
+                                    val ms = (rtt * 1000).toInt()
+                                    scope.launch { pingMs = ms }
+                                }
+                            }
+                        }
+                    }
+                } catch (e: Exception) {
+                    logcat(LogPriority.ERROR) { "No se pudo obtener el ping real\n" + e.asLog() }
+                }
+                delay(2000)
+            }
+        }
+    }
+
+    private fun stopPingPolling() {
+        pingJob?.cancel()
+        pingJob = null
+        pingMs = null
     }
 
     fun toggleDeafen() {
