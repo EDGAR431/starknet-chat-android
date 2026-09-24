@@ -19,6 +19,7 @@ import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -32,6 +33,7 @@ import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import chat.stoat.internals.AppUpdateChecker
+import chat.stoat.internals.AppLock
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -85,6 +87,8 @@ fun SettingsScreen(
     val updateLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.StartIntentSenderForResult()
     ) { checkingForUpdate = false }
+
+    var appLockEnabled by remember { mutableStateOf(AppLock.isEnabled(context)) }
 
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -367,6 +371,27 @@ fun SettingsScreen(
                             }
                         }
                     )
+                    if (AppLock.isAvailableOnDevice(context)) {
+                        Spacer(Modifier.height(2.dp))
+                        SettingsListItem(
+                            headlineContent = {
+                                Text(text = stringResource(R.string.app_lock_settings_title))
+                            },
+                            supportingContent = {
+                                Text(text = stringResource(R.string.app_lock_settings_description))
+                            },
+                            trailingContent = {
+                                Switch(
+                                    checked = appLockEnabled,
+                                    onCheckedChange = null
+                                )
+                            },
+                            modifier = Modifier.clickable {
+                                appLockEnabled = !appLockEnabled
+                                AppLock.setEnabled(context, appLockEnabled)
+                            }
+                        )
+                    }
                     Spacer(Modifier.height(2.dp))
                     SettingsListItem(
                         last = true,
@@ -407,6 +432,7 @@ private fun SettingsListItem(
     headlineContent: @Composable () -> Unit,
     supportingContent: (@Composable () -> Unit)? = null,
     leadingContent: (@Composable () -> Unit)? = null,
+    trailingContent: (@Composable () -> Unit)? = null,
     modifier: Modifier = Modifier,
 ) {
     ListItem(
@@ -414,6 +440,7 @@ private fun SettingsListItem(
         headlineContent = headlineContent,
         supportingContent = supportingContent,
         leadingContent = leadingContent,
+        trailingContent = trailingContent,
         modifier = Modifier
             .padding(horizontal = 16.dp)
             .clip(

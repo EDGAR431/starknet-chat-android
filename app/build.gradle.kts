@@ -217,6 +217,7 @@ dependencies {
     implementation(libs.android.core.splashscreen)
     implementation(libs.android.app.update)
     implementation(libs.android.app.update.ktx)
+    implementation(libs.android.biometric)
     implementation(libs.android.constraintlayout.compose)
     implementation(libs.android.appcompat)
     implementation(libs.android.material)

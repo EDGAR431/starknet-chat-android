@@ -83,6 +83,7 @@ import chat.stoat.api.settings.GeoStateProvider
 import chat.stoat.api.settings.LoadedSettings
 import chat.stoat.api.settings.SyncedSettings
 import chat.stoat.c2dm.NotificationDeepLink
+import chat.stoat.composables.AppLockScreen
 import chat.stoat.composables.generic.HealthAlert
 import chat.stoat.composables.voice.VoicePermissionSwitch
 import chat.stoat.composables.voice.VoiceSheet
@@ -131,6 +132,7 @@ import chat.stoat.screens.settings.channel.ChannelSettingsPermissions
 import chat.stoat.ui.theme.StoatTheme
 import chat.stoat.voice.VoiceCallManager
 import chat.stoat.internals.AppUpdateChecker
+import chat.stoat.internals.AppLock
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.IntentSenderRequest
 import com.google.android.material.snackbar.Snackbar
@@ -346,6 +348,16 @@ class MainActivity : AppCompatActivity() {
         appUpdateChecker.dispose()
     }
 
+    override fun onStart() {
+        super.onStart()
+        AppLock.onAppForegrounded(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        AppLock.onAppBackgrounded(this)
+    }
+
     // The window can lose its transparent status bar after the activity is re-shown
     // See the other one in DefaultDestinationScreen.kt
     override fun onResume() {
@@ -417,19 +429,25 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            AppEntrypoint(
-                windowSizeClass,
-                viewModel.nextDestination.collectAsState().value,
-                viewModel.isConnected.collectAsState().value,
-                viewModel.activeAlert.collectAsState().value,
-                viewModel.isAlertActive.collectAsState().value,
-                viewModel.couldNotLogIn.collectAsState().value,
-                viewModel::logOut,
-                viewModel::onDismissHealthAlert,
-                viewModel::onDismissLoginError,
-                viewModel::checkLoggedInState,
-                viewModel::updateNextDestination
-            )
+            Box(modifier = Modifier.fillMaxSize()) {
+                AppEntrypoint(
+                    windowSizeClass,
+                    viewModel.nextDestination.collectAsState().value,
+                    viewModel.isConnected.collectAsState().value,
+                    viewModel.activeAlert.collectAsState().value,
+                    viewModel.isAlertActive.collectAsState().value,
+                    viewModel.couldNotLogIn.collectAsState().value,
+                    viewModel::logOut,
+                    viewModel::onDismissHealthAlert,
+                    viewModel::onDismissLoginError,
+                    viewModel::checkLoggedInState,
+                    viewModel::updateNextDestination
+                )
+
+                if (AppLock.isLocked.value) {
+                    AppLockScreen(onUnlockClick = { AppLock.promptUnlock(this@MainActivity) })
+                }
+            }
         }
 
         val content: View = findViewById(android.R.id.content)
