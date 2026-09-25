@@ -207,4 +207,23 @@
     <string name="today">Danas</string>
     <string name="yesterday">Jučer</string>
     <string name="x_days_ago">Prije %1$d dana</string>
+    <string name="voice_action_push_to_talk">Držite za govor</string>
+    <string name="settings_voice_push_to_talk">Pritisni za govor</string>
+    <string name="settings_voice_push_to_talk_description">Držite gumb za govor umjesto uvijek uključenog mikrofona.</string>
+    <string name="settings_voice_audio_processing">Obrada zvuka</string>
+    <string name="settings_voice_noise_suppression">Potiskivanje šuma</string>
+    <string name="settings_voice_echo_cancellation">Poništavanje jeke</string>
+    <string name="settings_voice_auto_gain_control">Automatska kontrola pojačanja</string>
+    <string name="settings_category_voice">Glas</string>
+    <string name="add_server_sheet_scan_qr">Skeniraj QR kod</string>
+    <string name="add_server_sheet_scan_qr_prompt">Usmjerite kameru na QR kod pozivnice</string>
+    <string name="voice_message_record_alt">Držite za snimanje glasovne poruke</string>
+    <string name="settings_notifications_dnd">Ne ometaj</string>
+    <string name="settings_notifications_dnd_description">Utišava obavijesti prema dnevnom rasporedu.</string>
+    <string name="settings_notifications_dnd_start">Počinje u</string>
+    <string name="settings_notifications_dnd_end">Završava u</string>
+    <string name="channel_settings_export_chat">Izvezi razgovor</string>
+    <string name="channel_settings_export_chat_description">Spremi tekstualnu datoteku s poviješću poruka ovog kanala.</string>
+    <string name="channel_settings_export_chat_done">Razgovor je uspješno izvezen.</string>
+    <string name="channel_settings_export_chat_failed">Razgovor nije moguće izvesti.</string>
 </resources>

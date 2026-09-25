@@ -650,4 +650,23 @@
     <string name="voice_join_permission_rationale_permission_mic">Il tuo microfono, così che gli altri possano sentirti quando sei smutato</string>
     <string name="voice_join_permission_rationale_permission_camera">La tua videocamera, così che gli altri possano vederti quando vuoi condividere il tuo feed video</string>
     <string name="voice_error_not_supported">I canali vocali non sono disponibili al momento.</string>
+    <string name="voice_action_push_to_talk">Tieni premuto per parlare</string>
+    <string name="settings_voice_push_to_talk">Premi per parlare</string>
+    <string name="settings_voice_push_to_talk_description">Tieni premuto un pulsante per parlare invece di un microfono sempre attivo.</string>
+    <string name="settings_voice_audio_processing">Elaborazione audio</string>
+    <string name="settings_voice_noise_suppression">Soppressione del rumore</string>
+    <string name="settings_voice_echo_cancellation">Cancellazione dell\'eco</string>
+    <string name="settings_voice_auto_gain_control">Controllo automatico del guadagno</string>
+    <string name="settings_category_voice">Voce</string>
+    <string name="add_server_sheet_scan_qr">Scansiona codice QR</string>
+    <string name="add_server_sheet_scan_qr_prompt">Punta la fotocamera verso un codice QR di invito</string>
+    <string name="voice_message_record_alt">Tieni premuto per registrare un messaggio vocale</string>
+    <string name="settings_notifications_dnd">Non disturbare</string>
+    <string name="settings_notifications_dnd_description">Silenzia le notifiche secondo un orario giornaliero.</string>
+    <string name="settings_notifications_dnd_start">Inizia alle</string>
+    <string name="settings_notifications_dnd_end">Termina alle</string>
+    <string name="channel_settings_export_chat">Esporta chat</string>
+    <string name="channel_settings_export_chat_description">Salva un file di testo con la cronologia dei messaggi di questo canale.</string>
+    <string name="channel_settings_export_chat_done">Chat esportata correttamente.</string>
+    <string name="channel_settings_export_chat_failed">Impossibile esportare la chat.</string>
 </resources>

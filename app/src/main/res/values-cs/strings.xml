@@ -479,4 +479,23 @@
     <string name="rate_limit_toast">Zadrž! Děláš to příliš často v krátkém časovém úseku.</string>
     <string name="service_health_alert">Momentálně probíhá</string>
     <string name="service_health_alert_body_default">V současné době zaznamenáváme problémy s našimi službami. Pro více informací prosím navštivte naši stránku se stavem služeb.</string>
+    <string name="voice_action_push_to_talk">Podržte pro mluvení</string>
+    <string name="settings_voice_push_to_talk">Tlačítko pro mluvení</string>
+    <string name="settings_voice_push_to_talk_description">Podržte tlačítko pro mluvení místo trvale zapnutého mikrofonu.</string>
+    <string name="settings_voice_audio_processing">Zpracování zvuku</string>
+    <string name="settings_voice_noise_suppression">Potlačení šumu</string>
+    <string name="settings_voice_echo_cancellation">Potlačení ozvěny</string>
+    <string name="settings_voice_auto_gain_control">Automatické řízení zisku</string>
+    <string name="settings_category_voice">Hlas</string>
+    <string name="add_server_sheet_scan_qr">Naskenovat QR kód</string>
+    <string name="add_server_sheet_scan_qr_prompt">Namiřte kameru na pozvánkový QR kód</string>
+    <string name="voice_message_record_alt">Podržte pro nahrání hlasové zprávy</string>
+    <string name="settings_notifications_dnd">Nerušit</string>
+    <string name="settings_notifications_dnd_description">Ztlumí oznámení podle denního rozvrhu.</string>
+    <string name="settings_notifications_dnd_start">Začíná v</string>
+    <string name="settings_notifications_dnd_end">Končí v</string>
+    <string name="channel_settings_export_chat">Exportovat chat</string>
+    <string name="channel_settings_export_chat_description">Uloží textový soubor s historií zpráv tohoto kanálu.</string>
+    <string name="channel_settings_export_chat_done">Chat byl úspěšně exportován.</string>
+    <string name="channel_settings_export_chat_failed">Chat se nepodařilo exportovat.</string>
 </resources>

@@ -650,4 +650,23 @@
     <string name="geogate_description">StarknetChat pot bloquejar contingut en determinades jurisdiccions en resposta a la legislació o a notificacions legals</string>
     <string name="geogate_channel_icon_alt">Canal no disponible</string>
     <string name="geogate_acknowledge">D\'acord</string>
+    <string name="voice_action_push_to_talk">Mantén premut per parlar</string>
+    <string name="settings_voice_push_to_talk">Prem per parlar</string>
+    <string name="settings_voice_push_to_talk_description">Mantén premut un botó per parlar en lloc d\'un micròfon sempre actiu.</string>
+    <string name="settings_voice_audio_processing">Processament d\'àudio</string>
+    <string name="settings_voice_noise_suppression">Supressió de soroll</string>
+    <string name="settings_voice_echo_cancellation">Cancel·lació d\'eco</string>
+    <string name="settings_voice_auto_gain_control">Control automàtic de guany</string>
+    <string name="settings_category_voice">Veu</string>
+    <string name="add_server_sheet_scan_qr">Escaneja el codi QR</string>
+    <string name="add_server_sheet_scan_qr_prompt">Apunta la càmera a un codi QR d\'invitació</string>
+    <string name="voice_message_record_alt">Mantén premut per gravar una nota de veu</string>
+    <string name="settings_notifications_dnd">No molestar</string>
+    <string name="settings_notifications_dnd_description">Silencia les notificacions durant un horari diari.</string>
+    <string name="settings_notifications_dnd_start">Comença a les</string>
+    <string name="settings_notifications_dnd_end">Acaba a les</string>
+    <string name="channel_settings_export_chat">Exporta el xat</string>
+    <string name="channel_settings_export_chat_description">Desa un fitxer de text amb l\'historial de missatges d\'aquest canal.</string>
+    <string name="channel_settings_export_chat_done">Xat exportat correctament.</string>
+    <string name="channel_settings_export_chat_failed">No s\'ha pogut exportar el xat.</string>
 </resources>

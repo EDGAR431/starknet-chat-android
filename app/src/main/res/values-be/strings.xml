@@ -650,4 +650,23 @@
     <string name="voice_join_permission_rationale_description">Каб далучыцца да галасавога канала, вам трэба даць наступныя дазволы:</string>
     <string name="voice_error_no_nodes">Усе галасавыя вузлы зараз недаступныя. Калі ласка, паспрабуйце пазней.</string>
     <string name="geogate_description">StarknetChat можа блакіраваць кантэнт у некаторых юрысдыкцыях праз заканадаўства або судовую абвестку</string>
+    <string name="voice_action_push_to_talk">Утрымлівайце, каб гаварыць</string>
+    <string name="settings_voice_push_to_talk">Утрымліваць для размовы</string>
+    <string name="settings_voice_push_to_talk_description">Утрымлівайце кнопку, каб гаварыць, замест пастаянна ўключанага мікрафона.</string>
+    <string name="settings_voice_audio_processing">Апрацоўка гуку</string>
+    <string name="settings_voice_noise_suppression">Шумапрыглушэнне</string>
+    <string name="settings_voice_echo_cancellation">Скасаванне рэха</string>
+    <string name="settings_voice_auto_gain_control">Аўтаматычная рэгуліроўка ўзмацнення</string>
+    <string name="settings_category_voice">Голас</string>
+    <string name="add_server_sheet_scan_qr">Сканаваць QR-код</string>
+    <string name="add_server_sheet_scan_qr_prompt">Наведзьце камеру на QR-код запрашэння</string>
+    <string name="voice_message_record_alt">Утрымлівайце, каб запісаць галасавое паведамленне</string>
+    <string name="settings_notifications_dnd">Не турбаваць</string>
+    <string name="settings_notifications_dnd_description">Сцішыць апавяшчэнні паводле штодзённага раскладу.</string>
+    <string name="settings_notifications_dnd_start">Пачынаецца ў</string>
+    <string name="settings_notifications_dnd_end">Заканчваецца ў</string>
+    <string name="channel_settings_export_chat">Экспарт чата</string>
+    <string name="channel_settings_export_chat_description">Захаваць тэкставы файл з гісторыяй паведамленняў гэтага канала.</string>
+    <string name="channel_settings_export_chat_done">Чат паспяхова экспартаваны.</string>
+    <string name="channel_settings_export_chat_failed">Не ўдалося экспартаваць чат.</string>
 </resources>

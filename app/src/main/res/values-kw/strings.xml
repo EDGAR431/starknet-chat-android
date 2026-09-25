@@ -1,2 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>    <string name="voice_action_push_to_talk">Synsi rag kewsel</string>
+    <string name="settings_voice_push_to_talk">Gwaska rag kewsel</string>
+    <string name="settings_voice_push_to_talk_description">Synsi bothen rag kewsel yn le mykrofon usy ow tesedha yn fyttyn oll.</string>
+    <string name="settings_voice_audio_processing">Sewel son</string>
+    <string name="settings_voice_noise_suppression">Diswul trous</string>
+    <string name="settings_voice_echo_cancellation">Diswul dasson</string>
+    <string name="settings_voice_auto_gain_control">Rewel otomatek a wayn</string>
+    <string name="settings_category_voice">Lev</string>
+    <string name="add_server_sheet_scan_qr">Skanya kod QR</string>
+    <string name="add_server_sheet_scan_qr_prompt">Peynt an camera dhe god QR gwahodhans</string>
+    <string name="voice_message_record_alt">Synsi rag recordya messach lev</string>
+    <string name="settings_notifications_dnd">Na wra ankombra</string>
+    <string name="settings_notifications_dnd_description">Sensi kessyow-derivadow yn hens usadow pub dydh.</string>
+    <string name="settings_notifications_dnd_start">Dalleth orth</string>
+    <string name="settings_notifications_dnd_end">Deweth orth</string>
+    <string name="channel_settings_export_chat">Esporta chat</string>
+    <string name="channel_settings_export_chat_description">Sav an folen text gans istori messajys an channel-ma.</string>
+    <string name="channel_settings_export_chat_done">Sportyes chat yn sewen.</string>
+    <string name="channel_settings_export_chat_failed">Ny yllys sportya an chat.</string>
+</resources>

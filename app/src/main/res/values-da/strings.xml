@@ -619,4 +619,23 @@
     <string name="attachment_spoiler">Spoiler</string>
     <string name="attachment_preview_spoiler">Markér som spoiler</string>
     <string name="attachment_preview_spoiler_description">Denne vedhæftning vises kun, når den bliver trykket.</string>
+    <string name="voice_action_push_to_talk">Hold nede for at tale</string>
+    <string name="settings_voice_push_to_talk">Tryk-og-tal</string>
+    <string name="settings_voice_push_to_talk_description">Hold en knap nede for at tale i stedet for en altid tændt mikrofon.</string>
+    <string name="settings_voice_audio_processing">Lydbehandling</string>
+    <string name="settings_voice_noise_suppression">Støjreduktion</string>
+    <string name="settings_voice_echo_cancellation">Ekkoannullering</string>
+    <string name="settings_voice_auto_gain_control">Automatisk gainkontrol</string>
+    <string name="settings_category_voice">Stemme</string>
+    <string name="add_server_sheet_scan_qr">Scan QR-kode</string>
+    <string name="add_server_sheet_scan_qr_prompt">Ret kameraet mod en invitations-QR-kode</string>
+    <string name="voice_message_record_alt">Hold nede for at optage en talebesked</string>
+    <string name="settings_notifications_dnd">Forstyr ikke</string>
+    <string name="settings_notifications_dnd_description">Slår notifikationer fra i en daglig tidsplan.</string>
+    <string name="settings_notifications_dnd_start">Starter kl.</string>
+    <string name="settings_notifications_dnd_end">Slutter kl.</string>
+    <string name="channel_settings_export_chat">Eksportér chat</string>
+    <string name="channel_settings_export_chat_description">Gemmer en tekstfil med denne kanals beskedhistorik.</string>
+    <string name="channel_settings_export_chat_done">Chatten blev eksporteret.</string>
+    <string name="channel_settings_export_chat_failed">Chatten kunne ikke eksporteres.</string>
 </resources>

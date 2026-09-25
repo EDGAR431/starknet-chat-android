@@ -650,4 +650,23 @@
     <string name="channel_settings_overview_nsfw_description">Người dùng trước khi vào kênh NSFW (có nội dung người lớn) sẽ phải xác minh tuổi của họ.</string>
     <string name="settings_appearance_colour_overrides_outline_variant">Đường viền ngoài biến đổi</string>
     <string name="settings_chat_quick_reply_none_description">Bạn có thể trả lời từ menu ngữ cảnh của tin nhắn.</string>
+    <string name="voice_action_push_to_talk">Giữ để nói</string>
+    <string name="settings_voice_push_to_talk">Nhấn để nói</string>
+    <string name="settings_voice_push_to_talk_description">Giữ một nút để nói thay vì dùng micrô luôn bật.</string>
+    <string name="settings_voice_audio_processing">Xử lý âm thanh</string>
+    <string name="settings_voice_noise_suppression">Khử tiếng ồn</string>
+    <string name="settings_voice_echo_cancellation">Khử tiếng vọng</string>
+    <string name="settings_voice_auto_gain_control">Điều khiển khuếch đại tự động</string>
+    <string name="settings_category_voice">Giọng nói</string>
+    <string name="add_server_sheet_scan_qr">Quét mã QR</string>
+    <string name="add_server_sheet_scan_qr_prompt">Hướng camera vào mã QR mời</string>
+    <string name="voice_message_record_alt">Giữ để ghi âm tin nhắn thoại</string>
+    <string name="settings_notifications_dnd">Không làm phiền</string>
+    <string name="settings_notifications_dnd_description">Tắt tiếng thông báo theo lịch trình hàng ngày.</string>
+    <string name="settings_notifications_dnd_start">Bắt đầu lúc</string>
+    <string name="settings_notifications_dnd_end">Kết thúc lúc</string>
+    <string name="channel_settings_export_chat">Xuất trò chuyện</string>
+    <string name="channel_settings_export_chat_description">Lưu tệp văn bản chứa lịch sử tin nhắn của kênh này.</string>
+    <string name="channel_settings_export_chat_done">Đã xuất trò chuyện thành công.</string>
+    <string name="channel_settings_export_chat_failed">Không thể xuất trò chuyện.</string>
 </resources>
