@@ -59,18 +59,14 @@ android {
     compileSdk = libs.versions.compileSdk.get().toInt()
     namespace = "chat.stoat"
 
-    defaultConfig {
-        applicationId = "com.edgar.starknetchat"
-        minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = Integer.parseInt("001_007_008".replace("_", ""), 10)
-        versionName = "1.7.8"
-
-        // Lista explícita de idiomas válidos — así se descarta
-        // cualquier recurso de idioma no reconocido que pueda venir
-        // metido dentro de alguna librería externa (Play Console
-        // llegó a marcar "pr", que no es un código de idioma real).
-        resourceConfigurations.addAll(
+    // Lista explícita de idiomas válidos — así se descarta
+    // cualquier recurso de idioma no reconocido que pueda venir
+    // metido dentro de alguna librería externa (Play Console llegó a
+    // marcar "pr", que no es un código de idioma real). Es la forma
+    // correcta y moderna para .aab, ya que "resConfigs" quedó
+    // obsoleto.
+    androidResources {
+        localeFilters.addAll(
             listOf(
                 "ar", "ars", "ast", "b+es+419", "b+es+419ES@419", "b+pfl+DE",
                 "b+zh+HANSZH@hans", "be", "bg", "bn", "ca", "ckb", "cs", "da",
@@ -81,6 +77,14 @@ android {
                 "tr", "uk", "vi", "zh-rCN", "zh-rTW",
             )
         )
+    }
+
+    defaultConfig {
+        applicationId = "com.edgar.starknetchat"
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
+        versionCode = Integer.parseInt("001_007_008".replace("_", ""), 10)
+        versionName = "1.7.8"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
