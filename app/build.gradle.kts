@@ -68,8 +68,8 @@ android {
     androidResources {
         localeFilters.addAll(
             listOf(
-                "ar", "ars", "ast", "b+es+419", "b+es+419ES@419", "b+pfl+DE",
-                "b+zh+HANSZH@hans", "be", "bg", "bn", "ca", "ckb", "cs", "da",
+                "ar", "ars", "ast", "b+es+419", "b+pfl+DE",
+                "b+zh+Hans", "be", "bg", "bn", "ca", "ckb", "cs", "da",
                 "de", "el", "en-rUS", "eo", "es", "fa", "fi", "fil", "fr",
                 "ga", "gl", "hi", "hr", "hu", "in", "is", "it", "iw", "ja",
                 "ji", "ko", "kw", "la", "lt", "lv", "ms", "mwl", "nb-rNO",
