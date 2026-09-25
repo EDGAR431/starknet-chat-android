@@ -203,11 +203,7 @@
     <string name="report_reason_content_promotes_harm">কনটেন্ট এমন কিছুকে উৎসাহিত/প্রচার করছে যা নিজ বা অন্যের ক্ষতি করতে পারে</string>
     <string name="report_reason_user_spam_abuse">এটি স্প্যাম বা প্ল্যাটফর্মের অপব্যবহার/দুর্ব্যবহার</string>
     <string name="report_reason_user_impersonation">অন্যকে নকল করছেন</string>
-    <string name="oss_attribution_body">এই দুর্দান্ত ওপেন সোর্স প্রকল্পগুলির সাহায্যে Stoat তৈরি করা হয়েছে।</string>
-    <string name="oss_attribution_generation_date">শেষবারের মতো আপডেট হয়েছে: %1$s</string>
-    <string name="oss_attribution_warning">নীচের তালিকাটি স্বয়ংক্রিয়ভাবে তৈরি। এটা অসম্পূর্ণ বা ভুল হতে পারে।</string>
     <string name="oss_attribution_tap_to_view_license">লাইসেন্স দেখতে এখানে টিপুন</string>
-    <string name="about_tab_version">ভার্সন</string>
     <string name="emoji_category_objects">বস্তু</string>
     <string name="emoji_category_flags">পতাকা</string>
     <string name="badge_platform_moderation_alt">প্ল্যাটফর্ম মডারেশন</string>
@@ -221,7 +217,6 @@
     <string name="friends_all">সমস্ত</string>
     <string name="friends">বন্ধুরা</string>
     <string name="friends_blocked">ব্লক করা</string>
-    <string name="oss_attribution_body_2">আমরা এই প্রকল্পগুলির ডেভেলপারদের কাছে তাদের কাজ সমগ্র বিশ্বের কাছে উপলব্ধ করার জন্য কৃতজ্ঞ।</string>
     <string name="system_message_user_left_alt">ইউজার চলে গেছে</string>
     <string name="system_message_user_joined_alt">ইউজার যুক্ত হয়েছে</string>
     <string name="system_message_ownership_changed">%1$s মালিকানা %2$s -কে হস্তান্তর করেছে</string>
@@ -246,7 +241,6 @@
     <string name="emoji_category_people">ব্যক্তি এবং শরীর</string>
     <string name="emoji_category_food">খাবার এবং পানীয়</string>
     <string name="emoji_category_travel">ভ্রমণ এবং জায়গা</string>
-    <string name="about_tab_details">বিস্তারিত তথ্য</string>
     <string name="channel_age_gate_dob_day">দিন</string>
     <string name="channel_age_gate_dob_year">বছর</string>
     <string name="channel_age_gate_dob_proceed">এগিয়ে যান</string>

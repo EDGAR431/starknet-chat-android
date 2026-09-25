@@ -215,11 +215,6 @@
     <string name="service_health_alert_actions_default">Lær mer</string>
     <string name="could_not_log_in_body">Du kan ha logget ut fra en annen enhet, eller internettforbindelsen din kan være nede.</string>
     <string name="could_not_log_in_cta_logout">Logg ut</string>
-    <string name="about_tab_version">Versjon</string>
-    <string name="about_tab_details">Detaljer</string>
-    <string name="oss_attribution_body_2">Vi er takknemlige overfor utviklerne av disse prosjektene for å ha gjort arbeidet sitt tilgjengelig for verden.</string>
-    <string name="oss_attribution_warning">Listen nedenfor er automatisk generert. Den kan være ufullstendig eller unøyaktig.</string>
-    <string name="oss_attribution_generation_date">Sist oppdatert: %1$s</string>
     <string name="oss_attribution_tap_to_view_license">Trykk for å se lisens</string>
     <string name="pick_emoji_alt">Velg emoji</string>
     <string name="badge_webhook_alt">Webhook</string>

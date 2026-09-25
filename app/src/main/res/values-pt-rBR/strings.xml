@@ -206,17 +206,11 @@
     <string name="settings_appearance_theme_m3dynamic_unsupported">Material You (não suportado)</string>
     <string name="settings_appearance_theme_m3dynamic_unsupported_toast">Material You não é suportado neste dispositivo.</string>
     <string name="badge_masquerade_alt">De canal vinculado</string>
-    <string name="oss_attribution_body">O Stoat é feito com a ajuda desses incríveis projetos de código-aberto.</string>
-    <string name="oss_attribution_body_2">Nós agradecemos aos desenvolvedores desses projetos por fazerem o seu trabalho disponível ao mundo.</string>
-    <string name="oss_attribution_warning">A lista abaixo é gerada automaticamente. Ela pode estar incompleta ou imprecisa.</string>
-    <string name="oss_attribution_generation_date">Última atualização: %1$s</string>
     <string name="oss_attribution_tap_to_view_license">Toque para ver a licença</string>
     <string name="system_message_channel_renamed_alt">O canal foi renomeado</string>
     <string name="system_message_ownership_changed_alt">A posse foi alterada</string>
     <string name="about_full_name">StarknetChat para Android</string>
     <string name="about_brought_to_you_by">Trazido até você com ❤️ pelo time do StarknetChat.</string>
-    <string name="about_tab_version">Versão</string>
-    <string name="about_tab_details">Detalhes</string>
     <string name="pick_emoji_alt">Escolher emoji</string>
     <string name="emoji_category_people">Pessoas &amp; Corpo</string>
     <string name="emoji_category_animals">Animais &amp; Natureza</string>

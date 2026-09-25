@@ -196,12 +196,10 @@
     <string name="user_info_sheet_failed_to_open_dm">Tidak dapat membuka DM dengan pengguna ini.</string>
     <string name="notice_platform_mod_dm_acknowledge">Lihat</string>
     <string name="settings_profile_profile_picture">Gambar profil</string>
-    <string name="oss_attribution_generation_date">Terakhir diperbarui: %1$s</string>
     <string name="oss_attribution_tap_to_view_license">Ketuk untuk melihat lisensi</string>
     <string name="register_form_heading">Mari kita siapkan.</string>
     <string name="about_full_name">StarknetChat untuk Android</string>
     <string name="about_brought_to_you_by">Dipersembahkan dengan ❤️ oleh tim StarknetChat.</string>
-    <string name="about_tab_version">Versi</string>
     <string name="pick_emoji_alt">Pilih emoji</string>
     <string name="emoji_category_animals">Hewan &amp; Alam</string>
     <string name="emoji_category_food">Makanan &amp; Minuman</string>
@@ -267,12 +265,8 @@
     <string name="settings_sessions_log_out_other_confirm_yes">Keluarkan</string>
     <string name="login_onboarding_heading">Temukan komunitasmu, terhubung dengan dunia.</string>
     <string name="remove_reply_alt">Hapus balasan</string>
-    <string name="about_tab_details">Rincian</string>
     <string name="emoji_category_smileys">Emosi</string>
     <string name="channel_age_gate_dob_too_young">Kamu harus berusia setidaknya 18 tahun untuk melihat saluran ini.</string>
-    <string name="oss_attribution_body">Stoat dibuat dengan bantuan dari proyek sumber terbuka yang luar biasa ini.</string>
-    <string name="oss_attribution_body_2">Kami berterima kasih kepada pengembang proyek ini atas pekerjaannya.</string>
-    <string name="oss_attribution_warning">Daftar di bawah dihasilkan secara otomatis. Mungkin tidak lengkap atau akurat.</string>
     <string name="friends_all">Semua</string>
     <string name="emoji_category_people">Orang &amp; Badan</string>
     <string name="emoji_category_travel">Melancong &amp; Tempat</string>

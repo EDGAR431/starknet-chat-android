@@ -216,15 +216,10 @@
     <string name="could_not_log_in_body">他のデバイスからログアウトしたか、インターネットが切断されている可能性があります。</string>
     <string name="could_not_log_in_cta_try_again">もう一度お試し下さい</string>
     <string name="could_not_log_in_cta_logout">ログアウト</string>
-    <string name="about_tab_version">バージョン</string>
     <string name="about_brought_to_you_by">StarknetChatチームが❤️を込めてお届けします。</string>
-    <string name="oss_attribution_body">Stoatは、これらの素晴らしいオープンソースプロジェクトの助けを借りて構築されています。</string>
     <string name="emoji_category_symbols">シンボル</string>
     <string name="home_join_jenvolt_description">JenvoltはAndroidアプリなどあらゆるものを扱う開発者が運営するスペースです。サポートやフィードバックはこちらです。新しい機能を試すことができるかもしれません! 👀</string>
     <string name="about_full_name">Android版 StarknetChat</string>
-    <string name="about_tab_details">詳細</string>
-    <string name="oss_attribution_warning">以下のリストは自動生成されたものです。不完全または不正確な可能性があります。</string>
-    <string name="oss_attribution_generation_date">最後のアップデート:%1$s</string>
     <string name="oss_attribution_tap_to_view_license">タップしてライセンスを表示</string>
     <string name="pick_emoji_alt">絵文字を選ぶ</string>
     <string name="attachment_preview_remove">消す</string>
@@ -253,7 +248,6 @@
     <string name="message_field_denied_no_permission">このチャンネルでメッセージの権限がありません。</string>
     <string name="friends">友達</string>
     <string name="rate_limit_toast">ちょっと待って！短時間でそれをしすぎています。</string>
-    <string name="oss_attribution_body_2">それらのプロジェクトのデベロッパーに世界中に公開してくれるために感謝しています 。</string>
     <string name="overview_screen_title">自分</string>
     <string name="overview_screen_share_profile_description">自分のユーザーカードを見て共有ために独自のリンクを受ける</string>
     <string name="overview_screen_changelog">変更履歴</string>

@@ -208,9 +208,6 @@
     <string name="direct_messages">Mensagens diretas</string>
     <string name="about_full_name"><!-- this is a hack to prevent the typing indicator from showing typing_several when it's animating away -->StarknetChat no Android</string>
     <string name="about_brought_to_you_by">Trazido a ti com ❤️ pela equipa do StarknetChat.</string>
-    <string name="about_tab_version">Versão</string>
-    <string name="about_tab_details">Detalhes</string>
-    <string name="oss_attribution_generation_date">Última atualização: %1$s</string>
     <string name="server_flag_official">Servidor Oficial</string>
     <string name="report_reason_content_raid">Raid ou ataque de spam</string>
     <string name="settings_chat_quick_reply_double_tap">Duas vezes para responder</string>
@@ -265,10 +262,7 @@
     <string name="server_flag_verified">Servidor Verificado</string>
     <string name="channel_link_invalid_description">Este canal pode ter sido excluído ou você pode não ter permissão para visualizá-lo.</string>
     <string name="message_context_sheet_actions_delete_confirmation_title">Apagar mensagem\?</string>
-    <string name="oss_attribution_warning">A lista abaixo é gerada automaticamente. Pode estar incompleto ou impreciso.</string>
     <string name="oss_attribution_tap_to_view_license">Toque para ver a licença</string>
-    <string name="oss_attribution_body">Stoat é construído com a ajuda desses incríveis projetos de código aberto.</string>
-    <string name="oss_attribution_body_2">Somos gratos aos desenvolvedores desses projetos por disponibilizarem seu trabalho para o mundo.</string>
     <string name="system_message_channel_renamed_alt">Canal renomeado</string>
     <string name="system_message_user_removed_alt">Usuário removido</string>
     <string name="system_message_user_added_alt">Usuário adicionado</string>

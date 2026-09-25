@@ -132,13 +132,7 @@
     <string name="mfa_password_lead">Indtast din adgangskode for at fortsætte.</string>
     <string name="about">Om</string>
     <string name="about_full_name">StarknetChat på Android</string>
-    <string name="about_tab_version">Version</string>
-    <string name="about_tab_details">Detaljer</string>
     <string name="oss_attribution">OSS-attribution</string>
-    <string name="oss_attribution_body">Stoat er bygget med hjælp fra disse fantastiske open source-projekter.</string>
-    <string name="oss_attribution_body_2">Vi er taknemmelige for udviklerne af disse projekter for at gøre deres arbejde tilgængeligt for verden.</string>
-    <string name="oss_attribution_warning">Listen nedenfor er automatisk genereret. Den kan være ufuldstændig eller unøjagtig.</string>
-    <string name="oss_attribution_generation_date">Sidst opdateret: %1$s</string>
     <string name="oss_attribution_tap_to_view_license">Tryk for at se licens</string>
     <string name="comingsoon_toast">Beklager, denne funktion er ikke klar endnu.</string>
     <string name="typing_one">%1$s skriver…</string>

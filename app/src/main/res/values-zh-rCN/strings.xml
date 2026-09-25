@@ -207,9 +207,6 @@
     <string name="settings_appearance_theme_m3dynamic">Material You</string>
     <string name="settings_feedback">反馈</string>
     <string name="about_brought_to_you_by">由 StarknetChat 团队用 ❤️ 为您呈现。</string>
-    <string name="about_tab_version">版本</string>
-    <string name="about_tab_details">详情</string>
-    <string name="oss_attribution_warning">下面的列表是自动生成的。可能会不完整或不准确。</string>
     <string name="oss_attribution_tap_to_view_license">点击查看许可证</string>
     <string name="pick_emoji_alt">选择表情</string>
     <string name="emoji_category_people">人物与身体</string>
@@ -297,9 +294,6 @@
     <string name="system_message_channel_description_changed">%1$s 更改了频道简介</string>
     <string name="server_context_sheet_description_empty">此服务器还没有设置简介。</string>
     <string name="server_context_sheet_actions_leave_silently">悄悄离开</string>
-    <string name="oss_attribution_body">Stoat 的诞生离不开这些优秀开源项目的帮助。</string>
-    <string name="oss_attribution_body_2">我们非常感谢这些项目的开发者将他们的工作成果奉献给全世界。</string>
-    <string name="oss_attribution_generation_date">最后更新：%1$s</string>
     <string name="system_message_text_alt">系统消息</string>
     <string name="file_picker_chip_documents">文件</string>
     <string name="file_picker_chip_camera">相机</string>

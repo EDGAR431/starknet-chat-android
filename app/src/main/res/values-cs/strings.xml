@@ -112,10 +112,6 @@
     <string name="emote_info_from_server">ze serveru %1$s</string>
     <string name="emote_info_from_server_unknown">z soukromého serveru</string>
     <string name="channel_info_sheet_options">Možnosti</string>
-    <string name="oss_attribution_body">Stoat byl vytvořen s pomocí těchto úžasných open-source projektů.</string>
-    <string name="oss_attribution_body_2">Jsme vděční vývojářům těchto projektů za to, že svou práci zpřístupnili světu.</string>
-    <string name="oss_attribution_warning">Níže uvedený seznam je generován automaticky. Může být neúplný nebo nepřesný.</string>
-    <string name="oss_attribution_generation_date">Poslední aktualizace: %1$s</string>
     <string name="typing_many">%1$s píší…</string>
     <string name="typing_several">Několik lidí píše</string>
     <string name="typing_one">%1$s píše…</string>
@@ -124,8 +120,6 @@
     <string name="x_days_ago">před %1$d dny</string>
     <string name="about_full_name">StarknetChat na Androidu</string>
     <string name="about_brought_to_you_by">Vyvinuto s ❤️ týmem StarknetChat.</string>
-    <string name="about_tab_version">Verze</string>
-    <string name="about_tab_details">Podrobnosti</string>
     <string name="oss_attribution_tap_to_view_license">Klepnutím na zobrazíte licenci</string>
     <string name="pick_emoji_alt">Vybrat emoji</string>
     <string name="add_attachment_alt">Přidat přílohu</string>

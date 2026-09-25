@@ -50,10 +50,7 @@
     <string name="about">عن</string>
     <string name="about_full_name">StarknetChat علي Android</string>
     <string name="about_brought_to_you_by">مقدم إليك ب❤️ من قبل فريق StarknetChat.</string>
-    <string name="about_tab_version">إصدار</string>
-    <string name="about_tab_details">معلومات تفصيلية</string>
     <string name="oss_attribution">إسناد البرامج مفتوحة المصدر</string>
-    <string name="oss_attribution_body">Stoat مبنيآ بمساعدة هذه البرامج المفتوحة المصدر الرائعة.</string>
     <string name="register_email">البريد الإلكتروني</string>
     <string name="register_email_verification_hint">سنرسل إليك بريد إلكتروني للتعريف لنعرّف حسابك.</string>
     <string name="register_password_rules">ثمانية فأكثر، كلمات المرور الشائعة سيئة. الرموز والأرقام مُستحسنة.</string>
@@ -62,9 +59,6 @@
     <string name="onboarding_changeable">لكن إذا غيرت رأيك،ولديك القدرة علي تغيير اسم المستخدم الخاص بك في أي وقت في إعدادات المستخدم الخاصة بك.</string>
     <string name="mfa_interstitial_lead">إن 2FA (المصادقة الثنائية) مفعلة كي تحافظ علي أمان حسابك.</string>
     <string name="mfa_totp_lead">أدخل الرقم المكون من ستة أرقام من تطبيق المصادقة الخاص بك.</string>
-    <string name="oss_attribution_body_2">نحن شاكرون المطورون لهؤلاء المشاريع لجعل عملهم متاحاً للعالم.</string>
-    <string name="oss_attribution_warning">القائمة أدناه مكونة تلقائياً. قد تكون غير كاملة أو خاطئة.</string>
-    <string name="oss_attribution_generation_date">آخر تحديث: %1$s</string>
     <string name="oss_attribution_tap_to_view_license">أنقر لكي تظهر الترخيص</string>
     <string name="typing_one">%1$s يكتب…</string>
     <string name="typing_many">%1$s يكتبون…</string>

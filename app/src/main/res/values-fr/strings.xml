@@ -207,12 +207,8 @@
     <string name="password_manager_hint">Utilisez-vous un gestionnaire de mots de passe ?</string>
     <string name="password_forgot_heading">Vous avez oublié votre mot de passe \?</string>
     <string name="settings_appearance_colour_overrides_outline">Contour</string>
-    <string name="oss_attribution_body">Stoat est construit avec l\'aide de ces formidables projets open source.</string>
     <string name="about_full_name">StarknetChat pour Android</string>
     <string name="about_brought_to_you_by">Présenté avec ❤️ par l\'équipe StarknetChat.</string>
-    <string name="about_tab_version">Version</string>
-    <string name="about_tab_details">Détails</string>
-    <string name="oss_attribution_generation_date">Dernière mise à jour : %1$s</string>
     <string name="oss_attribution_tap_to_view_license">Appuyez pour afficher la licence</string>
     <string name="pick_emoji_alt">Choisir un émoji</string>
     <string name="emoji_category_people">Personnes et Corps</string>
@@ -246,9 +242,7 @@
     <string name="user_info_sheet_user_not_found">Impossible de résoudre cet utilisateur</string>
     <string name="user_info_sheet_bio_not_found">La biographie de cet utilisateur n’a pas pu être récupérée. Veuillez vérifier que vous partagez un serveur ou que vous êtes amis.</string>
     <string name="user_info_sheet_failed_to_open_dm">Impossible d’ouvrir un message direct avec cet utilisateur.</string>
-    <string name="oss_attribution_body_2">Nous sommes reconnaissants aux développeurs de ces projets d\'avoir mis leur travail à la disposition du monde entier.</string>
     <string name="system_message_channel_renamed_alt">Canal renommé</string>
-    <string name="oss_attribution_warning">La liste ci-dessous est générée automatiquement. Elle peut être incomplète ou inexacte.</string>
     <string name="emoji_category_flags">Drapeaux</string>
     <string name="emoji_category_smileys">Smileys et émotions</string>
     <string name="emoji_category_food">Nourriture et boissons</string>

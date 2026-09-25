@@ -58,11 +58,7 @@
     <string name="about">Giới thiệu</string>
     <string name="about_full_name">StarknetChat cho Android</string>
     <string name="about_brought_to_you_by">Đem đến cho bạn, bằng cả ❤️từ nhóm phát triển StarknetChat.</string>
-    <string name="about_tab_version">Phiên bản</string>
-    <string name="about_tab_details">Chi tiết</string>
     <string name="oss_attribution">Ghi công OSS</string>
-    <string name="oss_attribution_body_2">Chúng tôi trân trọng cảm ơn các nhà phát triển đã đưa những dự án tuyệt vời trên đến cho mọi người.</string>
-    <string name="oss_attribution_generation_date">Cập nhật lần cuối: %1$s</string>
     <string name="oss_attribution_tap_to_view_license">Bấm để xem giấy phép</string>
     <string name="comingsoon_toast">Xin lỗi, tính năng này chưa hoàn thiện.</string>
     <string name="typing_many">%1$s đang nhập…</string>
@@ -104,9 +100,7 @@
     <string name="badge_platform_moderation_alt">Quản trị nền tảng</string>
     <string name="home_join_jenvolt_description">Jenvolt là một khu vực được các nhà phát triển dành cho mọi thứ liên quan đến ứng dụng Android, và hơn thế. Phản hồi, hỗ trợ cũng tại đây. Mà, biết đâu bạn còn được thử mấy tính năng mới đấy! 👀</string>
     <string name="mfa_password_lead">Nhập mật khẩu của bạn để tiếp tục.</string>
-    <string name="oss_attribution_body">Stoat đã thành hình, nhờ những dự án nguồn mở siêu ngầu này.</string>
     <string name="emoji_category_smileys">Mặt cười &amp; biểu tượng cảm xúc</string>
-    <string name="oss_attribution_warning">Danh sách dưới đây được tự động tạo. Có thể chưa hoàn thiện hoặc có sai sót.</string>
     <string name="typing_one">%1$s đang nhập…</string>
     <string name="emoji_category_people">Con người &amp; cơ thể</string>
     <string name="emoji_category_travel">Du lịch &amp; địa danh</string>
