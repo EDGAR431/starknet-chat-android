@@ -456,4 +456,23 @@
     <string name="channel_settings_permissions">অনুমতিগুলো</string>
     <string name="notification_channel_group_conversations">কথোপকথন</string>
     <string name="message_context_sheet_actions_delete_confirmation_body">এটি কিন্তু চলে যাবে চিরকালের মতো (মানে এক দীর্ঘকালের জন্য!)</string>
+    <string name="voice_action_push_to_talk">কথা বলতে চেপে ধরুন</string>
+    <string name="settings_voice_push_to_talk">পুশ-টু-টক</string>
+    <string name="settings_voice_push_to_talk_description">সবসময় চালু থাকা মাইক্রোফোনের বদলে কথা বলতে একটি বোতাম চেপে ধরুন।</string>
+    <string name="settings_voice_audio_processing">অডিও প্রসেসিং</string>
+    <string name="settings_voice_noise_suppression">নয়েজ সাপ্রেশন</string>
+    <string name="settings_voice_echo_cancellation">ইকো ক্যান্সেলেশন</string>
+    <string name="settings_voice_auto_gain_control">স্বয়ংক্রিয় গেইন কন্ট্রোল</string>
+    <string name="settings_category_voice">ভয়েস</string>
+    <string name="add_server_sheet_scan_qr">কিউআর কোড স্ক্যান করুন</string>
+    <string name="add_server_sheet_scan_qr_prompt">আমন্ত্রণ কিউআর কোডের দিকে ক্যামেরা তাক করুন</string>
+    <string name="voice_message_record_alt">ভয়েস মেসেজ রেকর্ড করতে চেপে ধরুন</string>
+    <string name="settings_notifications_dnd">বিরক্ত করবেন না</string>
+    <string name="settings_notifications_dnd_description">প্রতিদিনের সময়সূচীতে বিজ্ঞপ্তি নীরব করুন।</string>
+    <string name="settings_notifications_dnd_start">শুরু হয়</string>
+    <string name="settings_notifications_dnd_end">শেষ হয়</string>
+    <string name="channel_settings_export_chat">চ্যাট এক্সপোর্ট করুন</string>
+    <string name="channel_settings_export_chat_description">এই চ্যানেলের বার্তার ইতিহাস সহ একটি টেক্সট ফাইল সংরক্ষণ করুন।</string>
+    <string name="channel_settings_export_chat_done">চ্যাট সফলভাবে এক্সপোর্ট হয়েছে।</string>
+    <string name="channel_settings_export_chat_failed">চ্যাট এক্সপোর্ট করা যায়নি।</string>
 </resources>

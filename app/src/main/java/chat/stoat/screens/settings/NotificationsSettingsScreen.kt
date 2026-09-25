@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -181,5 +182,62 @@ fun NotificationsSettingsScreen(
                 context.startActivity(intent)
             }
         )
+
+        var dndEnabled by remember {
+            mutableStateOf(chat.stoat.internals.DoNotDisturbSettings.isEnabled(context))
+        }
+        var dndStart by remember {
+            mutableStateOf(chat.stoat.internals.DoNotDisturbSettings.getStartTime(context))
+        }
+        var dndEnd by remember {
+            mutableStateOf(chat.stoat.internals.DoNotDisturbSettings.getEndTime(context))
+        }
+
+        fun showTimePicker(current: String, onPicked: (String) -> Unit) {
+            val parts = current.split(":")
+            val hour = parts.getOrNull(0)?.toIntOrNull() ?: 23
+            val minute = parts.getOrNull(1)?.toIntOrNull() ?: 0
+            android.app.TimePickerDialog(
+                context,
+                { _, h, m -> onPicked("%02d:%02d".format(h, m)) },
+                hour,
+                minute,
+                true
+            ).show()
+        }
+
+        CenteredListItem(
+            headlineContent = { Text(stringResource(R.string.settings_notifications_dnd)) },
+            supportingContent = { Text(stringResource(R.string.settings_notifications_dnd_description)) },
+            trailingContent = {
+                Switch(checked = dndEnabled, onCheckedChange = null)
+            },
+            modifier = Modifier.clickable {
+                dndEnabled = !dndEnabled
+                chat.stoat.internals.DoNotDisturbSettings.setEnabled(context, dndEnabled)
+            }
+        )
+        if (dndEnabled) {
+            CenteredListItem(
+                headlineContent = { Text(stringResource(R.string.settings_notifications_dnd_start)) },
+                supportingContent = { Text(dndStart) },
+                modifier = Modifier.clickable {
+                    showTimePicker(dndStart) { picked ->
+                        dndStart = picked
+                        chat.stoat.internals.DoNotDisturbSettings.setStartTime(context, picked)
+                    }
+                }
+            )
+            CenteredListItem(
+                headlineContent = { Text(stringResource(R.string.settings_notifications_dnd_end)) },
+                supportingContent = { Text(dndEnd) },
+                modifier = Modifier.clickable {
+                    showTimePicker(dndEnd) { picked ->
+                        dndEnd = picked
+                        chat.stoat.internals.DoNotDisturbSettings.setEndTime(context, picked)
+                    }
+                }
+            )
+        }
     }
 }

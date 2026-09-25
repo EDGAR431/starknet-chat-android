@@ -352,6 +352,27 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         AppLock.onAppForegrounded(this)
+        chat.stoat.internals.AppIconBadge.clear(this)
+    }
+
+    /**
+     * El botón físico de unos cascos Bluetooth (o el de manos libres
+     * de un coche) manda estas mismas pulsaciones — así, con
+     * Push-to-Talk activado, sirve para hablar sin tocar la pantalla.
+     */
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+        val isPttKey = event.keyCode == KeyEvent.KEYCODE_HEADSETHOOK ||
+            event.keyCode == KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE
+
+        if (isPttKey && VoiceCallManager.room != null && VoiceCallManager.isPushToTalkEnabled) {
+            when (event.action) {
+                KeyEvent.ACTION_DOWN -> VoiceCallManager.onPushToTalkPressed()
+                KeyEvent.ACTION_UP -> VoiceCallManager.onPushToTalkReleased()
+            }
+            return true
+        }
+
+        return super.dispatchKeyEvent(event)
     }
 
     override fun onStop() {

@@ -1,2 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>    <string name="voice_action_push_to_talk">האלט אריין צו רעדן</string>
+    <string name="settings_voice_push_to_talk">דריק צו רעדן</string>
+    <string name="settings_voice_push_to_talk_description">האלט א קנעפּל אריין צו רעדן אנשטאָט אַן שטענדיק אָפענעם מיקראָפאָן.</string>
+    <string name="settings_voice_audio_processing">אַודיאָ פּראָצעסירונג</string>
+    <string name="settings_voice_noise_suppression">רויש אונטערדריקונג</string>
+    <string name="settings_voice_echo_cancellation">ווידערקול אָפּהיטן</string>
+    <string name="settings_voice_auto_gain_control">אויטאָמאַטישע געווינען קאָנטראָל</string>
+    <string name="settings_category_voice">קול</string>
+    <string name="add_server_sheet_scan_qr">סקאַן QR קאָד</string>
+    <string name="add_server_sheet_scan_qr_prompt">ווענד די קאַמעראַ צו אַן פאַרבעטונג QR קאָד</string>
+    <string name="voice_message_record_alt">האלט אריין צו רעקאָרדירן אַ קול מעסעדזש</string>
+    <string name="settings_notifications_dnd">ניט צו שטערן</string>
+    <string name="settings_notifications_dnd_description">מאכט שטיל מיטטיילונגען לויט אַ טעגלעכן צײַטפּלאַן.</string>
+    <string name="settings_notifications_dnd_start">הייבט זיך אָן</string>
+    <string name="settings_notifications_dnd_end">עק זיך אָפּ</string>
+    <string name="channel_settings_export_chat">עקספּאָרטירן טשאַט</string>
+    <string name="channel_settings_export_chat_description">היט אַ טעקסט טעקע מיט דעם קאַנאַל\'ס מעסעדזש געשיכטע.</string>
+    <string name="channel_settings_export_chat_done">טשאַט עקספּאָרטירט מצליח.</string>
+    <string name="channel_settings_export_chat_failed">קען נישט עקספּאָרטירן דעם טשאַט.</string>
+</resources>

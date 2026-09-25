@@ -44,7 +44,12 @@ import chat.stoat.api.routes.channel.leaveDeleteOrCloseChannel
 import chat.stoat.core.model.schemas.ChannelType
 import chat.stoat.api.settings.FeatureFlags
 import chat.stoat.internals.extensions.rememberChannelPermissions
+import chat.stoat.internals.ChatExporter
 import chat.stoat.screens.settings.SettingsIcon
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.ui.platform.LocalContext
+import android.widget.Toast
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -55,6 +60,7 @@ fun ChannelSettingsHome(navController: NavController, channelId: String) {
     val permissions by rememberChannelPermissions(channelId)
     var showDeletionConfirmation by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     if (showDeletionConfirmation) {
         AlertDialog(
@@ -171,6 +177,54 @@ fun ChannelSettingsHome(navController: NavController, channelId: String) {
                                 }
                         )
                     }
+
+                    val exportLauncher = rememberLauncherForActivityResult(
+                        ActivityResultContracts.CreateDocument("text/plain")
+                    ) { uri ->
+                        if (uri == null) return@rememberLauncherForActivityResult
+                        scope.launch {
+                            try {
+                                val text = ChatExporter.exportChannelHistory(
+                                    channelId = channel.id,
+                                    channelName = channel.name ?: channel.id,
+                                )
+                                context.contentResolver.openOutputStream(uri)?.use { stream ->
+                                    stream.write(text.toByteArray())
+                                }
+                                Toast.makeText(
+                                    context,
+                                    context.getString(R.string.channel_settings_export_chat_done),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } catch (e: Exception) {
+                                Toast.makeText(
+                                    context,
+                                    context.getString(R.string.channel_settings_export_chat_failed),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    }
+
+                    ListItem(
+                        headlineContent = {
+                            Text(text = stringResource(id = R.string.channel_settings_export_chat))
+                        },
+                        supportingContent = {
+                            Text(text = stringResource(id = R.string.channel_settings_export_chat_description))
+                        },
+                        leadingContent = {
+                            SettingsIcon {
+                                Icon(
+                                    painter = painterResource(R.drawable.ic_download_24dp),
+                                    contentDescription = null,
+                                )
+                            }
+                        },
+                        modifier = Modifier.clickable {
+                            exportLauncher.launch("${channel.name ?: "chat"}.txt")
+                        }
+                    )
 
                     if (permissions.hasPermission(PermissionBit.ManageChannel) && channel.channelType != ChannelType.DirectMessage && channel.channelType != ChannelType.Group) {
                         ListItem(

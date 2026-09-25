@@ -587,4 +587,23 @@
     <string name="settings_chat_hint_poorly_formed_settings_keys">提示</string>
     <string name="settings_chat_hint_poorly_formed_settings_keys_description">您的部分 StarknetChat 设置已损坏。这可能是第三方客户端导致的。受影响的设置有：</string>
     <string name="settings_chat_hint_poorly_formed_settings_keys_reset">重置 %1$s 设置</string>
+    <string name="voice_action_push_to_talk">按住说话</string>
+    <string name="settings_voice_push_to_talk">按键说话</string>
+    <string name="settings_voice_push_to_talk_description">按住按钮说话，而不是使用一直开启的麦克风。</string>
+    <string name="settings_voice_audio_processing">音频处理</string>
+    <string name="settings_voice_noise_suppression">噪音抑制</string>
+    <string name="settings_voice_echo_cancellation">回声消除</string>
+    <string name="settings_voice_auto_gain_control">自动增益控制</string>
+    <string name="settings_category_voice">语音</string>
+    <string name="add_server_sheet_scan_qr">扫描二维码</string>
+    <string name="add_server_sheet_scan_qr_prompt">将相机对准邀请二维码</string>
+    <string name="voice_message_record_alt">按住录制语音消息</string>
+    <string name="settings_notifications_dnd">勿扰模式</string>
+    <string name="settings_notifications_dnd_description">按每日时间表将通知静音。</string>
+    <string name="settings_notifications_dnd_start">开始于</string>
+    <string name="settings_notifications_dnd_end">结束于</string>
+    <string name="channel_settings_export_chat">导出聊天记录</string>
+    <string name="channel_settings_export_chat_description">保存包含此频道消息记录的文本文件。</string>
+    <string name="channel_settings_export_chat_done">聊天记录导出成功。</string>
+    <string name="channel_settings_export_chat_failed">无法导出聊天记录。</string>
 </resources>

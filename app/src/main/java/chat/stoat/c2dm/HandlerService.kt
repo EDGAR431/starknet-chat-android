@@ -98,6 +98,8 @@ class HandlerService : FirebaseMessagingService() {
             return
         }
 
+        chat.stoat.internals.AppIconBadge.increment(applicationContext)
+
         val body = data["body"] ?: run {
             logcat(LogPriority.ERROR) { "No body in message, abort" }
             return
@@ -329,6 +331,11 @@ class HandlerService : FirebaseMessagingService() {
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
                 return
+            }
+            if (chat.stoat.internals.DoNotDisturbSettings.isWithinQuietHours(this@HandlerService)) {
+                // Sigue llegando a la bandeja para verla más tarde,
+                // pero sin sonido, vibración ni aviso emergente.
+                builder.setSilent(true)
             }
             notify(channelId, NotificationID.NEW_MESSAGE, builder.build())
         }

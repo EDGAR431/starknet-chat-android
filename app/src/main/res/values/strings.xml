@@ -945,6 +945,10 @@
     <string name="settings_notifications_push_description">Receive notifications for new messages, mentions, and other updates, even when you\'re not actively using the app.</string>
     <string name="settings_notifications_system">System Settings</string>
     <string name="settings_notifications_system_description">Manage notification permissions and preferences from your device\'s system settings.</string>
+    <string name="settings_notifications_dnd">Do Not Disturb</string>
+    <string name="settings_notifications_dnd_description">Silence notifications during a daily schedule.</string>
+    <string name="settings_notifications_dnd_start">Starts at</string>
+    <string name="settings_notifications_dnd_end">Ends at</string>
 
     <string name="settings_feedback">Feedback</string>
     <string name="settings_feedback_description">Join the Stoat server to give feedback or suggestions and report bugs.</string>
@@ -975,6 +979,10 @@
     <string name="channel_settings_overview_save">Save</string>
     <string name="channel_settings_permissions">Permissions</string>
     <string name="channel_settings_delete">Delete Channel</string>
+    <string name="channel_settings_export_chat">Export Chat</string>
+    <string name="channel_settings_export_chat_description">Save a text file with this channel\'s message history.</string>
+    <string name="channel_settings_export_chat_done">Chat exported successfully.</string>
+    <string name="channel_settings_export_chat_failed">Couldn\'t export the chat.</string>
     <string name="channel_settings_delete_confirm">Are you sure you want to delete this channel?</string>
     <string name="channel_settings_delete_confirm_description">All messages and settings for this channel will be gone forever (a long time!)</string>
     <string name="channel_settings_delete_confirm_yes">Delete</string>

@@ -650,4 +650,23 @@
     <string name="friends_scan_qr_result_sheet_missing_permission_description">Vous devez accorder à la caméra la permission de scanner les QR codes.</string>
     <string name="friends_add_by_tag_sheet_description">Vous pouvez ajouter des amis avec leur %1$snom d\'utilisateur%3$s et leur %2$stag%3$s. Par exemple, si son nom d\'utilisateur est %1$sjane%3$s et son tag est %2$s1234%3$s, vous pouvez l\'ajouter avec %1$sjane%3$s#%2$s1234%3$s.</string>
     <string name="friends_add_by_tag_sheet_paste_from_clipboard">Coller le presse-papiers</string>
+    <string name="voice_action_push_to_talk">Maintenir pour parler</string>
+    <string name="settings_voice_push_to_talk">Appuyer pour parler</string>
+    <string name="settings_voice_push_to_talk_description">Maintenez un bouton pour parler au lieu d\'un micro toujours actif.</string>
+    <string name="settings_voice_audio_processing">Traitement audio</string>
+    <string name="settings_voice_noise_suppression">Suppression du bruit</string>
+    <string name="settings_voice_echo_cancellation">Suppression de l\'écho</string>
+    <string name="settings_voice_auto_gain_control">Contrôle automatique du gain</string>
+    <string name="settings_category_voice">Voix</string>
+    <string name="add_server_sheet_scan_qr">Scanner un code QR</string>
+    <string name="add_server_sheet_scan_qr_prompt">Pointez l\'appareil photo vers un code QR d\'invitation</string>
+    <string name="voice_message_record_alt">Maintenir pour enregistrer un message vocal</string>
+    <string name="settings_notifications_dnd">Ne pas déranger</string>
+    <string name="settings_notifications_dnd_description">Silence les notifications selon un horaire quotidien.</string>
+    <string name="settings_notifications_dnd_start">Commence à</string>
+    <string name="settings_notifications_dnd_end">Se termine à</string>
+    <string name="channel_settings_export_chat">Exporter la discussion</string>
+    <string name="channel_settings_export_chat_description">Enregistre un fichier texte avec l\'historique des messages de ce salon.</string>
+    <string name="channel_settings_export_chat_done">Discussion exportée avec succès.</string>
+    <string name="channel_settings_export_chat_failed">Impossible d\'exporter la discussion.</string>
 </resources>

@@ -146,4 +146,23 @@
     <string name="could_not_log_in_body">คุณอาจออกจากระบบจากอุปกรณ์อื่นหรือการเชื่อมต่ออินเตอร์เน็ตของคุณอาจจะขัดข้อง</string>
     <string name="channel_age_gate_dob_invalid">กรอกวันเกิดของคุณ</string>
     <string name="channel_age_gate_dob_invalid_future">คุณไม่สามารถเกิดในอนาคตได้</string>
+    <string name="voice_action_push_to_talk">กดค้างเพื่อพูด</string>
+    <string name="settings_voice_push_to_talk">กดพูด</string>
+    <string name="settings_voice_push_to_talk_description">กดปุ่มค้างเพื่อพูดแทนไมโครโฟนที่เปิดตลอดเวลา</string>
+    <string name="settings_voice_audio_processing">การประมวลผลเสียง</string>
+    <string name="settings_voice_noise_suppression">การลดเสียงรบกวน</string>
+    <string name="settings_voice_echo_cancellation">การตัดเสียงสะท้อน</string>
+    <string name="settings_voice_auto_gain_control">การควบคุมเกนอัตโนมัติ</string>
+    <string name="settings_category_voice">เสียงพูด</string>
+    <string name="add_server_sheet_scan_qr">สแกนคิวอาร์โค้ด</string>
+    <string name="add_server_sheet_scan_qr_prompt">หันกล้องไปที่คิวอาร์โค้ดคำเชิญ</string>
+    <string name="voice_message_record_alt">กดค้างเพื่ออัดข้อความเสียง</string>
+    <string name="settings_notifications_dnd">ห้ามรบกวน</string>
+    <string name="settings_notifications_dnd_description">ปิดเสียงการแจ้งเตือนตามตารางเวลารายวัน</string>
+    <string name="settings_notifications_dnd_start">เริ่มเวลา</string>
+    <string name="settings_notifications_dnd_end">สิ้นสุดเวลา</string>
+    <string name="channel_settings_export_chat">ส่งออกแชท</string>
+    <string name="channel_settings_export_chat_description">บันทึกไฟล์ข้อความพร้อมประวัติข้อความของช่องนี้</string>
+    <string name="channel_settings_export_chat_done">ส่งออกแชทสำเร็จแล้ว</string>
+    <string name="channel_settings_export_chat_failed">ไม่สามารถส่งออกแชทได้</string>
 </resources>

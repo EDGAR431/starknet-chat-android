@@ -281,4 +281,23 @@
     <string name="user_badge_translator">Prekladač</string>
     <string name="user_badge_supporter">Podporovateľ</string>
     <string name="member_context_sheet_remove_from_channel">Odstrániť zo %1$s</string>
+    <string name="voice_action_push_to_talk">Podržte na hovorenie</string>
+    <string name="settings_voice_push_to_talk">Stlač na hovorenie</string>
+    <string name="settings_voice_push_to_talk_description">Podržte tlačidlo na hovorenie namiesto trvalo zapnutého mikrofónu.</string>
+    <string name="settings_voice_audio_processing">Spracovanie zvuku</string>
+    <string name="settings_voice_noise_suppression">Potlačenie šumu</string>
+    <string name="settings_voice_echo_cancellation">Potlačenie ozveny</string>
+    <string name="settings_voice_auto_gain_control">Automatické riadenie zisku</string>
+    <string name="settings_category_voice">Hlas</string>
+    <string name="add_server_sheet_scan_qr">Naskenovať QR kód</string>
+    <string name="add_server_sheet_scan_qr_prompt">Namierte kameru na pozývací QR kód</string>
+    <string name="voice_message_record_alt">Podržte na nahranie hlasovej správy</string>
+    <string name="settings_notifications_dnd">Nerušiť</string>
+    <string name="settings_notifications_dnd_description">Stlmí upozornenia podľa denného rozvrhu.</string>
+    <string name="settings_notifications_dnd_start">Začína o</string>
+    <string name="settings_notifications_dnd_end">Končí o</string>
+    <string name="channel_settings_export_chat">Exportovať chat</string>
+    <string name="channel_settings_export_chat_description">Uloží textový súbor s históriou správ tohto kanála.</string>
+    <string name="channel_settings_export_chat_done">Chat bol úspešne exportovaný.</string>
+    <string name="channel_settings_export_chat_failed">Chat sa nepodarilo exportovať.</string>
 </resources>

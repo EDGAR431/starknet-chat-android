@@ -1,2 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>    <string name="voice_action_push_to_talk">اضغط مطولاً للتحدث</string>
+    <string name="settings_voice_push_to_talk">اضغط للتحدث</string>
+    <string name="settings_voice_push_to_talk_description">اضغط زرًا للتحدث بدلاً من ميكروفون يعمل دائمًا.</string>
+    <string name="settings_voice_audio_processing">معالجة الصوت</string>
+    <string name="settings_voice_noise_suppression">قمع الضوضاء</string>
+    <string name="settings_voice_echo_cancellation">إلغاء الصدى</string>
+    <string name="settings_voice_auto_gain_control">التحكم التلقائي في الكسب</string>
+    <string name="settings_category_voice">الصوت</string>
+    <string name="add_server_sheet_scan_qr">مسح رمز QR</string>
+    <string name="add_server_sheet_scan_qr_prompt">وجّه الكاميرا نحو رمز QR للدعوة</string>
+    <string name="voice_message_record_alt">اضغط مطولاً لتسجيل رسالة صوتية</string>
+    <string name="settings_notifications_dnd">عدم الإزعاج</string>
+    <string name="settings_notifications_dnd_description">أسكت الإشعارات خلال جدول يومي.</string>
+    <string name="settings_notifications_dnd_start">يبدأ عند</string>
+    <string name="settings_notifications_dnd_end">ينتهي عند</string>
+    <string name="channel_settings_export_chat">تصدير المحادثة</string>
+    <string name="channel_settings_export_chat_description">احفظ ملف نص بسجل رسائل هذه القناة.</string>
+    <string name="channel_settings_export_chat_done">تم تصدير المحادثة بنجاح.</string>
+    <string name="channel_settings_export_chat_failed">تعذّر تصدير المحادثة.</string>
+</resources>

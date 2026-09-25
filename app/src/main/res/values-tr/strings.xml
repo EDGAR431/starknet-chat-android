@@ -633,4 +633,23 @@
     <string name="attachment_spoiler">Spoiler</string>
     <string name="attachment_preview_spoiler">Spoiler olarak işaretle</string>
     <string name="attachment_preview_spoiler_description">Bu ek sadece tıklandığında görüntülenecektir.</string>
+    <string name="voice_action_push_to_talk">Konuşmak için basılı tutun</string>
+    <string name="settings_voice_push_to_talk">Bas-konuş</string>
+    <string name="settings_voice_push_to_talk_description">Sürekli açık mikrofon yerine konuşmak için bir düğmeye basılı tutun.</string>
+    <string name="settings_voice_audio_processing">Ses işleme</string>
+    <string name="settings_voice_noise_suppression">Gürültü bastırma</string>
+    <string name="settings_voice_echo_cancellation">Yankı giderme</string>
+    <string name="settings_voice_auto_gain_control">Otomatik kazanç kontrolü</string>
+    <string name="settings_category_voice">Ses</string>
+    <string name="add_server_sheet_scan_qr">QR Kodu Tara</string>
+    <string name="add_server_sheet_scan_qr_prompt">Kamerayı bir davet QR koduna doğrultun</string>
+    <string name="voice_message_record_alt">Sesli mesaj kaydetmek için basılı tutun</string>
+    <string name="settings_notifications_dnd">Rahatsız Etme</string>
+    <string name="settings_notifications_dnd_description">Günlük bir programda bildirimleri sessize alır.</string>
+    <string name="settings_notifications_dnd_start">Başlangıç saati</string>
+    <string name="settings_notifications_dnd_end">Bitiş saati</string>
+    <string name="channel_settings_export_chat">Sohbeti Dışa Aktar</string>
+    <string name="channel_settings_export_chat_description">Bu kanalın mesaj geçmişini içeren bir metin dosyası kaydeder.</string>
+    <string name="channel_settings_export_chat_done">Sohbet başarıyla dışa aktarıldı.</string>
+    <string name="channel_settings_export_chat_failed">Sohbet dışa aktarılamadı.</string>
 </resources>

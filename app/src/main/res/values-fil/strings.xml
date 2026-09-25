@@ -599,4 +599,23 @@
     <string name="attachment_preview_spoiler_description">Ipapakita lang ang attachment na ito kapag pinindot.</string>
     <string name="friends_scan_qr_result_sheet_invalid_title">Hindi wastong QR code</string>
     <string name="friends_scan_qr_result_sheet_missing_permission_description">Kailangan mong ibigay ang pahintulot sa camera para mag-scan ng mga QR code.</string>
+    <string name="voice_action_push_to_talk">Pindutin nang matagal para magsalita</string>
+    <string name="settings_voice_push_to_talk">Pindutin para magsalita</string>
+    <string name="settings_voice_push_to_talk_description">Pindutin nang matagal ang isang button para magsalita sa halip na palaging bukas na mikropono.</string>
+    <string name="settings_voice_audio_processing">Pagproseso ng audio</string>
+    <string name="settings_voice_noise_suppression">Pagsugpo sa ingay</string>
+    <string name="settings_voice_echo_cancellation">Pagkansela ng echo</string>
+    <string name="settings_voice_auto_gain_control">Awtomatikong kontrol ng gain</string>
+    <string name="settings_category_voice">Boses</string>
+    <string name="add_server_sheet_scan_qr">I-scan ang QR Code</string>
+    <string name="add_server_sheet_scan_qr_prompt">Itutok ang camera sa isang invite QR code</string>
+    <string name="voice_message_record_alt">Pindutin nang matagal para mag-record ng voice message</string>
+    <string name="settings_notifications_dnd">Huwag Istorbohin</string>
+    <string name="settings_notifications_dnd_description">Pinapatahimik ang mga notification sa isang pang-araw-araw na iskedyul.</string>
+    <string name="settings_notifications_dnd_start">Nagsisimula sa</string>
+    <string name="settings_notifications_dnd_end">Nagtatapos sa</string>
+    <string name="channel_settings_export_chat">I-export ang Chat</string>
+    <string name="channel_settings_export_chat_description">Nagse-save ng text file na may history ng mensahe ng channel na ito.</string>
+    <string name="channel_settings_export_chat_done">Matagumpay na na-export ang chat.</string>
+    <string name="channel_settings_export_chat_failed">Hindi na-export ang chat.</string>
 </resources>

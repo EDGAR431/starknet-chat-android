@@ -11,4 +11,23 @@
     <string name="mfa_recovery_header">एक पुनर्प्राप्ति कोड दर्ज करें</string>
     <string name="next">अगला</string>
     <string name="privacy_policy">गोपनीयता नीति</string>
+    <string name="voice_action_push_to_talk">बोलने के लिए दबाए रखें</string>
+    <string name="settings_voice_push_to_talk">पुश-टू-टॉक</string>
+    <string name="settings_voice_push_to_talk_description">हमेशा चालू माइक्रोफ़ोन के बजाय बोलने के लिए बटन दबाए रखें।</string>
+    <string name="settings_voice_audio_processing">ऑडियो प्रोसेसिंग</string>
+    <string name="settings_voice_noise_suppression">शोर दमन</string>
+    <string name="settings_voice_echo_cancellation">इको निरसन</string>
+    <string name="settings_voice_auto_gain_control">स्वचालित गेन नियंत्रण</string>
+    <string name="settings_category_voice">आवाज़</string>
+    <string name="add_server_sheet_scan_qr">क्यूआर कोड स्कैन करें</string>
+    <string name="add_server_sheet_scan_qr_prompt">आमंत्रण क्यूआर कोड पर कैमरा दिखाएं</string>
+    <string name="voice_message_record_alt">वॉइस मैसेज रिकॉर्ड करने के लिए दबाए रखें</string>
+    <string name="settings_notifications_dnd">परेशान न करें</string>
+    <string name="settings_notifications_dnd_description">एक दैनिक समय-सारिणी के दौरान सूचनाएं शांत करता है।</string>
+    <string name="settings_notifications_dnd_start">शुरू होता है</string>
+    <string name="settings_notifications_dnd_end">समाप्त होता है</string>
+    <string name="channel_settings_export_chat">चैट निर्यात करें</string>
+    <string name="channel_settings_export_chat_description">इस चैनल के संदेश इतिहास वाली एक टेक्स्ट फ़ाइल सहेजता है।</string>
+    <string name="channel_settings_export_chat_done">चैट सफलतापूर्वक निर्यात किया गया।</string>
+    <string name="channel_settings_export_chat_failed">चैट निर्यात नहीं किया जा सका।</string>
 </resources>
