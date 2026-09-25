@@ -63,8 +63,8 @@ android {
         applicationId = "com.edgar.starknetchat"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = Integer.parseInt("001_007_007".replace("_", ""), 10)
-        versionName = "1.7.7"
+        versionCode = Integer.parseInt("001_007_008".replace("_", ""), 10)
+        versionName = "1.7.8"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
