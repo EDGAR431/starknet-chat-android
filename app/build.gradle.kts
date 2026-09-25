@@ -66,6 +66,22 @@ android {
         versionCode = Integer.parseInt("001_007_008".replace("_", ""), 10)
         versionName = "1.7.8"
 
+        // Lista explícita de idiomas válidos — así se descarta
+        // cualquier recurso de idioma no reconocido que pueda venir
+        // metido dentro de alguna librería externa (Play Console
+        // llegó a marcar "pr", que no es un código de idioma real).
+        resourceConfigurations.addAll(
+            listOf(
+                "ar", "ars", "ast", "b+es+419", "b+es+419ES@419", "b+pfl+DE",
+                "b+zh+HANSZH@hans", "be", "bg", "bn", "ca", "ckb", "cs", "da",
+                "de", "el", "en-rUS", "eo", "es", "fa", "fi", "fil", "fr",
+                "ga", "gl", "hi", "hr", "hu", "in", "is", "it", "iw", "ja",
+                "ji", "ko", "kw", "la", "lt", "lv", "ms", "mwl", "nb-rNO",
+                "nl", "pl", "pt", "pt-rBR", "ro", "ru", "si", "sk", "th",
+                "tr", "uk", "vi", "zh-rCN", "zh-rTW",
+            )
+        )
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
