@@ -285,9 +285,6 @@
     <string name="settings_appearance_colour_overrides_import_error">Tento soubor není platným souborem přepsání barev.</string>
     <string name="settings_feedback">Zpětná vazba</string>
     <string name="settings_feedback_description">Připojte se k serveru Stoatu pro udělení zpětné vazby nebo nápadů a nahlášení chyb.</string>
-    <string name="settings_changelogs_new_header">Co jsme uvařili ✨</string>
-    <string name="settings_changelogs_historical_version_header">Seznam změn pro %1$s</string>
-    <string name="settings_changelogs_historical_version_header_placeholder">tamta verze</string>
     <string name="share_target_heading">Sdílet na StarknetChatu</string>
     <string name="share_target_attachment_too_large">Tato příloha je pro StarknetChat příliš velká (max. $1$s).</string>
     <string name="share_target_search_channels">Prohledat kanály</string>
@@ -315,7 +312,6 @@
     <string name="notice_platform_mod_dm_description">Od našeho týmu moderátorů jste obdrželi důležité informace ohledně vašeho účtu. Pečlivě si je prosím přečtěte.</string>
     <string name="settings_appearance_theme_m3dynamic_unsupported">Material You (nepodporovaný)</string>
     <string name="settings_appearance_colour_overrides_on_error_container">Na kontejneru chyby</string>
-    <string name="settings_changelogs">Seznam změn</string>
     <string name="share_target_login_first">Před sdílením na StarknetChatu se prosím přihlaste.</string>
     <string name="share_target_invalid_intent">Toto není platný intent sdílení.</string>
     <string name="share_target_select_channel">Vyberte kanál, do kterého chcete sdílet.</string>
@@ -335,7 +331,6 @@
     <string name="settings_profile_custom_background">Vlastní pozadí</string>
     <string name="settings_profile_save">Uložit</string>
     <string name="settings_sessions">Relace</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_appearance_theme_light">Světlý</string>
     <string name="settings_appearance_theme_amoled">Čistě černá</string>
     <string name="settings_appearance_theme_m3dynamic">Material You</string>

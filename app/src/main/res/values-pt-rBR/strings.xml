@@ -36,7 +36,6 @@
     <string name="media_viewer_saved">Salvo</string>
     <string name="settings_feedback">Feedback</string>
     <string name="settings_appearance">Aparência</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_appearance_theme_none">Sistema</string>
     <string name="settings_appearance_theme_light">Claro</string>
     <string name="settings_appearance_theme_m3dynamic">Material You</string>
@@ -381,10 +380,6 @@
     <string name="settings_appearance_colour_overrides_outline_variant">Variante do Contorno</string>
     <string name="settings_appearance_colour_overrides_export">Exportar</string>
     <string name="settings_appearance_colour_overrides_import">Importar</string>
-    <string name="settings_changelogs">Registro de alterações</string>
-    <string name="settings_changelogs_new_header">O que tem estado no forno ✨</string>
-    <string name="settings_changelogs_historical_version_header">Registro de alterações para %1$s</string>
-    <string name="settings_changelogs_historical_version_header_placeholder">essa versão</string>
     <string name="channel_age_gate_title">Este canal está marcado como NSFW</string>
     <string name="channel_age_gate_dob_invalid">Insira sua data de nascimento</string>
     <string name="channel_age_gate_dob_invalid_unlikely">Você não pode nascer antes de %1$d.</string>
@@ -547,8 +542,6 @@
     <string name="overview_screen_share_profile">Compartilhar Perfil</string>
     <string name="overview_screen_share_profile_description">Dê uma olhada no seu cartão de usuário e obtenha um link para compartilhar</string>
     <string name="overview_screen_changelog_description">Stoat nunca para, dê uma olhada no que estamos preparando</string>
-    <string name="overview_screen_feedback">Enviar Feedback</string>
-    <string name="overview_screen_feedback_description">Tem algo a dizer\? Estamos aqui para ouvir</string>
     <string name="user_info_sheet_webhook_body">Webhooks são automatizados por outros serviços na internet. Não podem paper de volta, mas você ainda pode ver o que eles tem a dizer.</string>
     <string name="user_card_tap_to_copy">Toque para copiar</string>
     <string name="user_card_error_sharing">Ocorreu um erro ao compartilhar seu cartão de usuário.</string>

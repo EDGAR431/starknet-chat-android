@@ -173,8 +173,6 @@
     <string name="overview_screen_share_profile">Del profil</string>
     <string name="overview_screen_share_profile_description">Se på dit brugerkort og få et særligt link til deling</string>
     <string name="overview_screen_changelog">Ændringslog</string>
-    <string name="overview_screen_feedback">Giv feedback</string>
-    <string name="overview_screen_feedback_description">Har du noget at sige? Vi er lutter øren</string>
     <string name="user_card_tap_to_copy">Tryk for at kopiere</string>
     <string name="user_card_error_sharing">En fejl opstod under deling af dit brugerkort.</string>
     <string name="user_card_data_point_display_name">%1$d.Navn</string>
@@ -448,7 +446,6 @@
     <string name="settings_sessions_this_device">Denne enhed</string>
     <string name="settings_sessions_other_sessions">Andre aktive sessioner</string>
     <string name="settings_sessions_log_out_other">Lod andre sessioner ud</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_appearance_theme_light">Lys</string>
     <string name="settings_appearance_theme_amoled">Ren sort</string>
     <string name="settings_appearance_theme_m3dynamic">Material You</string>
@@ -502,10 +499,6 @@
     <string name="settings_chat_hint_poorly_formed_settings_keys_reset">Nulstil %1$s-indstillinger</string>
     <string name="settings_feedback">Feedback</string>
     <string name="settings_feedback_description">Deltag i Stoat-serveren for at give feedback eller forslag og rapportere fejl.</string>
-    <string name="settings_changelogs">Ændringslog</string>
-    <string name="settings_changelogs_new_header">Hvad der har været i gære ✨</string>
-    <string name="settings_changelogs_historical_version_header">Ændringslog for %1$s</string>
-    <string name="settings_changelogs_historical_version_header_placeholder">den version</string>
     <string name="settings_language">Sprog</string>
     <string name="settings_language_auto">Systemstandard</string>
     <string name="channel_settings">Kanalindstillinger</string>

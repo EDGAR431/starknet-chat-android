@@ -43,8 +43,9 @@ object ChatExporter {
             if (messages.isEmpty()) break
 
             result.users?.forEach { user ->
-                if (user.id != null) {
-                    usernameById[user.id] = user.username ?: user.id
+                val id = user.id
+                if (id != null) {
+                    usernameById[id] = user.username ?: id
                 }
             }
 

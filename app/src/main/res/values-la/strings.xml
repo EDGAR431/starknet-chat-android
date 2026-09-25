@@ -98,8 +98,6 @@
     <string name="overview_screen_share_profile">Communica Profilum</string>
     <string name="overview_screen_changelog">Index Mutationum</string>
     <string name="overview_screen_changelog_description">Stoat numquam dormit, specta ut videas quid in operibus sit</string>
-    <string name="overview_screen_feedback">Praebe Responsa</string>
-    <string name="overview_screen_feedback_description">Aliquid dicere vis? Totum auribus sumus</string>
     <string name="user_card_tap_to_copy">Tange ut copiares</string>
     <string name="user_card_data_point_display_name">%1$d.Nomen</string>
     <string name="user_card_data_point_username">%1$d.Nomen usoris</string>
@@ -518,7 +516,6 @@
     <string name="settings_appearance">Aspectus</string>
     <string name="settings_appearance_theme">Thema</string>
     <string name="settings_appearance_theme_none">Systema</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_appearance_theme_light">Lux</string>
     <string name="settings_appearance_theme_amoled">Niger purus</string>
     <string name="settings_appearance_theme_m3dynamic">Material You</string>
@@ -570,10 +567,6 @@
     <string name="settings_chat_hint_poorly_formed_settings_keys_key_unknown">%1$s (ignotum)</string>
     <string name="settings_chat_hint_poorly_formed_settings_keys_reset">Restituere configurationes %1$s</string>
     <string name="settings_feedback">Sententia</string>
-    <string name="settings_changelogs">Index mutationum</string>
-    <string name="settings_changelogs_new_header">Quid coquit? ✨</string>
-    <string name="settings_changelogs_historical_version_header">Index Mutationum pro %1$s</string>
-    <string name="settings_changelogs_historical_version_header_placeholder">illa versio</string>
     <string name="settings_language">Lingua</string>
     <string name="settings_language_auto">Systema Praedefinitum</string>
     <string name="channel_settings">Configurationes Canalis</string>

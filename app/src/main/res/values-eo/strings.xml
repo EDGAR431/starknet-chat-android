@@ -277,8 +277,6 @@
     <string name="overview_screen_changelog">Ŝanĝregistro</string>
     <string name="overview_screen_share_profile_description">Rigardu vian uzantkarton kaj ricevu specialan ligilon por dissendi</string>
     <string name="overview_screen_changelog_description">Stoat neniam dormas, rigardu kio estas en procezo</string>
-    <string name="overview_screen_feedback">Donu komenton</string>
-    <string name="overview_screen_feedback_description">Ĉu vi volas diri ion? Ni tute aŭdas</string>
     <string name="user_card_tap_to_copy">Tuŝi por kopii</string>
     <string name="voice_action_push_to_talk">Tenu por paroli</string>
     <string name="settings_voice_push_to_talk">Premu por paroli</string>

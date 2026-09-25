@@ -114,7 +114,6 @@
     <string name="settings_appearance_theme_none">Système</string>
     <string name="settings_appearance_theme_amoled">Noir pur</string>
     <string name="settings_appearance_theme_m3dynamic_unsupported_toast">Material You n’est pas pris en charge sur cet appareil.</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="register_image_alt">Utilisez StarknetChat pour discuter de tout et de rien.</string>
     <string name="open_mail_app">Ouvrir l\'application de messagerie</string>
     <string name="mfa_interstitial_lead">Vous avez activé la fonction 2FA pour que votre compte soit encore plus sûr.</string>
@@ -207,7 +206,6 @@
     <string name="password">Mot de passe</string>
     <string name="password_manager_hint">Utilisez-vous un gestionnaire de mots de passe ?</string>
     <string name="password_forgot_heading">Vous avez oublié votre mot de passe \?</string>
-    <string name="settings_changelogs_historical_version_header_placeholder">cette version</string>
     <string name="settings_appearance_colour_overrides_outline">Contour</string>
     <string name="oss_attribution_body">Stoat est construit avec l\'aide de ces formidables projets open source.</string>
     <string name="about_full_name">StarknetChat pour Android</string>
@@ -228,7 +226,6 @@
     <string name="settings_appearance_colour_overrides_import_error">Ce fichier n\'est pas un fichier de remplacement de couleur valide.</string>
     <string name="settings_appearance_colour_overrides_import">Importer</string>
     <string name="settings_appearance_colour_overrides_export">Exporter</string>
-    <string name="settings_changelogs">Liste des Nouveautés</string>
     <string name="settings_sessions_this_device_unavailable">La session de cet appareil n’est pas disponible. Veuillez **vous reconnecter** pour voir votre session actuelle.</string>
     <string name="settings_sessions_other_sessions">Autres sessions actives</string>
     <string name="settings_sessions_this_device">Cet Appareil</string>
@@ -520,8 +517,6 @@
     <string name="settings_appearance_colour_overrides_scrim">Voile</string>
     <string name="user_badge_responsible_disclosure">Divulgation responsable</string>
     <string name="link_open">Ouvrir</string>
-    <string name="settings_changelogs_new_header">Qu’est-ce qui mijote ✨</string>
-    <string name="settings_changelogs_historical_version_header">Journal des modifications pour %1$s</string>
     <string name="channel_settings_header">#%1$s</string>
     <string name="share_target_invalid_intent">Ce n’est pas une intention de partage valide.</string>
     <string name="user_card_data_point_photo">%1$d.Photo</string>
@@ -530,10 +525,8 @@
     <string name="overview_screen_error_description">S’il vous plait réessayer plus tard.</string>
     <string name="overview_screen_settings">Ouvrir les paramètres</string>
     <string name="overview_screen_share_profile">Partager le profil</string>
-    <string name="overview_screen_feedback">Donner un avis</string>
     <string name="badge_webhook_alt">Webhook</string>
     <string name="overview_screen_settings_description">Changer votre apparence, gérer votre compte, et plus</string>
-    <string name="overview_screen_feedback_description">Vous avez quelque chose à dire ? Nous sommes tout ouïe</string>
     <string name="overview_screen_share_profile_description">Jetez un œil à votre carte d’utilisateur et obtenez un lien spécial à partager</string>
     <string name="overview_screen_changelog">Journal des modifications</string>
     <string name="overview_screen_changelog_description">Stoat ne dort jamais, jetez un œil pour voir ce qui se prépare</string>

@@ -201,7 +201,6 @@
     <string name="settings_category_miscellaneous">Sekalaista</string>
     <string name="settings_appearance">Ulkoasu</string>
     <string name="settings_appearance_theme">Teema</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_appearance_theme_light">Vaalea</string>
     <string name="settings_appearance_theme_m3dynamic">Material You -teema</string>
     <string name="settings_appearance_theme_m3dynamic_unsupported_toast">Material You -teemaa ei tueta tällä laitteella.</string>
@@ -241,8 +240,6 @@
     <string name="overview_screen_share_profile_description">Katso käyttäjäkorttiasi ja saat jaettavan erikoislinkin</string>
     <string name="overview_screen_changelog">Muutosloki</string>
     <string name="overview_screen_changelog_description">Stoat ei koskaan nuku, katso, mitä on ollut työn alla</string>
-    <string name="overview_screen_feedback">Anna palautetta</string>
-    <string name="overview_screen_feedback_description">Onko sinulla jotain sanottavaa? Kuuntelemme herkällä korvalla</string>
     <string name="hide_password">Piilota salasana</string>
     <string name="show_password">Näytä salasana</string>
     <string name="service_health_alert_actions_dismiss">Sulje</string>

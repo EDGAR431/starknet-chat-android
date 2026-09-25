@@ -171,7 +171,6 @@
     <string name="settings_appearance">Tampilan</string>
     <string name="settings_appearance_theme">Tema</string>
     <string name="settings_appearance_theme_none">Sistem</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_appearance_theme_light">Cerah</string>
     <string name="settings_appearance_theme_m3dynamic">Material You</string>
     <string name="settings_appearance_theme_m3dynamic_unsupported">Material You (tidak didukung)</string>
@@ -346,7 +345,6 @@
     <string name="overview_screen_error_description">Mohon coba lagi nanti.</string>
     <string name="overview_screen_settings_description">Ubah tampilan anda, kelola akun anda, dan lainnya</string>
     <string name="overview_screen_changelog">Catatan perubahan</string>
-    <string name="overview_screen_feedback">Berikan Masukan</string>
     <string name="user_card_tap_to_copy">Ketuk untuk menyalin</string>
     <string name="main_tab_communities">Komunitas</string>
     <string name="message_field_editing_message">Mengedit pesan</string>

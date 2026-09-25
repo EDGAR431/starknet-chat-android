@@ -17,7 +17,6 @@ import androidx.navigation.NavController
 import chat.stoat.R
 import chat.stoat.internals.VoiceAudioSettings
 import chat.stoat.settings.dsl.SettingsPage
-import chat.stoat.settings.dsl.Subcategory
 import chat.stoat.settings.dsl.SubcategoryContentInsets
 
 @Composable

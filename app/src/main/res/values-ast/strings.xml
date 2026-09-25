@@ -249,7 +249,6 @@
     <string name="settings_sessions_log_out_other_confirm_no">Caltener la sesión abierta</string>
     <string name="settings_appearance_theme">Temes</string>
     <string name="settings_appearance_theme_none">Sistema</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_appearance_theme_light">Nidiu</string>
     <string name="settings_appearance_theme_amoled">Prietu dafechu</string>
     <string name="settings_appearance_theme_m3dynamic">Material You</string>
@@ -280,10 +279,6 @@
     <string name="settings_appearance_colour_overrides_export">Esportar</string>
     <string name="settings_appearance_colour_overrides_import">Importar</string>
     <string name="settings_feedback">Comentariu</string>
-    <string name="settings_changelogs">Logs de cambeos</string>
-    <string name="settings_changelogs_new_header">Lo que táse faciendo ✨</string>
-    <string name="settings_changelogs_historical_version_header">Log de cambeos pa %1$s</string>
-    <string name="settings_changelogs_historical_version_header_placeholder">esa versión</string>
     <string name="back">← P\'atrás</string>
     <string name="loading">Pescanciando daqué d\'información, aguanta ehí…</string>
     <string name="login_onboarding_heading">Atopa la to comunidá, conecta col mundu.</string>

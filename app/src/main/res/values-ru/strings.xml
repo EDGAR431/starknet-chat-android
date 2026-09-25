@@ -114,7 +114,6 @@
     <string name="settings_category_general">Общее</string>
     <string name="settings_appearance">Внешний вид</string>
     <string name="settings_appearance_theme_none">Системная</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_feedback">Отзыв</string>
     <string name="back">← Назад</string>
     <string name="password_forgot">Забыли пароль\?</string>
@@ -291,10 +290,6 @@
     <string name="settings_appearance_colour_overrides_outline">Контур</string>
     <string name="settings_appearance_colour_overrides_export">Экспортировать</string>
     <string name="settings_appearance_colour_overrides_import">Импортировать</string>
-    <string name="settings_changelogs">Список изменений</string>
-    <string name="settings_changelogs_new_header">Что нового ✨</string>
-    <string name="settings_changelogs_historical_version_header">Список изменений для %1$s</string>
-    <string name="settings_changelogs_historical_version_header_placeholder">эта версия</string>
     <string name="system_message_user_joined_alt">Пользователь присоединяется</string>
     <string name="system_message_channel_renamed_alt">Канал переименован</string>
     <string name="system_message_user_added_alt">Пользователь добавлен</string>
@@ -504,8 +499,6 @@
     <string name="overview_screen_share_profile">Поделится профилем</string>
     <string name="overview_screen_changelog">Список изменений</string>
     <string name="overview_screen_changelog_description">Stoat никогда не спит, взгляните, над чем мы работали</string>
-    <string name="overview_screen_feedback_description">Есть что сказать\? Мы все во внимании</string>
-    <string name="overview_screen_feedback">Оставить отзыв</string>
     <string name="user_info_sheet_webhook_learn_more">Узнать больше</string>
     <string name="user_info_sheet_category_status">Статус</string>
     <string name="colour_picker_red">Красный</string>

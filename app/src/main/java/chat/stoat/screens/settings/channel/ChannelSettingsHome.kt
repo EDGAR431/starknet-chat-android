@@ -185,8 +185,8 @@ fun ChannelSettingsHome(navController: NavController, channelId: String) {
                         scope.launch {
                             try {
                                 val text = ChatExporter.exportChannelHistory(
-                                    channelId = channel.id,
-                                    channelName = channel.name ?: channel.id,
+                                    channelId = channelId,
+                                    channelName = channel.name ?: channelId,
                                 )
                                 context.contentResolver.openOutputStream(uri)?.use { stream ->
                                     stream.write(text.toByteArray())

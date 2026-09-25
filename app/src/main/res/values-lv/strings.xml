@@ -232,8 +232,6 @@
     <string name="overview_screen_settings_description">Pamaini savu izskatu, maini konta iestatījumus, un vēl</string>
     <string name="overview_screen_share_profile">Dalīties ar profilu</string>
     <string name="overview_screen_changelog">Izmaiņas</string>
-    <string name="overview_screen_feedback">Dalieties ar domām</string>
-    <string name="overview_screen_feedback_description">Ir kas sakāms\? Mēs uzklausīsim</string>
     <string name="invite_dialog_copy">Kopēt</string>
     <string name="invite_dialog_close">Aizvērt</string>
     <string name="message_context_sheet_actions_reply">Atbildēt</string>

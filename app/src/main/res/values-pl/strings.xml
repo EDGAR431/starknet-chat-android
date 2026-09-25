@@ -175,7 +175,6 @@
     <string name="settings_appearance">Wygląd</string>
     <string name="settings_appearance_theme">Motyw</string>
     <string name="settings_appearance_theme_none">System</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_appearance_theme_light">Jasny</string>
     <string name="settings_appearance_theme_amoled">Czysta czerń</string>
     <string name="settings_appearance_theme_m3dynamic">Twój Materiał</string>
@@ -365,12 +364,8 @@
     <string name="settings_appearance_colour_overrides_scrim">Krata</string>
     <string name="settings_appearance_colour_overrides_export">Eksportuj</string>
     <string name="settings_appearance_colour_overrides_import">Importuj</string>
-    <string name="settings_changelogs">Dziennik zmian</string>
-    <string name="settings_changelogs_historical_version_header">Dziennik zmian dla %1$s</string>
-    <string name="settings_changelogs_historical_version_header_placeholder">ta wersja</string>
     <string name="settings_appearance_colour_overrides_surface_variant">Wariant powierzchniowy</string>
     <string name="settings_appearance_colour_overrides_import_error">Ten plik nie jest prawidłowym plikiem zastępującym kolor.</string>
-    <string name="settings_changelogs_new_header">Co tam słychać ✨</string>
     <string name="discover_alt">Odkrywaj</string>
     <string name="discover">Odkrywaj Stoat</string>
     <string name="report_user_heading">Powiedz, co jest nie tak z tym użytkownikiem</string>
@@ -550,8 +545,6 @@
     <string name="overview_screen_share_profile_description">Spójrz na swoją kartę użytkownika i uzyskaj specjalny link do udostępnienia</string>
     <string name="overview_screen_changelog">Dziennik zmian</string>
     <string name="overview_screen_changelog_description">Stoat nigdy nie śpi, spójrz, aby zobaczyć, co jest w przygotowaniu</string>
-    <string name="overview_screen_feedback">Przekazywanie opinii</string>
-    <string name="overview_screen_feedback_description">Masz coś do powiedzenia\? Zamieniamy się w słuch</string>
     <string name="user_info_sheet_webhook">Webhook został znaleziony!</string>
     <string name="user_info_sheet_webhook_learn_more">Dowiedz się więcej</string>
     <string name="user_info_sheet_webhook_body">Webhooki to zautomatyzowane transmisje z innych usług w Internecie. Nie można z nimi rozmawiać, ale nadal można zobaczyć, co mają do powiedzenia.</string>

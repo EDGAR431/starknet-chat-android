@@ -156,7 +156,6 @@
     <string name="settings_category_miscellaneous">杂项</string>
     <string name="settings_appearance_theme">主题</string>
     <string name="settings_appearance_theme_none">系统</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_appearance_theme_light">明亮</string>
     <string name="settings_appearance_theme_amoled">纯黑</string>
     <string name="settings_appearance_theme_m3dynamic_unsupported">Material You（不支持）</string>
@@ -302,10 +301,6 @@
     <string name="oss_attribution_body_2">我们非常感谢这些项目的开发者将他们的工作成果奉献给全世界。</string>
     <string name="oss_attribution_generation_date">最后更新：%1$s</string>
     <string name="system_message_text_alt">系统消息</string>
-    <string name="settings_changelogs">更新日志</string>
-    <string name="settings_changelogs_historical_version_header_placeholder">相应版本</string>
-    <string name="settings_changelogs_historical_version_header">%1$s 的更新日志</string>
-    <string name="settings_changelogs_new_header">新版本 ✨</string>
     <string name="file_picker_chip_documents">文件</string>
     <string name="file_picker_chip_camera">相机</string>
     <string name="inline_media_picker_current_description">当前选择的媒体文件</string>
@@ -541,8 +536,6 @@
     <string name="overview_screen_share_profile_description">查看您的用户卡片并获取特殊的分享链接</string>
     <string name="overview_screen_changelog">更新记录</string>
     <string name="overview_screen_changelog_description">Stoat 从未停歇，看看我们更新了什么</string>
-    <string name="overview_screen_feedback">提供反馈</string>
-    <string name="overview_screen_feedback_description">想表达看法？我们在倾听</string>
     <string name="user_info_sheet_webhook">您发现了一个 Webhook！</string>
     <string name="user_info_sheet_webhook_learn_more">了解更多</string>
     <string name="overview_screen_title">您自己</string>

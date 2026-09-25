@@ -202,7 +202,6 @@
     <string name="media_viewer_share_video">Compartir video</string>
     <string name="media_viewer_share_image">Compartir imagen</string>
     <string name="settings_category_miscellaneous">Otros</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_appearance_theme_m3dynamic">Material You</string>
     <string name="settings_appearance_theme_m3dynamic_unsupported">Material You (obsoleto)</string>
     <string name="settings_feedback">Comentarios</string>
@@ -446,8 +445,6 @@
     <string name="overview_screen_share_profile_description">Echa un vistazo a tu tarjeta de usuario y obtén un link especial para compartir</string>
     <string name="overview_screen_changelog">Registro de cambios</string>
     <string name="overview_screen_changelog_description">Stoat nunca duerme, mira lo que se está trabajando</string>
-    <string name="overview_screen_feedback">Dar retroalimentación</string>
-    <string name="overview_screen_feedback_description">¿Tienes algo que decir? Somos todo oídos</string>
     <string name="user_card_tap_to_copy">Toca para copiar</string>
     <string name="user_card_error_sharing">Un error ocurrió al compartir tu tarjeta de usuario.</string>
     <string name="user_card_data_point_display_name">%1$d.Nombre</string>
@@ -573,10 +570,6 @@
     <string name="settings_chat_interactive_embeds_description">Las incrustaciones interactivas te permiten interactuar con algunos tipos de links directamente dentro del chat. Por ejemplo, puedes reproducir videos de YouTube o previsualizar álbumes de Apple Music.</string>
     <string name="settings_chat_interactive_embeds_apple_music">Apple Music</string>
     <string name="settings_feedback_description">Únete al servidor de Stoat para dar comentarios o sugerencias e informar errores.</string>
-    <string name="settings_changelogs">Registros de cambios</string>
-    <string name="settings_changelogs_new_header">Qué se ha estado cocinando ✨</string>
-    <string name="settings_changelogs_historical_version_header_placeholder">esa versión</string>
-    <string name="settings_changelogs_historical_version_header">Registro de cambios de %1$s</string>
     <string name="channel_settings">Ajustes del Canal</string>
     <string name="settings_language_auto">Predeterminado (Sistema)</string>
     <string name="channel_settings_header">#%1$s</string>

@@ -172,7 +172,6 @@
     <string name="settings_appearance">রুপ</string>
     <string name="settings_appearance_theme">থিম</string>
     <string name="settings_appearance_theme_none">সিস্টেম</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_appearance_theme_m3dynamic">Material You</string>
     <string name="settings_feedback">মতামত</string>
     <string name="settings_appearance_theme_light">লাইট</string>
@@ -323,12 +322,10 @@
     <string name="could_not_log_in_cta_try_again">আবার চেষ্টা করুন</string>
     <string name="could_not_log_in_cta_logout">লগ আউট করুন</string>
     <string name="overview_screen_share_profile">প্রোফাইল শেয়ার করুন</string>
-    <string name="overview_screen_feedback_description">আপনি কিছু বলতে চাইছেন? আমরা শুনছি</string>
     <string name="status_text_none">কী চলছে?</string>
     <string name="user_card_tap_to_copy">কপি করতে এখানে টিপুন</string>
     <string name="could_not_log_in_body">আপনি হয়তো অন্য ডিভাইস থেকে লগ আউট হয়ে গেছেন, বা আপনার ইন্টারনেট সংযোগ কাজ করছে না।</string>
     <string name="overview_screen_changelog">সমস্ত চেঞ্জলগগুলি</string>
-    <string name="overview_screen_feedback">আপনার মতামত দিন</string>
     <string name="link_open">খুলুন</string>
     <string name="settings_sessions_this_device">এই ডিভাইসে</string>
     <string name="settings_sessions_this_device_unavailable">এই ডিভাইসের সেশন আর উপলব্ধ নেই। আপনার বর্তমান সেশন দেখার জন্য দয়া করে **আবার লগ ইন করুন**।</string>
@@ -396,7 +393,6 @@
     <string name="file_picker_chip_photo_picker">ছবিগুলো বাছুন</string>
     <string name="colour_picker_hex_use">ব্যবহার করুন</string>
     <string name="corner_radius_picker_choose_radius_yes">ব্যবহার করুন</string>
-    <string name="settings_changelogs_historical_version_header">%1$s -এর চেঞ্জলগ</string>
     <string name="channel_settings_overview_nsfw_undo_confirm_no">যেমন আছে তেমনই রাখুন</string>
     <string name="spark_keyboard_shortcuts">আপনি কি কোনো কীবোর্ড ব্যবহার করছেন?</string>
     <string name="channel_settings_overview_nsfw_confirm_no">যেমন আছে তেমনই রাখুন</string>

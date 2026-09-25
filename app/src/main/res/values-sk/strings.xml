@@ -75,7 +75,6 @@
     <string name="overview_screen_share_profile">Zdielať profil</string>
     <string name="overview_screen_changelog">List zmien</string>
     <string name="overview_screen_changelog_description">Stoat nikdy nespí, pozrite sa čo sa na čom sa pracuje</string>
-    <string name="overview_screen_feedback_description">Máte niečo čo povedať? Počúvame</string>
     <string name="user_card_tap_to_copy">Kliknite aby ste skopírovali</string>
     <string name="user_card_error_sharing">Vyskitol sa problém pri zdieľaní vášho profilu.</string>
     <string name="user_card_data_point_display_name">%1$d meno</string>

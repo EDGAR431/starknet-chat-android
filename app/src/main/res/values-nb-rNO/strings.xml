@@ -182,7 +182,6 @@
     <string name="settings_appearance">Utseende</string>
     <string name="settings_appearance_theme">Drakt</string>
     <string name="settings_appearance_theme_none">System</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_appearance_theme_light">Lys</string>
     <string name="settings_appearance_theme_amoled">Helt Svart</string>
     <string name="settings_appearance_theme_m3dynamic">Material You</string>
@@ -303,8 +302,6 @@
     <string name="channel_age_gate_dob_year">År</string>
     <string name="channel_age_gate_dob_proceed">Fortsett</string>
     <string name="overview_screen_changelog">Endringslogg</string>
-    <string name="overview_screen_feedback">Gi tilbakemelding</string>
-    <string name="overview_screen_feedback_description">Har du noe å si? Vi er lutter øre</string>
     <string name="user_card_tap_to_copy">Trykk for å kopiere</string>
     <string name="friends">Venner</string>
     <string name="friends_incoming_requests">Innkommende forespørsler</string>
@@ -525,10 +522,6 @@
     <string name="settings_chat_hint_poorly_formed_settings_keys_key_ordering">Serverrekkefølge</string>
     <string name="settings_chat_hint_poorly_formed_settings_keys_key_android">StarknetChat for Android</string>
     <string name="settings_chat_hint_poorly_formed_settings_keys_key_unknown">%1$s (ukjent)</string>
-    <string name="settings_changelogs">Endringslogger</string>
-    <string name="settings_changelogs_new_header">Hva har skjedd ✨</string>
-    <string name="settings_changelogs_historical_version_header">Endringslogg for %1$s</string>
-    <string name="settings_changelogs_historical_version_header_placeholder">den versjonen</string>
     <string name="settings_language">Språk</string>
     <string name="settings_language_auto">Systemstandard</string>
     <string name="channel_settings">Kanalinnstillinger</string>

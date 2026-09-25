@@ -100,7 +100,6 @@
     <string name="settings_category_miscellaneous">Diverse</string>
     <string name="settings_appearance">Aspect</string>
     <string name="settings_appearance_theme">Temă</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_appearance_theme_light">Luminos</string>
     <string name="settings_appearance_theme_m3dynamic">Material You</string>
     <string name="settings_appearance_theme_m3dynamic_unsupported">Material You (nu este acceptat)</string>
@@ -283,8 +282,6 @@
     <string name="overview_screen_share_profile">Distribuie profilul</string>
     <string name="overview_screen_changelog">Jurnal de schimbări</string>
     <string name="overview_screen_changelog_description">Stoat nu doarme, aruncă o privire la ceea ce am lucrat</string>
-    <string name="overview_screen_feedback">Oferă părerea</string>
-    <string name="overview_screen_feedback_description">Ai ceva de zis? Suntem doar urechi</string>
     <string name="user_card_tap_to_copy">Apasă pentru a copia</string>
     <string name="user_card_error_sharing">Am întâmpinat o eroare la partajarea cardului de utilizator</string>
     <string name="user_card_data_point_display_name">%1$d.Nume</string>
