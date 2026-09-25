@@ -210,16 +210,10 @@
     <string name="home_join_jenvolt">Sumali sa Jenvolt</string>
     <string name="settings_appearance_colour_overrides_on_background">On Background</string>
     <string name="system_message_user_removed_alt">Tinanggal ang user</string>
-    <string name="oss_attribution_body_2">Nagpapasalamat kami sa mga nag-develop ng mga proyektong ito sa paggawa ng kanilang mga gawa available sa buong mundo.</string>
-    <string name="oss_attribution_body">Ang Stoat ay binuo sa tulong ng mga kahanga-hangang open-source na proyektong ito.</string>
     <string name="system_message_user_left_alt">Umalis ang user</string>
     <string name="system_message_user_joined_alt">Sumali ang user</string>
     <string name="about_full_name">StarknetChat para sa Android</string>
     <string name="about_brought_to_you_by">Ibinahagi sa iyo na may ❤️ ng koponan ng StarknetChat.</string>
-    <string name="about_tab_version">Bersyon</string>
-    <string name="about_tab_details">Mga detalye</string>
-    <string name="oss_attribution_warning">Ang listahan sa ibaba ay awtomatikong nabuo. Maaaring ito ay hindi kumpleto o hindi tumpak.</string>
-    <string name="oss_attribution_generation_date">Huling in-update: %1$s</string>
     <string name="oss_attribution_tap_to_view_license">I-tap para itignan ang lisensya</string>
     <string name="pick_emoji_alt">Pumili ng emoji</string>
     <string name="emoji_category_smileys">Mga Smiley at Karamdaman</string>

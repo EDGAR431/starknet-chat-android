@@ -62,10 +62,7 @@
     <string name="mfa_password_lead">Πληκτρολόγησε τον κωδικό πρόσβασής σου για να συνεχίσεις.</string>
     <string name="comingsoon_toast">Λυπούμαστε, αυτή η λειτουργία δεν είναι ακόμα έτοιμη.</string>
     <string name="check_mail">Ελέγξτε τα mail σας!</string>
-    <string name="oss_attribution_body">Το Stoat δημιουργείται με τη βοήθεια έργων ανοιχτού κώδικα.</string>
     <string name="about_brought_to_you_by">Με ❤️ από την ομάδα της StarknetChat.</string>
-    <string name="about_tab_version">Έκδοση</string>
-    <string name="about_tab_details">Λεπτομέριες</string>
     <string name="remove_reply_alt">Αφαίρεση απάντησης</string>
     <string name="reply_mention_on">\@ ενεργό</string>
     <string name="reply_mention_off">\@ ανενεργό</string>
@@ -283,12 +280,10 @@
     <string name="notification_channel_group_social">Φίλοι και Κοινωνικά</string>
     <string name="notification_channel_group_conversations">Συζητήσεις</string>
     <string name="notification_channel_friend_requests_description">Εισερχόμενα αιτήματα φιλίας, καθώς και αποδεκτά αιτήματα που έχετε στείλει.</string>
-    <string name="oss_attribution_generation_date">Τελευταία ενημέρωση: %1$s</string>
     <string name="yesterday">Χθές</string>
     <string name="settings">Ρυθμίσεις</string>
     <string name="hide_password">Κρύψε τον κωδικό</string>
     <string name="show_password">Δείξε τον κωδικό</string>
-    <string name="oss_attribution_warning">Η παρακάτω λίστα δημιουργείται αυτόματα. Μπορεί να είναι ελλιπής ή ανακριβής.</string>
     <string name="oss_attribution_tap_to_view_license">Πατήστε για προβολή άδειας χρήσης</string>
     <string name="pick_emoji_alt">Επιλέξτε emoji</string>
     <string name="add_attachment_alt">Προσθήκη επισύναψης</string>
@@ -454,7 +449,6 @@
     <string name="service_health_alert">Τώρα σε εξέλιξη</string>
     <string name="service_health_alert_body_default">Αυτήν τη στιγμή αντιμετωπίζουμε προβλήματα με τις υπηρεσίες μας. Ελέγξτε τη σελίδα κατάστασης για περισσότερες πληροφορίες.</string>
     <string name="service_health_alert_actions_dismiss">Απέρριψε</string>
-    <string name="oss_attribution_body_2">Είμαστε ευγνώμονες στους προγραμματιστές αυτών των εργασιών που έκαναν το έργο τους διαθέσιμο στον κόσμο.</string>
     <string name="message_context_sheet_actions_copy">Αντιγραφή</string>
     <string name="message_context_sheet_actions_copy_failed_empty">Το μήνυμα είναι κενό, τίποτα για αντιγραφή</string>
     <string name="message_context_sheet_actions_delete_confirmation_body">Θα φύγει για πάντα (πολύ καιρό!)</string>

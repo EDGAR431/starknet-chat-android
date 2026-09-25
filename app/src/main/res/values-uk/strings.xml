@@ -206,12 +206,8 @@
     <string name="back">← Назад</string>
     <string name="reply_message_not_cached">Невідоме повідомлення</string>
     <string name="direct_messages">Особисті повідомлення</string>
-    <string name="oss_attribution_body">Stoat побудований за допомогою цих чудових проєктів із відкритим вихідним кодом.</string>
-    <string name="oss_attribution_generation_date">Останнє оновлення: %1$s</string>
-    <string name="oss_attribution_body_2">Ми вдячні розробникам цих проєктів за те, що вони зробили свою роботу доступною для світу.</string>
     <string name="oss_attribution_tap_to_view_license">Натисніть, щоб переглянути ліцензію</string>
     <string name="system_message_channel_renamed_alt">Канал перейменовано</string>
-    <string name="oss_attribution_warning">Наведений нижче список згенеровано автоматично. Він може бути неповним або неточним.</string>
     <string name="system_message_ownership_changed_alt">Власник змінився</string>
     <string name="system_message_channel_description_changed_alt">Опис каналу змінено</string>
     <string name="system_message_user_left_alt">Користувач вийшов</string>
@@ -223,8 +219,6 @@
     <string name="system_message_text_alt">Системне повідомлення</string>
     <string name="status_invisible">Невидимий</string>
     <string name="about_full_name">StarknetChat для Android</string>
-    <string name="about_tab_version">Версія</string>
-    <string name="about_tab_details">Подробиці</string>
     <string name="pick_emoji_alt">Вибір емодзі</string>
     <string name="emoji_category_animals">Тварини та природа</string>
     <string name="emoji_category_food">Їжа та напої</string>

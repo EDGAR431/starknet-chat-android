@@ -206,9 +206,6 @@
     <string name="settings_appearance_theme_m3dynamic_unsupported">Material You (obsoleto)</string>
     <string name="settings_feedback">Comentarios</string>
     <string name="direct_messages">Mensajes Directos</string>
-    <string name="oss_attribution_body_2">Agradecemos a los desarrolladores de estos proyectos por poner a disponibilidad del mundo su trabajo.</string>
-    <string name="oss_attribution_warning">La siguiente lista fue generada automáticamente. Puede ser imprecisa o estar incompleta.</string>
-    <string name="oss_attribution_body">Stoat está hecho con la ayuda de estos maravillosos proyectos de código abierto.</string>
     <string name="about_full_name">StarknetChat en Android</string>
     <string name="status_focus">Concentrado</string>
     <string name="status_invisible">Invisible</string>
@@ -275,8 +272,6 @@
     <string name="report_reason_content_scams_fraud">Estafas o fraude</string>
     <string name="user_info_sheet_bio_not_found">La biografía de este usuario no se pudo obtener. Por favor, verifica que comparten un servidor o son amigos.</string>
     <string name="about_brought_to_you_by">Presentado con ❤️ por el equipo de StarknetChat.</string>
-    <string name="about_tab_version">Versión</string>
-    <string name="about_tab_details">Detalles</string>
     <string name="pick_emoji_alt">Elegir emoji</string>
     <string name="emoji_category_people">Gente y Cuerpo</string>
     <string name="emoji_category_smileys">Sonrisas y Emoticonos</string>
@@ -315,7 +310,6 @@
     <string name="system_message_user_banned_alt">Usuario baneado</string>
     <string name="system_message_user_kicked_alt">Usuario expulsado</string>
     <string name="system_message_user_joined_alt">El usuario se unió</string>
-    <string name="oss_attribution_generation_date">Última actualización: %1$s</string>
     <string name="oss_attribution_tap_to_view_license">Toque aquí para ver la licencia</string>
     <string name="system_message_channel_renamed_alt">Canal renombrado</string>
     <string name="system_message_text_alt">Mensaje del sistema</string>

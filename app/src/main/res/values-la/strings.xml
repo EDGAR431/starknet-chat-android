@@ -55,12 +55,7 @@
     <string name="mfa_password_lead">Inscribe tesseram tuam ut pergat.</string>
     <string name="about">De</string>
     <string name="about_full_name">StarknetChat in Android</string>
-    <string name="about_tab_version">Versio</string>
-    <string name="about_tab_details">Singula</string>
     <string name="oss_attribution">Attributio OSS</string>
-    <string name="oss_attribution_body">Stoat auctum est auxilio horum mirabilium proiectorum open-source.</string>
-    <string name="oss_attribution_warning">Index infra automatice generatur. Potest esse incompletus vel inexactus.</string>
-    <string name="oss_attribution_generation_date">Ultima update: %1$s</string>
     <string name="oss_attribution_tap_to_view_license">Tange ad licentiam spectandam</string>
     <string name="comingsoon_toast">Ignosce, haec facultas nondum parata est.</string>
     <string name="typing_one">%1$s scribit…</string>
@@ -173,7 +168,6 @@
     <string name="back">← Redi</string>
     <string name="rate_limit_toast">Ibi mitescere! Accipe tempus tuum cum eo.</string>
     <string name="mfa_recovery_lead">Inscribe unum ex codicibus recuperationis tuis.</string>
-    <string name="oss_attribution_body_2">Gratias agimus d(e) prosecutatoribus horum proiectorum quod opus suum mundo praebuerunt.</string>
     <string name="too_many_replies">Nunc tantum %1$d nuntios respondere potes.</string>
     <string name="home_join_jenvolt_description">Jenvolt est elit cursus spatium ad omnia Android app et plus. Support, feedback go here. Forsitan novas lineas experiri licebit! 👀</string>
     <string name="no_channels_body">Nullae sunt viae in hoc servo. Ne etiam via ad salutationes. Quam iniurium!</string>

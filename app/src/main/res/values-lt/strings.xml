@@ -28,12 +28,10 @@
     <string name="could_not_log_in_heading">Kilo problema prisijungiant</string>
     <string name="lets_go">Eikime</string>
     <string name="login_onboarding_body">„StarknetChat“ – tai vienas geriausių būdų palaikyti ryšį su draugais ir bendruomene bet kur ir bet kada.</string>
-    <string name="oss_attribution_body">Stoat sukurta naudojant šiuos nuostabius atvirojo kodo projektus.</string>
     <string name="mfa_totp_header">Įvesti šešiaženklį kodą</string>
     <string name="mfa_password_header">Įveskite slaptažodį</string>
     <string name="badge_masquerade_alt">Iš susieto kanalo</string>
     <string name="mfa_interstitial_header">Dar vienas dalykas</string>
-    <string name="oss_attribution_warning">Toliau pateiktas sąrašas sugeneruojamas automatiškai. Jis gali būti neišsamus arba netikslus.</string>
     <string name="too_many_replies">Vienu metu galite atsakyti tik į %1$d pranešimus.</string>
     <string name="login_onboarding_heading">Raskite savo bendruomenę, susisiekite su pasauliu.</string>
     <string name="home_join_jenvolt_description">Jenvolt yra kūrėjų valdoma erdvė, skirta visiems Android programėlių ir daugiau. Parama ir atsiliepimai pateikiami čia. Galbūt galėsite išbandyti naujas funkcijas! 👀</string>
@@ -82,11 +80,7 @@
     <string name="about">Apie</string>
     <string name="about_full_name">StarknetChat ant Android</string>
     <string name="about_brought_to_you_by">Su ❤️ pristato „StarknetChat“ komanda.</string>
-    <string name="about_tab_version">Versija</string>
-    <string name="about_tab_details">Išsami informacija</string>
     <string name="oss_attribution">OSS priskyrimas</string>
-    <string name="oss_attribution_body_2">Esame dėkingi šių projektų kūrėjams už tai, kad jų darbai tapo prieinami pasauliui.</string>
-    <string name="oss_attribution_generation_date">Paskutinį kartą atnaujinta: %1$s</string>
     <string name="comingsoon_toast">Atsiprašome, ši funkcija dar neparengta.</string>
     <string name="typing_one">%1$s rašo…</string>
     <string name="typing_many">%1$s rašo…</string>

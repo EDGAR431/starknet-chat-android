@@ -14,8 +14,6 @@
     <string name="mfa_recovery_code">Codice</string>
     <string name="mfa_password_lead">Inserisci la tua password per continuare.</string>
     <string name="about_full_name">StarknetChat su Android</string>
-    <string name="about_tab_version">Versione</string>
-    <string name="oss_attribution_body">Stoat è stato sviluppato con l\'aiuto di questi fantastici progetti open-source.</string>
     <string name="comingsoon_toast">Ci dispiace, ma questa funzione non è ancora pronta.</string>
     <string name="typing_several">Diverse persone stanno scrivendo</string>
     <string name="remove_reply_alt">Rimuovi risposta</string>
@@ -179,11 +177,7 @@
     <string name="mfa_password_header">Inserisci la tua password</string>
     <string name="about">A riguardo</string>
     <string name="about_brought_to_you_by">Portato fino a te con ❤️ dal team di StarknetChat.</string>
-    <string name="about_tab_details">Dettagli</string>
     <string name="oss_attribution">Attribuzioni Open Source</string>
-    <string name="oss_attribution_body_2">Siamo grati agli sviluppatori di questi progetti per aver reso il loro lavoro disponibile al mondo.</string>
-    <string name="oss_attribution_warning">La lista qui sotto è generata automaticamente. Potrebbe essere incompleta o non accurata.</string>
-    <string name="oss_attribution_generation_date">Ultimo aggiornamento: %1$s</string>
     <string name="password_forgot_instructions">Inserisci la tua email e ti invieremo le istruzioni su come resettare la tua password.</string>
     <string name="back">← Indietro</string>
     <string name="login_onboarding_heading">Trova la tua community, connettiti con il mondo.</string>

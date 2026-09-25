@@ -232,15 +232,12 @@
     <string name="terms_of_service">Términos de servicio</string>
     <string name="community_guidelines">Directivas de comunidad</string>
     <string name="direct_messages">Mensajes Directos</string>
-    <string name="oss_attribution_body_2">Agradecemos a los desarrolladores de estos proyectos por poner su trabajo a disposición de todo el mundo.</string>
     <string name="system_message_channel_icon_changed_alt">Icono del canal cambiado</string>
     <string name="system_message_channel_description_changed_alt">Descripción del canal cambiada</string>
     <string name="system_message_channel_renamed_alt">Canal renombrado</string>
     <string name="system_message_ownership_changed_alt">Propiedad cambiada</string>
     <string name="system_message_user_joined_alt">El usuario se ha unido</string>
     <string name="system_message_text_alt">Mensaje del sistema</string>
-    <string name="about_tab_version">Versión</string>
-    <string name="about_tab_details">Detalles</string>
     <string name="oss_attribution_tap_to_view_license">Pulsa para ver la licencia</string>
     <string name="pick_emoji_alt">Elegir emoji</string>
     <string name="emoji_category_people">Gente y Cuerpo</string>
@@ -294,9 +291,6 @@
     <string name="emote_info_from_server_unknown">desde un servidor privado</string>
     <string name="channel_info_sheet_options_add">Añadir miembros</string>
     <string name="about_full_name">StarknetChat para Android</string>
-    <string name="oss_attribution_body">Stoat está construido con la ayuda de estos increíbles proyectos de código abierto.</string>
-    <string name="oss_attribution_warning">La lista de abajo ha sido generada automáticamente. Puede estar incompleta o errónea.</string>
-    <string name="oss_attribution_generation_date">Última actualización: %1$s</string>
     <string name="system_message_channel_renamed">%1$s ha renombrado el canal a %2$s</string>
     <string name="status_focus_explainer">No recibirás notificaciones de mensajes, pero recibirás notificaciones de @menciones.</string>
     <string name="status_dnd_explainer">No recibirás ninguna notificación, incluido mensajes y @menciones.</string>
