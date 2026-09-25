@@ -38,7 +38,6 @@
     <string name="login_onboarding_heading">Raskite savo bendruomenę, susisiekite su pasauliu.</string>
     <string name="home_join_jenvolt_description">Jenvolt yra kūrėjų valdoma erdvė, skirta visiems Android programėlių ir daugiau. Parama ir atsiliepimai pateikiami čia. Galbūt galėsite išbandyti naujas funkcijas! 👀</string>
     <string name="badge_team_member_alt">Stoat komandos narys</string>
-    <string name="overview_screen_feedback_description">Turite ką pasakyti? Jus išklausysime</string>
     <string name="friends_deny_all_incoming">Išvalyti visus gaunamus prašymus</string>
     <string name="no_channels_heading">Šiek tiek nepatogu.</string>
     <string name="overview_screen_settings">Atidaryti nustatymus</string>
@@ -123,7 +122,6 @@
     <string name="overview_screen_share_profile_description">Pažvelkite į savo naudotojo kortelę ir gaukite specialią nuorodą, kuria galėsite dalytis</string>
     <string name="overview_screen_changelog">Pakeitimų sąrašas</string>
     <string name="overview_screen_changelog_description">Stoat niekada nemiega, pažiūrėkite, kas buvo kuriama</string>
-    <string name="overview_screen_feedback">Pateikite atsiliepimus</string>
     <string name="user_card_tap_to_copy">Bakstelėkite , kad nukopijuotumėte</string>
     <string name="user_card_error_sharing">Dalijantis naudotojo kortele įvyko klaida.</string>
     <string name="user_card_data_point_display_name">%1$d.Vardas</string>
@@ -484,7 +482,6 @@
     <string name="settings_appearance">Išvaizda</string>
     <string name="settings_appearance_theme">Tema</string>
     <string name="settings_appearance_theme_none">Sistema</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_appearance_theme_light">Šviesi</string>
     <string name="settings_appearance_theme_amoled">Grynai juoda</string>
     <string name="settings_appearance_theme_m3dynamic">Material You</string>
@@ -512,10 +509,6 @@
     <string name="settings_chat_interactive_embeds_apple_music">Apple Music</string>
     <string name="settings_feedback">Atsiliepimai</string>
     <string name="settings_feedback_description">Prisijunkite prie Stoat serverio ir pateikite atsiliepimų ar pasiūlymų bei praneškite apie klaidas.</string>
-    <string name="settings_changelogs">Keitimų sąrašai</string>
-    <string name="settings_changelogs_new_header">Kas buvo ruošiama ✨</string>
-    <string name="settings_changelogs_historical_version_header">%1$s pakeitimų sąrašas</string>
-    <string name="settings_changelogs_historical_version_header_placeholder">šią versiją</string>
     <string name="settings_language">Kalba</string>
     <string name="settings_language_auto">Sistemos numatyta</string>
     <string name="channel_settings">Kanalo nustatymai</string>

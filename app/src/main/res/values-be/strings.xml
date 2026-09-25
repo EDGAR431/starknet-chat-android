@@ -156,7 +156,6 @@
     <string name="settings_appearance">Знешні выгляд</string>
     <string name="settings_appearance_theme">Тэма</string>
     <string name="settings_appearance_theme_none">Сістэмная</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_appearance_theme_light">Светлая</string>
     <string name="settings_appearance_theme_amoled">Чыста чорная</string>
     <string name="settings_appearance_theme_m3dynamic">Material You</string>
@@ -362,15 +361,11 @@
     <string name="settings_appearance_colour_overrides_scrim">Скрым</string>
     <string name="settings_appearance_colour_overrides_export">Экспартаваць</string>
     <string name="settings_appearance_colour_overrides_import">Імпартаваць</string>
-    <string name="settings_changelogs_new_header">Што новага ✨</string>
-    <string name="settings_changelogs_historical_version_header">Спіс змен на %1$s</string>
     <string name="settings_appearance_colour_overrides_on_primary_container">На асноўным ёмішчы</string>
     <string name="settings_appearance_colour_overrides_secondary_container">Другаснае ёмішча</string>
     <string name="settings_appearance_colour_overrides_on_background">На фоне</string>
     <string name="settings_appearance_colour_overrides_inverse_surface">Зваротная паверхня</string>
     <string name="settings_appearance_colour_overrides_import_error">Гэты файл не з\'яўляецца сапраўдным колерам прадвызначэння колераў.</string>
-    <string name="settings_changelogs">Спіс змен</string>
-    <string name="settings_changelogs_historical_version_header_placeholder">гэту версію</string>
     <string name="discover_alt">Даследаванне</string>
     <string name="discover">Даследаваць Stoat</string>
     <string name="report_message_heading">Паведаміце, што не так с гэтым паведамленнем</string>
@@ -538,13 +533,11 @@
     <string name="overview_screen_settings">Адкрыць налады</string>
     <string name="overview_screen_settings_description">Змяніце выгляд, кіруйце вашым уліковым запісам і болей</string>
     <string name="overview_screen_changelog">Спіс змен</string>
-    <string name="overview_screen_feedback">Пакінуць водгук</string>
     <string name="badge_webhook_alt">Вэбхук</string>
     <string name="overview_screen_error">Не ўдалося загрузіць ваш агляд</string>
     <string name="overview_screen_share_profile">Абагуліць профіль</string>
     <string name="overview_screen_share_profile_description">Праглядзіце вашу картку і атрымайце спецыяльную спасылку для абагульнення</string>
     <string name="overview_screen_changelog_description">Stoat ніколі не спіць, паглядзіце, над чым зараз ідзе праца</string>
-    <string name="overview_screen_feedback_description">Ёсць штосьці сказаць\? Мы гатовыя слухаць</string>
     <string name="user_info_sheet_webhook">Вы знайшлі вэбхук!</string>
     <string name="user_card_tap_to_copy">Націсніце, каб скапіраваць</string>
     <string name="user_card_error_sharing">Узнікла памылка пры абагульненні вашай карткі.</string>

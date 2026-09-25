@@ -195,7 +195,6 @@
     <string name="settings_category_miscellaneous">Verschiedenes</string>
     <string name="settings_appearance">Erscheinungsbild</string>
     <string name="settings_appearance_theme">Thema</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_appearance_theme_light">Hell</string>
     <string name="settings_appearance_theme_amoled">Pures Schwarz</string>
     <string name="settings_appearance_theme_m3dynamic">Material You</string>
@@ -367,10 +366,6 @@
     <string name="settings_appearance_colour_overrides_export">Exportieren</string>
     <string name="settings_appearance_colour_overrides_import">Importieren</string>
     <string name="settings_appearance_colour_overrides_import_error">Diese Datei ist keine gültige Farbüberschreibungsdatei.</string>
-    <string name="settings_changelogs">Änderungsprotokolle</string>
-    <string name="settings_changelogs_new_header">Was es Neues gibt✨</string>
-    <string name="settings_changelogs_historical_version_header">Änderungsprotokoll für %1$s</string>
-    <string name="settings_changelogs_historical_version_header_placeholder">diese Version</string>
     <string name="discover_alt">Entdecken</string>
     <string name="discover">Entdecke Stoat</string>
     <string name="report_server_heading">Sag uns, was mit diesem Server nicht stimmt</string>
@@ -529,8 +524,6 @@
     <string name="overview_screen_share_profile">Profil teilen</string>
     <string name="overview_screen_share_profile_description">Werfe ein Blick auf deine Profilkarte und erhalte einen speziellen Link zum Teilen.</string>
     <string name="overview_screen_changelog">Änderungsprotokoll</string>
-    <string name="overview_screen_feedback">Feedback geben</string>
-    <string name="overview_screen_feedback_description">Hast du etwas zu sagen? Wir sind ganz Ohr</string>
     <string name="user_info_sheet_category_status">Status</string>
     <string name="show_password">Passwort anzeigen</string>
     <string name="hide_password">Passwort verbergen</string>

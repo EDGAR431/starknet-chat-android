@@ -121,8 +121,6 @@
     <string name="overview_screen_share_profile_description">Bekijk je profielkaart en ontvang een speciale link om te delen</string>
     <string name="overview_screen_changelog">Wijzigingslogboek</string>
     <string name="overview_screen_changelog_description">Stoat slaapt nooit, kijk wat er aan gewerkt is</string>
-    <string name="overview_screen_feedback">Feedback geven</string>
-    <string name="overview_screen_feedback_description">Heb je iets om te zeggen? Wij zijn één en al oor</string>
     <string name="user_card_tap_to_copy">Tik om te kopiëren</string>
     <string name="user_card_error_sharing">Er is een fout opgetreden tijdens het delen van je gebruikerskaart.</string>
     <string name="user_card_data_point_display_name">%1$d.Naam</string>

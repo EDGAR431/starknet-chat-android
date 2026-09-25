@@ -194,7 +194,6 @@
     <string name="settings_appearance">Görünüm</string>
     <string name="settings_appearance_theme">Tema</string>
     <string name="settings_appearance_theme_none">Sistem</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_appearance_theme_light">Aydınlık</string>
     <string name="settings_appearance_theme_m3dynamic">Material You</string>
     <string name="settings_appearance_theme_m3dynamic_unsupported">Materyal You (desteklenmeyen)</string>
@@ -365,7 +364,6 @@
     <string name="user_badge_developer">Geliştirici</string>
     <string name="invite_dialog_header">%1$s\'ye davet et</string>
     <string name="message_context_sheet_actions_delete_confirmation_body">Sonsuza dek yok olacak (uzun bir süre!)</string>
-    <string name="settings_changelogs">Değişiklikler</string>
     <string name="channel_settings_overview_info">Kanal Bilgisi</string>
     <string name="settings_sessions_first_seen">İlk görülme %1$s</string>
     <string name="settings_sessions_log_out_other_description">Bu cihazın oturumu açık kalacaktır.</string>
@@ -379,7 +377,6 @@
     <string name="channel_settings_overview_nsfw_undo_confirm_yes">NSFW olarak işaretlemeyi kaldırın</string>
     <string name="channel_settings_overview_nsfw_confirm_yes">NSFW olarak işaretle</string>
     <string name="channel_settings">Kanal Ayarları</string>
-    <string name="settings_changelogs_historical_version_header_placeholder">bu versiyon</string>
     <string name="share_target_search_channels">Kanalları ara</string>
     <string name="share_target_login_first">Lütfen StarknetChat\'ta paylaşmadan önce oturum açın.</string>
     <string name="share_target_heading">StarknetChat\'ta paylaş</string>
@@ -417,7 +414,6 @@
     <string name="settings_appearance_colour_overrides_primary_container">Birincil Kapsayıcı</string>
     <string name="settings_chat">Sohbet</string>
     <string name="settings_feedback_description">Geri bildirim veya önerilerde bulunmak ve hataları bildirmek için Stoat sunucusuna katılın.</string>
-    <string name="settings_changelogs_new_header">Ne pişiriyor ✨</string>
     <string name="channel_settings_permissions">İzinler</string>
     <string name="share_target_attachment_too_large">Bu ek, StarknetChat için çok büyük (maks. $1$s).</string>
     <string name="channel_settings_delete">Kanalı Sil</string>
@@ -479,7 +475,6 @@
     <string name="settings_appearance_colour_overrides_on_primary_container">Birincil Kapsayıcıda</string>
     <string name="settings_appearance_colour_overrides_inverse_primary">Ters Birincil</string>
     <string name="settings_appearance_colour_overrides_secondary">İkincil</string>
-    <string name="settings_changelogs_historical_version_header">%1$s için değişiklikler</string>
     <string name="colour_picker_hex">Hex</string>
     <string name="settings_appearance_avatar_shape">Profil Resmi Şekli</string>
     <string name="notification_channel_group_conversations">Konuşmalar</string>
@@ -532,8 +527,6 @@
     <string name="overview_screen_share_profile_description">Kullanıcı kartına bir göz at ve paylaşmak için özel bir bağlantı edin</string>
     <string name="overview_screen_changelog">Değişiklik Günlüğü</string>
     <string name="overview_screen_changelog_description">Stoat asla uyumaz, nelerin yapıldığını görmek için bir göz at</string>
-    <string name="overview_screen_feedback">Geri bildirim sağlayın</string>
-    <string name="overview_screen_feedback_description">Söyleyecek bir şeyin mi var\? Hepimizin kulakları sende</string>
     <string name="overview_screen_title">Genel bakış</string>
     <string name="overview_screen_error">Genel bakışınız yüklenemedi</string>
     <string name="status_text_placeholder">Ne yaptığınızı dünyaya anlatın</string>

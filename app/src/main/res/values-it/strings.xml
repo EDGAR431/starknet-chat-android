@@ -372,7 +372,6 @@
     <string name="settings_sessions_log_out_other_confirm_yes">Esci</string>
     <string name="settings_appearance">Aspetto</string>
     <string name="settings_appearance_theme">Tema</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_sessions_log_out_other_confirm_no">No, non uscire</string>
     <string name="settings_appearance_theme_none">Sistema</string>
     <string name="settings_appearance_theme_light">Chiaro</string>
@@ -416,11 +415,7 @@
     <string name="settings_appearance_colour_overrides_import_error">Il file non ha una sostituzione del colore valido.</string>
     <string name="share_target_select_channel">Seleziona un canale in cui condividere.</string>
     <string name="share_target_search_channels">Cerca canali</string>
-    <string name="settings_changelogs">Lista dei cambiamenti</string>
-    <string name="settings_changelogs_new_header">Cosa sta bollendo in pentola ✨</string>
     <string name="share_target_attachment_too_large">Questo allegato è troppo grande per StarknetChat (massimo $1$s).</string>
-    <string name="settings_changelogs_historical_version_header">Lista dei cambiamenti per %1$s</string>
-    <string name="settings_changelogs_historical_version_header_placeholder">quella versione</string>
     <string name="share_target_heading">Condividi su StarknetChat</string>
     <string name="share_target_login_first">Per favore effettua l\'accesso prima di condividere su StarknetChat.</string>
     <string name="share_target_invalid_intent">Questa non è una funzione valida per la condivisione.</string>
@@ -487,8 +482,6 @@
     <string name="overview_screen_share_profile_description">Dai un\'occhiata al tuo profilo e ricevi un link speciale per condividerlo</string>
     <string name="overview_screen_changelog">Registro modifiche</string>
     <string name="overview_screen_changelog_description">Stoat non dorme mai, dai un\'occhiata per vedere i cambiamenti</string>
-    <string name="overview_screen_feedback">Dacci un Feedback</string>
-    <string name="overview_screen_feedback_description">Hai da dire qualcosa\? Siamo tutto orecchie!</string>
     <string name="message_field_editing_message_cancel_alt">Annulla modifiche</string>
     <string name="user_info_sheet_webhook_body">I Webhook sono servizi di broadcast automatici provenienti da altri servizi su internet. Non possono risponderti, ma puoi vedere che hanno da dirti.</string>
     <string name="user_info_sheet_webhook_learn_more">Scopri di più</string>

@@ -336,10 +336,6 @@
     <string name="settings_appearance_colour_overrides_outline">Cuntorno</string>
     <string name="settings_appearance_colour_overrides_outline_variant">Bariante de Cuntorno</string>
     <string name="friends_outgoing_requests">Solicitaçones inda nun aceitadas</string>
-    <string name="settings_changelogs">Registro de demudáncias</string>
-    <string name="settings_changelogs_new_header">L que se stá fazendo ✨</string>
-    <string name="settings_changelogs_historical_version_header">Changelog pa %1$s</string>
-    <string name="settings_changelogs_historical_version_header_placeholder">essa berson</string>
     <string name="file_picker_chip_documents">Fexeiros</string>
     <string name="file_picker_chip_camera">Cámara</string>
     <string name="settings_sessions_first_seen">Bido pula purmeira beç an %1$s</string>
@@ -350,7 +346,6 @@
     <string name="settings_appearance">Aparença</string>
     <string name="settings_appearance_theme">Tema</string>
     <string name="settings_appearance_theme_none">Sistema</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_appearance_theme_light">Claro</string>
     <string name="settings_appearance_theme_amoled">Negro Puro</string>
     <string name="settings_appearance_theme_m3dynamic_unsupported">Material You (sien suporte)</string>
@@ -536,8 +531,6 @@
     <string name="overview_screen_share_profile_description">Bei la tue carta d’outelizador i obten un link special pa cumpartir</string>
     <string name="overview_screen_changelog">Registro de demudáncias</string>
     <string name="overview_screen_changelog_description">Stoat nunca duorme, bei l que stá sendo fazido</string>
-    <string name="overview_screen_feedback">Dar feedback</string>
-    <string name="overview_screen_feedback_description">Tenes algo pa dezir? Somos todo oubidos</string>
     <string name="user_info_sheet_webhook">Ancuntreste un Webhook!</string>
     <string name="hide_password">Scunder palabra-passe</string>
     <string name="show_password">Amostrar palabra-passe</string>

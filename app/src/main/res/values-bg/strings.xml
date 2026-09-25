@@ -119,7 +119,6 @@
     <string name="home_join_jenvolt">Присъединете се към Jenvolt</string>
     <string name="home_join_jenvolt_description">Jenvolt е пространството за разработчици за всички неща, свързани с приложенията за Android и други. Поддръжка и обратна връзка тук. Може би ще можете да изпробвате нови функции! 👀</string>
     <string name="overview_screen_error">Не можахме да заредим прегледа ви</string>
-    <string name="overview_screen_feedback_description">Имате нещо да кажете? Слушаме</string>
     <string name="friends_blocked">Блокирани</string>
     <string name="overview_screen_settings">Отворете настройките</string>
     <string name="overview_screen_error_description">Моля опитайте отново после.</string>

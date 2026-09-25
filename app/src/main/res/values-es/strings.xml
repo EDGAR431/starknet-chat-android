@@ -199,7 +199,6 @@
     <string name="settings_appearance">Apariencia</string>
     <string name="settings_appearance_theme">Temas</string>
     <string name="settings_appearance_theme_none">Sistema</string>
-    <string name="settings_appearance_theme_revolt">StarknetChat</string>
     <string name="settings_appearance_theme_light">Claro</string>
     <string name="settings_appearance_theme_m3dynamic_unsupported">Material You (sin soporte)</string>
     <string name="settings_appearance_theme_m3dynamic_unsupported_toast">Material You no es compatible con este dispositivo.</string>
@@ -307,7 +306,6 @@
     <string name="server_context_sheet_actions_leave_confirm_yes">dejar</string>
     <string name="server_context_sheet_actions_leave">dejar</string>
     <string name="server_context_sheet_actions_leave_confirm_no">permanecer</string>
-    <string name="settings_changelogs">Registro de cambios</string>
     <string name="server_context_sheet_actions_leave_silently">Salir Silenciosamente</string>
     <string name="user_info_sheet_bio_not_found">No se ha podido obtener la bio de este usuario. Por favor, comprueba que compartís un servidor o que sois amigos.</string>
     <string name="user_info_sheet_category_badges">Insignias</string>
@@ -447,9 +445,6 @@
     <string name="settings_appearance_colour_overrides_scrim">Malla</string>
     <string name="settings_appearance_colour_overrides_export">Exportar</string>
     <string name="settings_appearance_colour_overrides_import">Importar</string>
-    <string name="settings_changelogs_new_header">Que se ha estado cocinando ✨</string>
-    <string name="settings_changelogs_historical_version_header">Registro de Cambios para %1$s</string>
-    <string name="settings_changelogs_historical_version_header_placeholder">esa versión</string>
     <string name="settings_feedback_description">Unete al servidor de Stoat para dar una opinion o sugerencia y reportar bugs.</string>
     <string name="friends_new_group">Nuevo Grupo</string>
     <string name="create_group">Crear un nuevo grupo</string>
@@ -495,7 +490,6 @@
     <string name="user_info_sheet_user_is_bot_easter_egg">Este es un bot. Tiene un plan.</string>
     <string name="badge_webhook_alt">Webhook</string>
     <string name="overview_screen_changelog">Registro de cambios</string>
-    <string name="overview_screen_feedback">Proporcionar comentarios</string>
     <string name="overview_screen_changelog_description">Stoat nunca duerme, echa un vistazo para ver lo que está en proceso</string>
     <string name="overview_screen_settings_description">Cambia tu apariencia, administra tu cuenta y más</string>
     <string name="overview_screen_share_profile">Compartir perfil</string>
@@ -544,7 +538,6 @@
     <string name="spark_notifications_rationale_dismiss">Ahora no</string>
     <string name="link_type_no_intent">No se encontró ninguna aplicación para gestionar este enlace</string>
     <string name="hide_password">Oculta Contraseña</string>
-    <string name="overview_screen_feedback_description">¿Tienes algo que decir\? Somos todo oídos</string>
     <string name="overview_screen_share_profile_description">Echa un vistazo a tu tarjeta de usuario y obtén un enlace especial para compartir</string>
     <string name="message_failed_to_send">Error al enviar, mantén presionado para ver las opciones</string>
     <string name="programming_language_default">Texto simple</string>

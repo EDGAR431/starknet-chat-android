@@ -40,12 +40,10 @@
     <string name="overview_screen_share_profile_description">查看您的用戶卡並獲取特殊連結以進行分享</string>
     <string name="overview_screen_changelog">變更日誌</string>
     <string name="overview_screen_changelog_description">Stoat 永不停歇，看看正在進行的事情</string>
-    <string name="overview_screen_feedback">提供回饋</string>
     <string name="user_card_tap_to_copy">點擊複製</string>
     <string name="user_card_error_sharing">共享您的用戶卡時發生錯誤。</string>
     <string name="user_card_data_point_display_name">%1$d.名字</string>
     <string name="user_card_data_point_username">%1$d.使用者名字</string>
-    <string name="overview_screen_feedback_description">有話要說？我們洗耳恭聽</string>
     <string name="overview_screen_error_description">請稍後重試。</string>
     <string name="overview_screen_settings_description">更改您的外觀、管理您的帳戶等等</string>
     <string name="user_badge_platform_moderation">平台審核</string>
