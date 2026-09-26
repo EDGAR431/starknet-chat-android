@@ -6,6 +6,9 @@ import androidx.fragment.app.FragmentActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ProcessLifecycleOwner
 
 /**
  * Bloqueo de la app con la huella dactilar, la cara o el PIN/patrón
@@ -96,5 +99,33 @@ object AppLock {
         if (isEnabled(context)) {
             isLocked.value = true
         }
+    }
+
+    private var processObserverAttached = false
+
+    /**
+     * Antes esto solo se marcaba desde `MainActivity.onStop`, así que
+     * si la app pasaba a segundo plano estando en otra pantalla —
+     * invitación, compartir contenido, ver una imagen o un vídeo — al
+     * volver a abrirla NO se pedía huella/PIN: se quedaba
+     * desbloqueada, sin importar que el bloqueo estuviera activado.
+     *
+     * `ProcessLifecycleOwner` avisa cuando TODA la app deja de estar
+     * visible, sin importar qué Activity estuviera delante, así que
+     * esto cierra ese hueco. Se llama una única vez desde
+     * `StoatApplication.onCreate`.
+     */
+    fun attachToProcessLifecycle(context: Context) {
+        if (processObserverAttached) return
+        processObserverAttached = true
+
+        val appContext = context.applicationContext
+        ProcessLifecycleOwner.get().lifecycle.addObserver(
+            object : DefaultLifecycleObserver {
+                override fun onStop(owner: LifecycleOwner) {
+                    onAppBackgrounded(appContext)
+                }
+            }
+        )
     }
 }

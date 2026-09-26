@@ -60,11 +60,55 @@ object ChatExporter {
         for (message in allMessages.asReversed()) {
             val author = message.author?.let { usernameById[it] ?: it } ?: "?"
             val timestamp = message.id?.let { ulidToTimestamp(it) }?.let { dateFormat.format(Date(it)) } ?: ""
-            val content = message.content ?: ""
+            val content = describeMessageContent(message)
             builder.append("[$timestamp] $author: $content\n")
         }
 
         return builder.toString()
+    }
+
+    /**
+     * Antes esto era simplemente `message.content ?: ""` — cualquier
+     * mensaje sin texto (una imagen, un archivo, un mensaje de voz o
+     * un mensaje de sistema como "fulano se unió al canal") se
+     * exportaba como una línea en blanco, sin ningún rastro de que
+     * ahí había pasado algo. Se pierde información real en la copia
+     * de seguridad. Ahora se describe qué había en su lugar.
+     */
+    private fun describeMessageContent(message: chat.stoat.core.model.schemas.Message): String {
+        message.content?.takeIf { it.isNotBlank() }?.let { return it }
+
+        message.system?.let { return describeSystemMessage(it) }
+
+        val attachments = message.attachments
+        if (!attachments.isNullOrEmpty()) {
+            val names = attachments.joinToString(", ") { it.filename ?: "archivo" }
+            return "[Adjunto: $names]"
+        }
+
+        return "[Mensaje sin contenido de texto]"
+    }
+
+    private fun describeSystemMessage(system: chat.stoat.core.model.schemas.SystemInfo): String {
+        val by = system.by ?: "?"
+        val id = system.id ?: "?"
+        return when (system.type) {
+            "user_added" -> "$by añadió a $id"
+            "user_remove" -> "$by expulsó a $id"
+            "user_banned" -> "$id fue baneado"
+            "user_kicked" -> "$id fue expulsado"
+            "user_left" -> "$id abandonó el canal"
+            "user_joined" -> "$id se unió al canal"
+            "channel_renamed" -> "$by renombró el canal a \"${system.name ?: "?"}\""
+            "channel_icon_changed" -> "$by cambió el icono del canal"
+            "channel_description_changed" -> "$by cambió la descripción del canal"
+            "channel_ownership_changed" -> "${system.from ?: "?"} transfirió la propiedad a ${system.to ?: "?"}"
+            "message_pinned" -> "$by fijó un mensaje"
+            "message_unpinned" -> "$by desfijó un mensaje"
+            "call_started" -> "$by inició una llamada"
+            "text" -> system.content ?: "[Mensaje de sistema]"
+            else -> "[Mensaje de sistema]"
+        }
     }
 
     /** Los IDs de Stoat son ULID — los primeros 48 bits codifican la fecha. */
@@ -72,7 +116,9 @@ object ChatExporter {
         val alphabet = "0123456789ABCDEFGHJKMNPQRSTVWXYZ"
         var value = 0L
         for (c in ulid.take(10)) {
-            value = value * 32 + alphabet.indexOf(c.uppercaseChar())
+            val index = alphabet.indexOf(c.uppercaseChar())
+            if (index < 0) return null // carácter fuera del alfabeto Crockford: ID inválido, no un timestamp real
+            value = value * 32 + index
         }
         value
     } catch (e: Exception) {
