@@ -31,6 +31,11 @@ class StoatApplication : Application(), SingletonImageLoader.Factory {
             LiveKit.loggingLevel = LoggingLevel.DEBUG
         }
 
+        // Hace que el bloqueo de la app (huella/PIN) reaccione a que
+        // TODA la app pase a segundo plano, no solo a MainActivity —
+        // ver el comentario en AppLock.attachToProcessLifecycle.
+        chat.stoat.internals.AppLock.attachToProcessLifecycle(this)
+
         startKoin {
             androidContext(this@StoatApplication)
             androidLogger()
