@@ -69,6 +69,9 @@ class ProfileSettingsScreenViewModel(val context: Application) :
     var uploadProgress by mutableFloatStateOf(0f)
     var uploadError by mutableStateOf<String?>(null)
     var bioError by mutableStateOf<String?>(null)
+    var currentDisplayName by mutableStateOf<String?>(null)
+    var pendingDisplayName by mutableStateOf("")
+    var displayNameError by mutableStateOf<String?>(null)
     var currentPronouns by mutableStateOf<String?>(null)
     var pendingPronouns by mutableStateOf("")
     var pronounsError by mutableStateOf<String?>(null)
@@ -79,6 +82,8 @@ class ProfileSettingsScreenViewModel(val context: Application) :
                 user.avatar?.id?.let {
                     pfpModel = "$STOAT_FILES/avatars/${it}"
                 }
+                currentDisplayName = user.displayName
+                pendingDisplayName = user.displayName.orEmpty()
                 currentPronouns = user.pronouns
                 pendingPronouns = user.pronouns.orEmpty()
             }
@@ -114,11 +119,6 @@ class ProfileSettingsScreenViewModel(val context: Application) :
         }
 
         val mime = context.contentResolver.getType(uri)
-
-        if (mime?.endsWith("webp") == true) {
-            uploadError = "WebP is not supported"
-            return
-        }
 
         viewModelScope.launch {
             try {
@@ -165,11 +165,6 @@ class ProfileSettingsScreenViewModel(val context: Application) :
         }
 
         val mime = context.contentResolver.getType(uri)
-
-        if (mime?.endsWith("webp") == true) {
-            uploadError = "WebP is not supported"
-            return
-        }
 
         viewModelScope.launch {
             try {
@@ -250,6 +245,26 @@ class ProfileSettingsScreenViewModel(val context: Application) :
                 pendingPronouns = normalizedPronouns
             } catch (e: Exception) {
                 pronounsError = e.message
+            }
+        }
+    }
+
+    fun saveDisplayName() {
+        displayNameError = null
+        val normalizedDisplayName = pendingDisplayName.trim()
+
+        viewModelScope.launch {
+            try {
+                if (normalizedDisplayName.isEmpty()) {
+                    patchSelf(remove = listOf("DisplayName"))
+                } else {
+                    patchSelf(displayName = normalizedDisplayName)
+                }
+
+                currentDisplayName = normalizedDisplayName.ifEmpty { null }
+                pendingDisplayName = normalizedDisplayName
+            } catch (e: Exception) {
+                displayNameError = e.message
             }
         }
     }
@@ -408,6 +423,60 @@ fun ProfileSettingsScreen(
                             .padding(start = 20.dp, end = 20.dp, top = 0.dp, bottom = 20.dp)
                     ) {
                         OutlinedTextField(
+                            value = viewModel.pendingDisplayName,
+                            onValueChange = { value ->
+                                if (value.length <= 32) {
+                                    viewModel.pendingDisplayName = value
+                                }
+                            },
+                            label = {
+                                Text(
+                                    text = stringResource(R.string.settings_profile_display_name),
+                                    style = MaterialTheme.typography.labelLarge,
+                                )
+                            },
+                            isError = viewModel.displayNameError != null,
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+
+                        AnimatedVisibility(visible = viewModel.displayNameError != null) {
+                            Spacer(Modifier.height(8.dp))
+
+                            Text(
+                                text = viewModel.displayNameError ?: "",
+                                style = MaterialTheme.typography.labelLarge.copy(
+                                    color = MaterialTheme.colorScheme.error
+                                ),
+                                modifier = Modifier
+                                    .padding(start = 20.dp, end = 20.dp, top = 20.dp, bottom = 0.dp)
+                            )
+                        }
+
+                        Spacer(Modifier.height(8.dp))
+
+                        TextButton(
+                            onClick = viewModel::saveDisplayName,
+                            enabled = viewModel.pendingDisplayName.trim().ifEmpty { null } !=
+                                    viewModel.currentDisplayName,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_check_24dp),
+                                contentDescription = null
+                            )
+
+                            Spacer(modifier = Modifier.width(8.dp))
+
+                            Text(
+                                text = stringResource(id = R.string.settings_profile_save),
+                                style = MaterialTheme.typography.bodySmall
+                            )
+                        }
+
+                        Spacer(Modifier.height(16.dp))
+
+                        OutlinedTextField(
                             value = viewModel.pendingPronouns,
                             onValueChange = { value ->
                                 if (value.length <= 24) {
@@ -445,7 +514,7 @@ fun ProfileSettingsScreen(
                                 viewModel.savePronouns()
                             },
                             enabled = viewModel.pendingPronouns.trim().ifEmpty { null } !=
-                                viewModel.currentPronouns,
+                                    viewModel.currentPronouns,
                             modifier = Modifier.fillMaxWidth()
                         ) {
                             Icon(

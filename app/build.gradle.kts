@@ -83,8 +83,8 @@ android {
         applicationId = "com.edgar.starknetchat"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = Integer.parseInt("001_008_000".replace("_", ""), 10)
-        versionName = "1.8.0"
+        versionCode = Integer.parseInt("001_008_001".replace("_", ""), 10)
+        versionName = "1.8.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -202,9 +202,10 @@ dependencies {
     implementation(libs.compose.material3.windowsizeclass)
     implementation(libs.compose.material.icons.core)
     implementation(libs.compose.runtime.livedata)
+    implementation(libs.reorderable)
     implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.lifecycle.process)
+    implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.activity.compose)
 
     implementation(libs.accompanist.permissions)
@@ -236,14 +237,14 @@ dependencies {
     implementation(libs.android.palette)
     implementation(libs.android.core.telecom)
     implementation(libs.android.core.splashscreen)
-    implementation(libs.android.app.update)
-    implementation(libs.android.app.update.ktx)
-    implementation(libs.android.biometric)
     implementation(libs.android.constraintlayout.compose)
     implementation(libs.android.appcompat)
     implementation(libs.android.material)
     implementation(libs.android.datastore)
     implementation(libs.android.datastore.preferences)
+    implementation(libs.android.app.update)
+    implementation(libs.android.app.update.ktx)
+    implementation(libs.android.biometric)
 
     implementation(libs.hcaptcha)
 
@@ -251,18 +252,20 @@ dependencies {
 
     implementation(libs.media3.exoplayer)
     implementation(libs.media3.exoplayer.hls)
+    implementation(libs.media3.muxer)
     implementation(libs.media3.okhttp)
     implementation(libs.media3.ui)
+    implementation(libs.media3.ui.compose.material3)
 
     implementation(libs.zoomable.image)
     implementation(libs.zoomable.image.glide)
     implementation(libs.haze)
     implementation(libs.haze.materials)
-
-    implementation(libs.zxing.core)
     implementation(libs.zxing.android.embedded) {
         isTransitive = false
     }
+
+    implementation(libs.zxing.core)
     implementation(libs.quickie.bundled)
 
     implementation(libs.sqldelight.android.driver)

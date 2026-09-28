@@ -3,6 +3,7 @@ package chat.stoat.api.settings
 import androidx.compose.runtime.mutableStateOf
 import chat.stoat.api.StoatAPI
 import chat.stoat.api.StoatJson
+import chat.stoat.api.routes.sync.SyncedSetting
 import chat.stoat.api.routes.sync.getKeys
 import chat.stoat.api.routes.sync.mergeIntoSyncedKey
 import chat.stoat.api.routes.sync.setKey
@@ -11,9 +12,12 @@ import chat.stoat.core.model.schemas.LocaleSettings
 import chat.stoat.core.model.schemas.NotificationSettings
 import chat.stoat.core.model.schemas.OrderingSettings
 import chat.stoat.core.model.schemas.ReleaseNotesSettings
+import chat.stoat.core.model.schemas.ServerFoldersSettings
 import chat.stoat.core.model.schemas.VoiceSettings
 import chat.stoat.core.model.schemas._NotificationSettingsToParse
 import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.jsonPrimitive
@@ -21,6 +25,7 @@ import kotlinx.serialization.json.put
 import logcat.LogPriority
 import logcat.asLog
 import logcat.logcat
+import java.util.concurrent.ConcurrentHashMap
 
 /*
  * - Note: When adding a new key -
@@ -30,6 +35,12 @@ import logcat.logcat
  */
 
 object SyncedSettings {
+    private val KEYS =
+        arrayOf(
+            "ordering", "android", "notifications", "release-notes", "server-folders",
+            "voice", "locale"
+        )
+
     private val _fetchCompleted = CompletableDeferred<Unit>()
 
     suspend fun awaitFetched() = _fetchCompleted.await()
@@ -45,8 +56,11 @@ object SyncedSettings {
     )
     private val _notifications = mutableStateOf(NotificationSettings())
     private val _releaseNotes = mutableStateOf(ReleaseNotesSettings())
+    private val _serverFolders = mutableStateOf(ServerFoldersSettings())
     private val _voice = mutableStateOf(VoiceSettings())
     private val _locale = mutableStateOf(LocaleSettings())
+    private val revisions = ConcurrentHashMap<String, Long>()
+    private val writeLock = Mutex()
 
     val ordering: OrderingSettings
         get() = _ordering.value
@@ -56,6 +70,8 @@ object SyncedSettings {
         get() = _notifications.value
     val releaseNotes: ReleaseNotesSettings
         get() = _releaseNotes.value
+    val serverFolders: ServerFoldersSettings
+        get() = _serverFolders.value
 
     /**
      * These two share their key with the web/desktop client ("voice",
@@ -70,85 +86,82 @@ object SyncedSettings {
 
     suspend fun fetch(apiToken: String = StoatAPI.sessionToken) {
         try {
-            val settings =
-                getKeys(
-                    "ordering",
-                    "android",
-                    "notifications",
-                    "release-notes",
-                    "voice",
-                    "locale",
-                    token = apiToken
-                )
-
-            settings["ordering"]?.let {
-                try {
-                    _ordering.value = StoatJson.decodeFromString(
-                        OrderingSettings.serializer(),
-                        it.value
-                    )
-                } catch (e: Exception) {
-                    LoadedSettings.poorlyFormedSettingsKeys += "ordering"
-                    e.printStackTrace()
-                }
-            }
-
-            settings["android"]?.let {
-                try {
-                    _android.value = StoatJson.decodeFromString(
-                        AndroidSpecificSettings.serializer(),
-                        it.value
-                    )
-                } catch (e: Exception) {
-                    LoadedSettings.poorlyFormedSettingsKeys += "android"
-                    e.printStackTrace()
-                }
-            }
-
-            settings["notifications"]?.let {
-                // This is to fix a quirk where the web client sometimes leaves sub-objects in one of the objects
-                // Because it is written in typescript and does what it wants
-                _notifications.value = parseNotificationSettings(it.value)
-            }
-
-            settings["release-notes"]?.let {
-                try {
-                    _releaseNotes.value = StoatJson.decodeFromString(
-                        ReleaseNotesSettings.serializer(),
-                        it.value
-                    )
-                } catch (e: Exception) {
-                    LoadedSettings.poorlyFormedSettingsKeys += "release-notes"
-                    e.printStackTrace()
-                }
-            }
-
-            // "voice" and "locale" are shared with the web/desktop client and hold
-            // plenty of fields Android doesn't declare — ignoreUnknownKeys on
-            // StoatJson means decoding only the fields VoiceSettings/LocaleSettings
-            // know about is safe and won't throw on the rest.
-            settings["voice"]?.let {
-                try {
-                    _voice.value = StoatJson.decodeFromString(VoiceSettings.serializer(), it.value)
-                } catch (e: Exception) {
-                    LoadedSettings.poorlyFormedSettingsKeys += "voice"
-                    e.printStackTrace()
-                }
-            }
-
-            settings["locale"]?.let {
-                try {
-                    _locale.value = StoatJson.decodeFromString(LocaleSettings.serializer(), it.value)
-                } catch (e: Exception) {
-                    LoadedSettings.poorlyFormedSettingsKeys += "locale"
-                    e.printStackTrace()
-                }
+            getKeys(*KEYS, token = apiToken).forEach { (key, setting) ->
+                revisions[key] = setting.timestamp
+                apply(key, setting.value)
             }
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {
             _fetchCompleted.complete(Unit)
         }
+    }
+
+    fun applyRemoteUpdate(update: Map<String, SyncedSetting>) {
+        update.forEach { (key, setting) ->
+            if (key !in KEYS || setting.timestamp <= (revisions[key] ?: 0L)) return@forEach
+            revisions[key] = setting.timestamp
+            apply(key, setting.value)
+            if (key == "android") LoadedSettings.hydrateWithSettings(this)
+        }
+    }
+
+    private fun apply(key: String, value: String) {
+        when (key) {
+            "ordering" -> parseOrLogPoorlyFormed(key) {
+                _ordering.value = cleanOrdering(StoatJson.parseToJsonElement(value))
+            }
+
+            "android" -> parseOrLogPoorlyFormed(key) {
+                _android.value = StoatJson.decodeFromString(
+                    AndroidSpecificSettings.serializer(),
+                    value
+                )
+            }
+
+            // This is to fix a quirk where the web client sometimes leaves sub-objects in one of the objects
+            // Because it is written in typescript and does what it wants
+            "notifications" -> _notifications.value = parseNotificationSettings(value)
+
+            "release-notes" -> parseOrLogPoorlyFormed(key) {
+                _releaseNotes.value = StoatJson.decodeFromString(
+                    ReleaseNotesSettings.serializer(),
+                    value
+                )
+            }
+
+            "server-folders" -> parseOrLogPoorlyFormed(key) {
+                _serverFolders.value = cleanServerFolders(StoatJson.parseToJsonElement(value))
+            }
+
+            // "voice" and "locale" are shared with the web/desktop client and hold
+            // plenty of fields Android doesn't declare — ignoreUnknownKeys on
+            // StoatJson means decoding only the fields VoiceSettings/LocaleSettings
+            // know about is safe and won't throw on the rest.
+            "voice" -> parseOrLogPoorlyFormed(key) {
+                _voice.value = StoatJson.decodeFromString(VoiceSettings.serializer(), value)
+            }
+
+            "locale" -> parseOrLogPoorlyFormed(key) {
+                _locale.value = StoatJson.decodeFromString(LocaleSettings.serializer(), value)
+            }
+        }
+    }
+
+    private inline fun parseOrLogPoorlyFormed(key: String, parse: () -> Unit) {
+        try {
+            parse()
+        } catch (e: Exception) {
+            LoadedSettings.poorlyFormedSettingsKeys += key
+            e.printStackTrace()
+        }
+    }
+
+    private suspend fun write(key: String, value: String) {
+        val timestamp = System.currentTimeMillis()
+        revisions[key] = timestamp
+        // mutex is FIFO === writes reach the server in the order their timestamps were taken
+        writeLock.withLock { setKey(key, value, timestamp) }
     }
 
     private fun parseNotificationSettings(value: String): NotificationSettings {
@@ -180,12 +193,12 @@ object SyncedSettings {
 
     suspend fun updateOrdering(value: OrderingSettings) {
         _ordering.value = value
-        setKey("ordering", StoatJson.encodeToString(OrderingSettings.serializer(), value))
+        write("ordering", StoatJson.encodeToString(OrderingSettings.serializer(), value))
     }
 
     suspend fun updateAndroid(value: AndroidSpecificSettings) {
         _android.value = value
-        setKey("android", StoatJson.encodeToString(AndroidSpecificSettings.serializer(), value))
+        write("android", StoatJson.encodeToString(AndroidSpecificSettings.serializer(), value))
     }
 
     /**
@@ -195,7 +208,7 @@ object SyncedSettings {
      */
     suspend fun updateVoice(value: VoiceSettings) {
         _voice.value = value
-        mergeIntoSyncedKey(
+        val timestamp = mergeIntoSyncedKey(
             "voice",
             buildJsonObject {
                 value.echoCancellation?.let { put("echoCancellation", it) }
@@ -203,6 +216,7 @@ object SyncedSettings {
                 value.autoGainControl?.let { put("autoGainControl", it) }
             }
         )
+        revisions["voice"] = timestamp
     }
 
     /**
@@ -212,28 +226,43 @@ object SyncedSettings {
      */
     suspend fun updateLocale(value: LocaleSettings) {
         _locale.value = value
-        mergeIntoSyncedKey(
+        val timestamp = mergeIntoSyncedKey(
             "locale",
             buildJsonObject {
                 value.lang?.let { put("lang", it) }
             }
         )
+        revisions["locale"] = timestamp
     }
 
     suspend fun updateNotifications(value: NotificationSettings) {
         _notifications.value = value
-        setKey("notifications", StoatJson.encodeToString(NotificationSettings.serializer(), value))
+        write("notifications", StoatJson.encodeToString(NotificationSettings.serializer(), value))
     }
 
     suspend fun updateReleaseNotes(value: ReleaseNotesSettings) {
         _releaseNotes.value = value
-        setKey("release-notes", StoatJson.encodeToString(ReleaseNotesSettings.serializer(), value))
+        write("release-notes", StoatJson.encodeToString(ReleaseNotesSettings.serializer(), value))
+    }
+
+    suspend fun updateServerFolders(value: ServerFoldersSettings) {
+        _serverFolders.value = value
+        write("server-folders", StoatJson.encodeToString(ServerFoldersSettings.serializer(), value))
+    }
+
+    suspend fun resetServerFolders() {
+        val default = ServerFoldersSettings()
+        _serverFolders.value = default
+        write(
+            "server-folders",
+            StoatJson.encodeToString(ServerFoldersSettings.serializer(), default)
+        )
     }
 
     suspend fun resetOrdering() {
         val default = OrderingSettings()
         _ordering.value = default
-        setKey("ordering", StoatJson.encodeToString(OrderingSettings.serializer(), default))
+        write("ordering", StoatJson.encodeToString(OrderingSettings.serializer(), default))
     }
 
     suspend fun resetAndroid() {
@@ -244,13 +273,13 @@ object SyncedSettings {
             messageReplyStyle = "None"
         )
         _android.value = default
-        setKey("android", StoatJson.encodeToString(AndroidSpecificSettings.serializer(), default))
+        write("android", StoatJson.encodeToString(AndroidSpecificSettings.serializer(), default))
     }
 
     suspend fun resetNotifications() {
         val default = NotificationSettings()
         _notifications.value = default
-        setKey(
+        write(
             "notifications",
             StoatJson.encodeToString(NotificationSettings.serializer(), default)
         )
@@ -259,7 +288,7 @@ object SyncedSettings {
     suspend fun resetReleaseNotes() {
         val default = ReleaseNotesSettings()
         _releaseNotes.value = default
-        setKey(
+        write(
             "release-notes",
             StoatJson.encodeToString(ReleaseNotesSettings.serializer(), default)
         )

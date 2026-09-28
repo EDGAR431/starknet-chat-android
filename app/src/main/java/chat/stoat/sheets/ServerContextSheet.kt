@@ -1,8 +1,6 @@
 package chat.stoat.sheets
 
-import android.content.Intent
 import android.widget.Toast
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,12 +17,9 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalContentColor
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,29 +27,33 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
-import androidx.core.net.toUri
 import chat.stoat.R
 import chat.stoat.api.StoatAPI
 import chat.stoat.api.routes.server.leaveOrDeleteServer
+import chat.stoat.api.settings.ServerFolders
+import chat.stoat.callbacks.Action
+import chat.stoat.callbacks.ActionChannel
 import chat.stoat.composables.generic.SheetButton
 import chat.stoat.composables.markdown.prose.ChatMarkdown
 import chat.stoat.composables.screens.settings.ServerOverview
-import chat.stoat.composables.sheets.SheetSelection
-import chat.stoat.core.model.data.STOAT_WEB_APP
 import chat.stoat.internals.Platform
+import chat.stoat.internals.extensions.rememberServerPermissions
+import chat.stoat.internals.server.availableServerSettingsOptions
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun ServerContextSheet(
     serverId: String,
     onReportServer: () -> Unit,
+    onPickFolder: suspend () -> Unit,
     onHideSheet: suspend () -> Unit
 ) {
     val server = StoatAPI.serverCache[serverId]
@@ -73,8 +72,17 @@ fun ServerContextSheet(
     val coroutineScope = rememberCoroutineScope()
     val clipboardManager = LocalClipboardManager.current
     val context = LocalContext.current
+    val permissions by rememberServerPermissions(serverId)
+    val serverSettingsOptions = permissions?.let {
+        availableServerSettingsOptions(
+            permissions = it,
+            isOwner = server.owner == StoatAPI.selfId,
+        )
+    }.orEmpty()
 
     var showLeaveConfirmation by remember { mutableStateOf(false) }
+    val currentFolder = ServerFolders.folderOf(serverId)
+    val newFolderName = stringResource(R.string.server_folder_default_name)
     var leaveSilently by remember { mutableStateOf(false) }
 
     if (showLeaveConfirmation) {
@@ -169,38 +177,6 @@ fun ServerContextSheet(
                 )
             }
 
-            if (server.owner == StoatAPI.selfId) {
-                Box(
-                    modifier = Modifier
-                        .clip(MaterialTheme.shapes.medium)
-                        .background(MaterialTheme.colorScheme.primary)
-                ) {
-                    CompositionLocalProvider(LocalContentColor provides MaterialTheme.colorScheme.onPrimary) {
-                        SheetSelection(
-                            icon = {},
-                            title = {
-                                Text(
-                                    text = stringResource(id = R.string.server_context_sheet_moderators_early_disclaimer_title)
-                                )
-                            },
-                            description = {
-                                Text(
-                                    text = stringResource(id = R.string.server_context_sheet_moderators_early_disclaimer_body)
-                                )
-                            },
-                            arrowTint = LocalContentColor.current.copy(alpha = 0.5f),
-                        ) {
-                            context.startActivity(
-                                Intent(
-                                    Intent.ACTION_VIEW,
-                                    "$STOAT_WEB_APP/server/${server.id}/settings".toUri()
-                                )
-                            )
-                        }
-                    }
-                }
-            }
-
             HorizontalDivider()
         }
 
@@ -256,6 +232,94 @@ fun ServerContextSheet(
                 }
             }
         )
+
+        SheetButton(
+            leadingContent = {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_folder_24dp),
+                    contentDescription = null
+                )
+            },
+            headlineContent = {
+                Text(stringResource(R.string.server_context_sheet_actions_add_to_folder))
+            },
+            onClick = {
+                if (ServerFolders.folders.isEmpty()) {
+                    coroutineScope.launch {
+                        onHideSheet()
+                        ServerFolders.create(newFolderName, listOf(serverId))
+                    }
+                } else {
+                    coroutineScope.launch { onPickFolder() }
+                }
+            }
+        )
+
+        if (currentFolder != null) {
+            SheetButton(
+                leadingContent = {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_folder_off_24dp),
+                        contentDescription = null
+                    )
+                },
+                headlineContent = {
+                    Text(stringResource(R.string.server_context_sheet_actions_remove_from_folder))
+                },
+                onClick = {
+                    coroutineScope.launch {
+                        onHideSheet()
+                        ServerFolders.removeServer(serverId)
+                    }
+                }
+            )
+        }
+
+        SheetButton(
+            leadingContent = {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_id_card_24dp),
+                    contentDescription = null,
+                )
+            },
+            headlineContent = {
+                Text(stringResource(R.string.server_identity))
+            },
+            onClick = {
+                coroutineScope.launch {
+                    onHideSheet()
+                }
+                coroutineScope.launch {
+                    delay(100.milliseconds)
+                    ActionChannel.send(
+                        Action.TopNavigate("settings/server/$serverId/identity")
+                    )
+                }
+            },
+        )
+
+        if (serverSettingsOptions.isNotEmpty()) {
+            SheetButton(
+                leadingContent = {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_settings_24dp),
+                        contentDescription = null,
+                    )
+                },
+                headlineContent = {
+                    Text(stringResource(R.string.server_settings))
+                },
+                onClick = {
+                    coroutineScope.launch {
+                        onHideSheet()
+                    }
+                    coroutineScope.launch {
+                        delay(100.milliseconds)
+                        ActionChannel.send(Action.TopNavigate("settings/server/$serverId"))
+                    }
+                },
+            )
+        }
 
         if (server.owner != StoatAPI.selfId) {
             SheetButton(
