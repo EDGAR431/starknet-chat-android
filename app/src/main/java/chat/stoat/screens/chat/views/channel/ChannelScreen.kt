@@ -1640,8 +1640,6 @@ fun ChannelScreen(
                                                         }
                                                     },
                                                 )
-                                            }
-                                        }
 
                                                 DropdownMenu(
                                                     expanded = viewModel.activePane == ChannelScreenActivePane.AttachmentPicker && notEnoughSpaceForPanes,
