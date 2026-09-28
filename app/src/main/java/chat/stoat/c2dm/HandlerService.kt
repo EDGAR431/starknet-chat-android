@@ -34,7 +34,11 @@ import chat.stoat.persistence.SqlStorage
 import com.bumptech.glide.Glide
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeoutOrNull
 import logcat.LogPriority
 import logcat.logcat
 import kotlin.math.abs
@@ -149,18 +153,6 @@ class HandlerService : FirebaseMessagingService() {
             return "$prefix · $base"
         }
 
-        val channelName = db.channelQueries.findById(channelId).executeAsOneOrNull()?.let {
-            formatChannelName(it.channelType, it.name, it.server)
-        } ?: runBlocking {
-            runCatching { fetchSingleChannel(channelId) }.getOrNull()?.let {
-                formatChannelName(
-                    it.channelType?.value ?: "",
-                    it.name,
-                    it.server
-                )
-            } ?: authorName
-        }
-
         fun loadBitmap(url: String) = Glide.with(this)
             .asBitmap()
             .load(url)
@@ -173,12 +165,83 @@ class HandlerService : FirebaseMessagingService() {
         val selfName = runBlocking { kv.get("selfName") }.orEmpty()
         val selfAvatarUrl = runBlocking { kv.get("selfAvatarUrl") }
 
-        val selfBitmap: Bitmap = if (!selfAvatarUrl.isNullOrEmpty()) {
-            runCatching { loadBitmap(selfAvatarUrl) }.getOrNull()
-                ?: generateLetterBitmap(selfName.ifEmpty { "?" })
-        } else {
-            generateLetterBitmap(selfName.ifEmpty { "?" })
+        val dbChannel = db.channelQueries.findById(channelId).executeAsOneOrNull()
+
+        val serverIconUrl = when (dbChannel?.channelType) {
+            "TextChannel", "VoiceChannel" ->
+                dbChannel.server?.let { db.serverQueries.findById(it).executeAsOneOrNull() }
+                    ?.iconId?.let { "$STOAT_FILES/icons/$it" }
+
+            "Group" -> dbChannel.iconId?.let { "$STOAT_FILES/icons/$it" }
+            else -> null
         }
+
+        // Antes, tanto el nombre del canal (si no estaba ya en la base de
+        // datos local) como las tres imagenes (avatar propio, avatar del
+        // autor, icono de servidor/canal) se resolvian UNA DETRAS DE OTRA,
+        // cada una bloqueando hasta terminar - con red lenta eso sumaba
+        // varios segundos de retraso antes de que apareciera siquiera la
+        // notificacion. Ahora se piden todas EN PARALELO y con un limite de
+        // tiempo corto cada una: si alguna tarda demasiado, se usa el valor
+        // de repuesto (letra de color para el avatar, el nombre del autor
+        // para el canal) en vez de seguir esperando - la notificacion no
+        // deberia notarse mas lenta que la propia llegada del push.
+        val avatarTimeoutMs = 1200L
+
+        data class DatosResueltos(
+            val channelName: String,
+            val selfBitmap: Bitmap,
+            val authorBitmap: Bitmap,
+            val conversationIconBitmap: Bitmap?,
+        )
+
+        val resuelto = runBlocking {
+            coroutineScope {
+                val channelNameDeferred = async(Dispatchers.IO) {
+                    dbChannel?.let { formatChannelName(it.channelType, it.name, it.server) }
+                        ?: withTimeoutOrNull(avatarTimeoutMs) {
+                            runCatching { fetchSingleChannel(channelId) }.getOrNull()?.let {
+                                formatChannelName(it.channelType?.value ?: "", it.name, it.server)
+                            }
+                        }
+                        ?: authorName
+                }
+                val selfDeferred = async(Dispatchers.IO) {
+                    if (!selfAvatarUrl.isNullOrEmpty()) {
+                        withTimeoutOrNull(avatarTimeoutMs) {
+                            runCatching { loadBitmap(selfAvatarUrl) }.getOrNull()
+                        }
+                    } else {
+                        null
+                    }
+                }
+                val authorDeferred = async(Dispatchers.IO) {
+                    if (!image.isNullOrEmpty()) {
+                        withTimeoutOrNull(avatarTimeoutMs) {
+                            runCatching { loadBitmap(image) }.getOrNull()
+                        }
+                    } else {
+                        null
+                    }
+                }
+                val serverIconDeferred = async(Dispatchers.IO) {
+                    serverIconUrl?.let {
+                        withTimeoutOrNull(avatarTimeoutMs) { runCatching { loadBitmap(it) }.getOrNull() }
+                    }
+                }
+
+                DatosResueltos(
+                    channelName = channelNameDeferred.await(),
+                    selfBitmap = selfDeferred.await() ?: generateLetterBitmap(selfName.ifEmpty { "?" }),
+                    authorBitmap = authorDeferred.await() ?: generateLetterBitmap(authorName),
+                    conversationIconBitmap = serverIconDeferred.await(),
+                )
+            }
+        }
+
+        val channelName = resuelto.channelName
+        val selfBitmap = resuelto.selfBitmap
+        val authorBitmap = resuelto.authorBitmap
 
         val self = Person.Builder()
             .setBot(false)
@@ -187,30 +250,16 @@ class HandlerService : FirebaseMessagingService() {
             .setName(selfName.ifEmpty { "Me" })
             .build()
 
-        val dbChannel = db.channelQueries.findById(channelId).executeAsOneOrNull()
+        val conversationBitmap: Bitmap = resuelto.conversationIconBitmap
+            ?: when (dbChannel?.channelType) {
+                "TextChannel", "VoiceChannel" -> generateLetterBitmap(
+                    dbChannel.server?.let { db.serverQueries.findById(it).executeAsOneOrNull()?.name }
+                        ?: channelName
+                )
 
-        val authorBitmap: Bitmap = if (!image.isNullOrEmpty()) {
-            runCatching { loadBitmap(image) }.getOrNull() ?: generateLetterBitmap(authorName)
-        } else {
-            generateLetterBitmap(authorName)
-        }
-        val conversationBitmap: Bitmap = when (dbChannel?.channelType) {
-            "TextChannel", "VoiceChannel" -> {
-                val server =
-                    dbChannel.server?.let { db.serverQueries.findById(it).executeAsOneOrNull() }
-                val iconUrl = server?.iconId?.let { "$STOAT_FILES/icons/$it" }
-                iconUrl?.let { runCatching { loadBitmap(it) }.getOrNull() }
-                    ?: generateLetterBitmap(server?.name ?: channelName)
+                "Group" -> generateLetterBitmap(dbChannel.name ?: channelName)
+                else -> authorBitmap
             }
-
-            "Group" -> {
-                val iconUrl = dbChannel.iconId?.let { "$STOAT_FILES/icons/$it" }
-                iconUrl?.let { runCatching { loadBitmap(it) }.getOrNull() }
-                    ?: generateLetterBitmap(dbChannel.name ?: channelName)
-            }
-
-            else -> authorBitmap
-        }
 
         val author = Person.Builder()
             .setBot(false)
