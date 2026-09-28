@@ -27,10 +27,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import chat.stoat.R
+import chat.stoat.api.settings.SyncedSettings
+import chat.stoat.core.model.schemas.LocaleSettings
 import chat.stoat.internals.extensions.getSupportedLocales
+import kotlinx.coroutines.launch
 import java.util.Locale
 
 class LanguagePickerSettingsScreen : ViewModel() {
@@ -42,6 +46,17 @@ class LanguagePickerSettingsScreen : ViewModel() {
         locales.clear()
         locales.addAll(context.getSupportedLocales())
         currentLocale = determineCurrentlySelectedLocale()
+    }
+
+    /**
+     * Pushes the chosen language up to the account, under the same
+     * "locale" key the web client uses. "Auto (system)" is never pushed —
+     * see [LocaleSettings].
+     */
+    fun syncLocale(locale: Locale) {
+        viewModelScope.launch {
+            SyncedSettings.updateLocale(LocaleSettings(lang = locale.toLanguageTag()))
+        }
     }
 
     private fun determineCurrentlySelectedLocale(): Locale? {
@@ -157,6 +172,7 @@ fun LanguagePickerSettingsScreen(
                                 )
                             )
                             viewModel.currentLocale = locale
+                            viewModel.syncLocale(locale)
                         }
                 )
             }

@@ -2,8 +2,9 @@ package chat.stoat.api.realtime
 
 import android.os.SystemClock
 import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.mutableStateOf
-import chat.stoat.StoatApplication
+import androidx.core.os.LocaleListCompat
 import chat.stoat.api.StoatAPI
 import chat.stoat.api.StoatHttp
 import chat.stoat.api.StoatJson
@@ -43,8 +44,10 @@ import chat.stoat.api.realtime.frames.sendable.BeginTypingFrame
 import chat.stoat.api.realtime.frames.sendable.EndTypingFrame
 import chat.stoat.api.realtime.frames.sendable.PingFrame
 import chat.stoat.api.routes.server.fetchMember
+import chat.stoat.StoatApplication
 import chat.stoat.api.settings.LoadedSettings
 import chat.stoat.api.settings.SyncedSettings
+import chat.stoat.internals.VoiceAudioSettings
 import chat.stoat.c2dm.ChannelRegistrator
 import chat.stoat.core.model.data.STOAT_WEBSOCKET
 import chat.stoat.core.model.schemas.Channel
@@ -962,6 +965,18 @@ object RealtimeSocket {
             "Authenticated" -> {
                 SyncedSettings.fetch()
                 LoadedSettings.hydrateWithSettings(SyncedSettings)
+                VoiceAudioSettings.hydrateWithSettings(StoatApplication.instance, SyncedSettings)
+
+                // Only "Auto" is left alone here — an explicit language synced from
+                // another device is applied the same way the "android" theme key
+                // already is above, so language stays consistent across devices too.
+                SyncedSettings.locale.lang?.let { lang ->
+                    if (AppCompatDelegate.getApplicationLocales()[0]?.toLanguageTag() != lang) {
+                        AppCompatDelegate.setApplicationLocales(
+                            LocaleListCompat.forLanguageTags(lang)
+                        )
+                    }
+                }
             }
 
             else -> {
