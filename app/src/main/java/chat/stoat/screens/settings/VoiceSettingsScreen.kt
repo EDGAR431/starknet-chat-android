@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -18,10 +19,12 @@ import chat.stoat.R
 import chat.stoat.internals.VoiceAudioSettings
 import chat.stoat.settings.dsl.SettingsPage
 import chat.stoat.settings.dsl.SubcategoryContentInsets
+import kotlinx.coroutines.launch
 
 @Composable
 fun VoiceSettingsScreen(navController: NavController) {
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
 
     var pushToTalkEnabled by remember {
         mutableStateOf(VoiceAudioSettings.isPushToTalkEnabled(context))
@@ -78,6 +81,7 @@ fun VoiceSettingsScreen(navController: NavController) {
                 modifier = Modifier.clickable {
                     noiseSuppressionEnabled = !noiseSuppressionEnabled
                     VoiceAudioSettings.setNoiseSuppressionEnabled(context, noiseSuppressionEnabled)
+                    scope.launch { VoiceAudioSettings.pushToSync(context) }
                 }
             )
             ListItem(
@@ -90,6 +94,7 @@ fun VoiceSettingsScreen(navController: NavController) {
                 modifier = Modifier.clickable {
                     echoCancellationEnabled = !echoCancellationEnabled
                     VoiceAudioSettings.setEchoCancellationEnabled(context, echoCancellationEnabled)
+                    scope.launch { VoiceAudioSettings.pushToSync(context) }
                 }
             )
             ListItem(
@@ -102,6 +107,7 @@ fun VoiceSettingsScreen(navController: NavController) {
                 modifier = Modifier.clickable {
                     autoGainControlEnabled = !autoGainControlEnabled
                     VoiceAudioSettings.setAutoGainControlEnabled(context, autoGainControlEnabled)
+                    scope.launch { VoiceAudioSettings.pushToSync(context) }
                 }
             )
         }

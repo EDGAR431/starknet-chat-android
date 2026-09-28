@@ -13,6 +13,9 @@ import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.MapSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.jsonObject
 
 @Serializable
 data class SyncedSetting(val timestamp: Long, val value: String)
@@ -70,4 +73,34 @@ suspend fun setKey(key: String, value: String) {
             )
         )
     }
+}
+
+/**
+ * Update just a few fields of a synced key shared with other clients
+ * (e.g. the web client's own "voice"/"locale" keys hold plenty of fields
+ * Android has no concept of, like chosen devices or per-user volumes).
+ *
+ * A plain [setKey] would upload only what Android knows about and wipe out
+ * everything else another client had stored there. This fetches the
+ * current value first, overlays [patch] on top of it field-by-field, and
+ * uploads the merged result — so unrelated fields survive untouched.
+ *
+ * @param key Sync key to update
+ * @param patch Fields to overwrite — build this with only the fields
+ * Android actually wants to change (callers already leave out anything
+ * Android has no value for, rather than passing it as JSON null)
+ */
+suspend fun mergeIntoSyncedKey(key: String, patch: JsonObject) {
+    val current = try {
+        getKeys(key)[key]?.value?.let { StoatJson.parseToJsonElement(it).jsonObject }
+    } catch (e: Exception) {
+        null
+    } ?: JsonObject(emptyMap())
+
+    val merged = buildJsonObject {
+        current.forEach { (k, v) -> put(k, v) }
+        patch.forEach { (k, v) -> put(k, v) }
+    }
+
+    setKey(key, StoatJson.encodeToString(JsonObject.serializer(), merged))
 }

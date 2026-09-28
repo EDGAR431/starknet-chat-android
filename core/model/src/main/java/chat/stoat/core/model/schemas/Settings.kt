@@ -43,6 +43,39 @@ data class AndroidSpecificSettingsSpecialEmbedSettings(
 )
 
 @Serializable
+data class VoiceSettings(
+    /**
+     * Same field names as the web client's own "voice" key, so both
+     * platforms read/write the same synced data. Only the fields Android
+     * actually has a concept of are declared here — the rest of what the
+     * web client stores under this key (chosen devices, per-user volumes,
+     * screen share settings...) is preserved as opaque JSON when Android
+     * writes to this key; see [chat.stoat.api.settings.mergeIntoSyncedKey].
+     */
+    val echoCancellation: Boolean? = null,
+    /**
+     * Web stores this as one of `{ disabled, browser, enhanced }`. Android
+     * only has a single on/off toggle, so it maps `true` to `"browser"` and
+     * `false` to `"disabled"` — it never sets `"enhanced"`, but will leave
+     * that value alone if the web client set it and Android hasn't touched
+     * this setting since.
+     */
+    val noiseSupression: String? = null,
+    val autoGainControl: Boolean? = null
+)
+
+@Serializable
+data class LocaleSettings(
+    /**
+     * BCP-47 language tag, e.g. "es" or "pt-BR" — same format the web
+     * client uses for its own "locale" key. Only pushed when the user
+     * picks an explicit language; "Auto (system)" is not synced, since
+     * what "automatic" means is specific to each device/platform.
+     */
+    val lang: String? = null
+)
+
+@Serializable
 data class AndroidSpecificSettings(
     /**
      * The theme to use for the app.

@@ -4,14 +4,18 @@ import androidx.compose.runtime.mutableStateOf
 import chat.stoat.api.StoatAPI
 import chat.stoat.api.StoatJson
 import chat.stoat.api.routes.sync.getKeys
+import chat.stoat.api.routes.sync.mergeIntoSyncedKey
 import chat.stoat.api.routes.sync.setKey
 import chat.stoat.core.model.schemas.AndroidSpecificSettings
+import chat.stoat.core.model.schemas.LocaleSettings
 import chat.stoat.core.model.schemas.NotificationSettings
 import chat.stoat.core.model.schemas.OrderingSettings
 import chat.stoat.core.model.schemas.ReleaseNotesSettings
+import chat.stoat.core.model.schemas.VoiceSettings
 import chat.stoat.core.model.schemas._NotificationSettingsToParse
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import logcat.LogPriority
 import logcat.asLog
@@ -40,6 +44,8 @@ object SyncedSettings {
     )
     private val _notifications = mutableStateOf(NotificationSettings())
     private val _releaseNotes = mutableStateOf(ReleaseNotesSettings())
+    private val _voice = mutableStateOf(VoiceSettings())
+    private val _locale = mutableStateOf(LocaleSettings())
 
     val ordering: OrderingSettings
         get() = _ordering.value
@@ -50,10 +56,29 @@ object SyncedSettings {
     val releaseNotes: ReleaseNotesSettings
         get() = _releaseNotes.value
 
+    /**
+     * These two share their key with the web/desktop client ("voice",
+     * "locale") — see [VoiceSettings] and [LocaleSettings] for why writes
+     * to them go through [chat.stoat.api.routes.sync.mergeIntoSyncedKey]
+     * instead of a plain overwrite.
+     */
+    val voice: VoiceSettings
+        get() = _voice.value
+    val locale: LocaleSettings
+        get() = _locale.value
+
     suspend fun fetch(apiToken: String = StoatAPI.sessionToken) {
         try {
             val settings =
-                getKeys("ordering", "android", "notifications", "release-notes", token = apiToken)
+                getKeys(
+                    "ordering",
+                    "android",
+                    "notifications",
+                    "release-notes",
+                    "voice",
+                    "locale",
+                    token = apiToken
+                )
 
             settings["ordering"]?.let {
                 try {
@@ -93,6 +118,28 @@ object SyncedSettings {
                     )
                 } catch (e: Exception) {
                     LoadedSettings.poorlyFormedSettingsKeys += "release-notes"
+                    e.printStackTrace()
+                }
+            }
+
+            // "voice" and "locale" are shared with the web/desktop client and hold
+            // plenty of fields Android doesn't declare — ignoreUnknownKeys on
+            // StoatJson means decoding only the fields VoiceSettings/LocaleSettings
+            // know about is safe and won't throw on the rest.
+            settings["voice"]?.let {
+                try {
+                    _voice.value = StoatJson.decodeFromString(VoiceSettings.serializer(), it.value)
+                } catch (e: Exception) {
+                    LoadedSettings.poorlyFormedSettingsKeys += "voice"
+                    e.printStackTrace()
+                }
+            }
+
+            settings["locale"]?.let {
+                try {
+                    _locale.value = StoatJson.decodeFromString(LocaleSettings.serializer(), it.value)
+                } catch (e: Exception) {
+                    LoadedSettings.poorlyFormedSettingsKeys += "locale"
                     e.printStackTrace()
                 }
             }
@@ -138,6 +185,38 @@ object SyncedSettings {
     suspend fun updateAndroid(value: AndroidSpecificSettings) {
         _android.value = value
         setKey("android", StoatJson.encodeToString(AndroidSpecificSettings.serializer(), value))
+    }
+
+    /**
+     * Updates only the fields Android understands within the shared "voice"
+     * key, leaving whatever the web/desktop client stored there (chosen
+     * devices, per-user volumes...) untouched — see [mergeIntoSyncedKey].
+     */
+    suspend fun updateVoice(value: VoiceSettings) {
+        _voice.value = value
+        mergeIntoSyncedKey(
+            "voice",
+            buildJsonObject {
+                value.echoCancellation?.let { put("echoCancellation", it) }
+                value.noiseSupression?.let { put("noiseSupression", it) }
+                value.autoGainControl?.let { put("autoGainControl", it) }
+            }
+        )
+    }
+
+    /**
+     * Same reasoning as [updateVoice] — "locale" is shared with other
+     * clients, so only the field Android sets is merged in, not overwritten
+     * wholesale.
+     */
+    suspend fun updateLocale(value: LocaleSettings) {
+        _locale.value = value
+        mergeIntoSyncedKey(
+            "locale",
+            buildJsonObject {
+                value.lang?.let { put("lang", it) }
+            }
+        )
     }
 
     suspend fun updateNotifications(value: NotificationSettings) {
