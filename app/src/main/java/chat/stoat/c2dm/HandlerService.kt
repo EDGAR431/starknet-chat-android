@@ -105,10 +105,15 @@ class HandlerService : FirebaseMessagingService() {
             return
         }
 
-        val image = data["image"] ?: run {
-            logcat(LogPriority.WARN) { "No image in message, abort" }
-            return
-        }
+        // El avatar es cosmetico, no esencial: si el payload de FCM no lo
+        // trae (avatar por defecto, mensaje de un webhook, o cualquier
+        // caso que el backend no cubra), antes se abortaba la notificacion
+        // ENTERA por esto - el usuario se quedaba sin avisar de un mensaje
+        // real por culpa de un campo puramente decorativo. Ahora, igual
+        // que ya se hace mas abajo con "authorBitmap", si no hay imagen
+        // simplemente se deja en null y "loadBitmap"/el fallback de letra
+        // se encargan de generar un avatar sustituto.
+        val image = data["image"]
 
         val authorName = data["author_name"] ?: run {
             logcat(LogPriority.ERROR) { "No author name in message, abort" }
@@ -184,7 +189,11 @@ class HandlerService : FirebaseMessagingService() {
 
         val dbChannel = db.channelQueries.findById(channelId).executeAsOneOrNull()
 
-        val authorBitmap = runCatching { loadBitmap(image) }.getOrElse { generateLetterBitmap(authorName) }
+        val authorBitmap: Bitmap = if (!image.isNullOrEmpty()) {
+            runCatching { loadBitmap(image) }.getOrNull() ?: generateLetterBitmap(authorName)
+        } else {
+            generateLetterBitmap(authorName)
+        }
         val conversationBitmap: Bitmap = when (dbChannel?.channelType) {
             "TextChannel", "VoiceChannel" -> {
                 val server =
