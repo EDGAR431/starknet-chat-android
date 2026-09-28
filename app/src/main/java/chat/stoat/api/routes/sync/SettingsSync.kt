@@ -58,9 +58,9 @@ suspend fun getKeys(vararg keys: String): Map<String, SyncedSetting> {
     return getKeys(*keys, token = StoatAPI.sessionToken)
 }
 
-suspend fun setKey(key: String, value: String) {
+suspend fun setKey(key: String, value: String, timestamp: Long = System.currentTimeMillis()) {
     StoatHttp.post("/sync/settings/set".api()) {
-        parameter("timestamp", System.currentTimeMillis())
+        parameter("timestamp", timestamp)
 
         // format: {"key": "value"}
         setBody(
@@ -89,8 +89,11 @@ suspend fun setKey(key: String, value: String) {
  * @param patch Fields to overwrite — build this with only the fields
  * Android actually wants to change (callers already leave out anything
  * Android has no value for, rather than passing it as JSON null)
+ * @return the timestamp the merged value was written with, so callers that
+ * track revisions locally (see `SyncedSettings.revisions`) can record it and
+ * avoid a later `applyRemoteUpdate` push re-applying an equal-or-older value.
  */
-suspend fun mergeIntoSyncedKey(key: String, patch: JsonObject) {
+suspend fun mergeIntoSyncedKey(key: String, patch: JsonObject): Long {
     val current = try {
         getKeys(key)[key]?.value?.let { StoatJson.parseToJsonElement(it).jsonObject }
     } catch (e: Exception) {
@@ -102,5 +105,7 @@ suspend fun mergeIntoSyncedKey(key: String, patch: JsonObject) {
         patch.forEach { (k, v) -> put(k, v) }
     }
 
-    setKey(key, StoatJson.encodeToString(JsonObject.serializer(), merged))
+    val timestamp = System.currentTimeMillis()
+    setKey(key, StoatJson.encodeToString(JsonObject.serializer(), merged), timestamp)
+    return timestamp
 }
