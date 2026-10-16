@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.input.TextObfuscationMode
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.Button
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalTextStyle
@@ -51,7 +52,9 @@ import chat.stoat.StoatApplication
 import chat.stoat.api.StoatAPI
 import chat.stoat.api.routes.account.EmailPasswordAssessment
 import chat.stoat.api.routes.account.negotiateAuthentication
+import chat.stoat.api.routes.account.negotiateGoogleAuthentication
 import chat.stoat.api.routes.onboard.needsOnboarding
+import chat.stoat.composables.auth.GoogleSignInButton
 import chat.stoat.composables.generic.FormTextField
 import chat.stoat.composables.generic.Weblink
 import chat.stoat.core.model.data.STOAT_WEB_APP
@@ -95,40 +98,64 @@ class LoginViewModel(
                 } else e.message ?: "Unknown error"
                 return@launch
             }
-            if (response.error != null) {
-                _error = response.error.type
+            handleAssessment(response)
+        }
+    }
+
+    fun loginWithGoogle(idToken: String) {
+        _error = null
+
+        viewModelScope.launch {
+            val response = try {
+                negotiateGoogleAuthentication(idToken)
+            } catch (e: Exception) {
+                _error = if (e.message?.startsWith("Unexpected JSON token") == true) {
+                    StoatApplication.instance.getString(R.string.service_health_alert_body_default)
+                } else e.message ?: "Unknown error"
+                return@launch
+            }
+            handleAssessment(response)
+        }
+    }
+
+    fun onGoogleSignInError(message: String) {
+        _error = message
+    }
+
+    private suspend fun handleAssessment(response: EmailPasswordAssessment) {
+        if (response.error != null) {
+            _error = response.error.type
+        } else {
+            Log.d("Login", "Checking for MFA")
+            if (response.proceedMfa) {
+                Log.d("Login", "MFA required. Navigating to MFA screen")
+                _mfaResponse = response
+                _navigateTo = "mfa"
             } else {
-                Log.d("Login", "Checking for MFA")
-                if (response.proceedMfa) {
-                    Log.d("Login", "MFA required. Navigating to MFA screen")
-                    _mfaResponse = response
-                    _navigateTo = "mfa"
-                } else {
-                    Log.d(
-                        "Login",
-                        "No MFA required. Login is complete! We should have a session token"
-                    )
+                Log.d(
+                    "Login",
+                    "No MFA required. Login is complete! We should have a session token"
+                )
 
-                    try {
-                        val token = response.firstUserHints!!.token
-                        val id = response.firstUserHints.id
+                try {
+                    val token = response.firstUserHints!!.token
+                    val id = response.firstUserHints.id
 
-                        kvStorage.set("sessionToken", token)
-                        kvStorage.set("sessionId", id)
+                    kvStorage.set("sessionToken", token)
+                    kvStorage.set("sessionId", id)
 
-                        val onboard = needsOnboarding(token)
-                        if (onboard) {
-                            _navigateTo = "onboarding"
-                            return@launch
-                        }
-
-                        StoatAPI.loginAs(token)
-                        StoatAPI.setSessionId(response.firstUserHints.token)
-
-                        _navigateTo = "home"
-                    } catch (e: Error) {
-                        _error = e.message ?: "Unknown error"
+                    val onboard = needsOnboarding(token)
+                    if (onboard) {
+                        _navigateTo = "onboarding"
+                        return
                     }
+
+                    StoatAPI.loginAs(token)
+                    StoatAPI.setSessionId(response.firstUserHints.token)
+
+                    _navigateTo = "home"
+                } catch (e: Error) {
+                    _error = e.message ?: "Unknown error"
                 }
             }
         }
@@ -286,6 +313,26 @@ fun LoginScreen(navController: NavController, viewModel: LoginViewModel = koinVi
                         modifier = Modifier.padding(vertical = 7.dp)
                     )
                 }
+
+                Spacer(modifier = Modifier.height(15.dp))
+
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    HorizontalDivider(modifier = Modifier.weight(1f))
+                    Text(
+                        text = stringResource(R.string.or_divider),
+                        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
+                        modifier = Modifier.padding(horizontal = 8.dp)
+                    )
+                    HorizontalDivider(modifier = Modifier.weight(1f))
+                }
+
+                Spacer(modifier = Modifier.height(15.dp))
+
+                GoogleSignInButton(
+                    onIdToken = { idToken -> viewModel.loginWithGoogle(idToken) },
+                    onError = { message -> viewModel.onGoogleSignInError(message) },
+                    modifier = Modifier.fillMaxWidth()
+                )
             }
         }
 
