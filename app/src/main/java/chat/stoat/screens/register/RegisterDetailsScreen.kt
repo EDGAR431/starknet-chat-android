@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -35,21 +36,27 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import chat.stoat.R
 import chat.stoat.StoatApplication
+import chat.stoat.api.StoatAPI
+import chat.stoat.api.routes.account.EmailPasswordAssessment
 import chat.stoat.api.routes.account.RegistrationBody
+import chat.stoat.api.routes.account.negotiateGoogleAuthentication
 import chat.stoat.api.routes.account.register
 import chat.stoat.api.routes.misc.getRootRoute
+import chat.stoat.api.routes.onboard.needsOnboarding
+import chat.stoat.composables.auth.GoogleSignInButton
 import chat.stoat.composables.generic.FormTextField
+import chat.stoat.persistence.KVStorage
 import com.hcaptcha.sdk.HCaptcha
 import com.hcaptcha.sdk.HCaptchaConfig
 import com.hcaptcha.sdk.HCaptchaSize
 import com.hcaptcha.sdk.HCaptchaTheme
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
-class RegisterDetailsScreenViewModel : ViewModel() {
+class RegisterDetailsScreenViewModel(private val kvStorage: KVStorage) : ViewModel() {
     var email by mutableStateOf("")
     var password by mutableStateOf("")
     var error by mutableStateOf<String?>(null)
@@ -110,12 +117,77 @@ class RegisterDetailsScreenViewModel : ViewModel() {
             }
         }
     }
+
+    fun loginWithGoogle(idToken: String, navController: NavController) {
+        error = null
+
+        viewModelScope.launch {
+            val response = try {
+                negotiateGoogleAuthentication(idToken)
+            } catch (e: Exception) {
+                error = if (e.message?.startsWith("Unexpected JSON token") == true) {
+                    StoatApplication.instance.getString(R.string.service_health_alert_body_default)
+                } else e.message ?: "Unknown error"
+                return@launch
+            }
+
+            handleGoogleAssessment(response, navController)
+        }
+    }
+
+    fun onGoogleSignInError(message: String) {
+        error = message
+    }
+
+    private suspend fun handleGoogleAssessment(
+        response: EmailPasswordAssessment,
+        navController: NavController
+    ) {
+        if (response.error != null) {
+            error = response.error.type
+            return
+        }
+
+        if (response.proceedMfa) {
+            navController.navigate(
+                "login/mfa/${response.mfaSpec!!.ticket}/${
+                    response.mfaSpec.allowedMethods.joinToString(",")
+                }"
+            )
+            return
+        }
+
+        try {
+            val token = response.firstUserHints!!.token
+            val id = response.firstUserHints.id
+
+            kvStorage.set("sessionToken", token)
+            kvStorage.set("sessionId", id)
+
+            val onboard = needsOnboarding(token)
+            if (onboard) {
+                navController.navigate("register/onboarding") {
+                    popUpTo("login/greeting") { inclusive = true }
+                }
+                return
+            }
+
+            StoatAPI.loginAs(token)
+            StoatAPI.setSessionId(token)
+
+            navController.navigate("chat") {
+                popUpTo("login/greeting") { inclusive = true }
+            }
+        } catch (e: Error) {
+            error = e.message ?: "Unknown error"
+        }
+    }
 }
 
 @Composable
 fun RegisterDetailsScreen(
     navController: NavController,
-    viewModel: RegisterDetailsScreenViewModel = viewModel()
+    viewModel: RegisterDetailsScreenViewModel = koinViewModel()
 ) {
     val context = LocalContext.current
 
@@ -214,6 +286,33 @@ fun RegisterDetailsScreen(
                         textAlign = TextAlign.Center
                     )
                 }
+
+                Spacer(modifier = Modifier.height(15.dp))
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 40.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    HorizontalDivider(modifier = Modifier.weight(1f))
+                    Text(
+                        text = stringResource(R.string.or_divider),
+                        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
+                        modifier = Modifier.padding(horizontal = 8.dp)
+                    )
+                    HorizontalDivider(modifier = Modifier.weight(1f))
+                }
+
+                Spacer(modifier = Modifier.height(15.dp))
+
+                GoogleSignInButton(
+                    onIdToken = { idToken -> viewModel.loginWithGoogle(idToken, navController) },
+                    onError = { message -> viewModel.onGoogleSignInError(message) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 40.dp)
+                )
             }
         }
 

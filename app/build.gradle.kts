@@ -83,8 +83,8 @@ android {
         applicationId = "com.edgar.starknetchat"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = Integer.parseInt("001_008_002".replace("_", ""), 10)
-        versionName = "1.8.2"
+        versionCode = Integer.parseInt("001_008_003".replace("_", ""), 10)
+        versionName = "1.8.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -245,6 +245,9 @@ dependencies {
     implementation(libs.android.app.update)
     implementation(libs.android.app.update.ktx)
     implementation(libs.android.biometric)
+    implementation(libs.android.credentials)
+    implementation(libs.android.credentials.play.services.auth)
+    implementation(libs.google.identity.googleid)
 
     implementation(libs.hcaptcha)
 

@@ -36,6 +36,15 @@ data class LoginNegotiation(
 )
 
 @Serializable
+data class GoogleLoginNegotiation(
+    @SerialName("id_token")
+    val idToken: String,
+
+    @SerialName("friendly_name")
+    val friendlyName: String
+)
+
+@Serializable
 data class LoginMfaAmendmentTotpCode(
     @SerialName("mfa_ticket")
     val mfaTicket: String,
@@ -157,6 +166,55 @@ suspend fun negotiateAuthentication(email: String, password: String): EmailPassw
 
     val responseContent = response.bodyAsText()
     Log.d("Stoat", "negotiateAuthentication: $responseContent")
+
+    try {
+        val error = StoatJson.decodeFromString(StoatAPIError.serializer(), responseContent)
+        return EmailPasswordAssessment(error = error)
+    } catch (e: SerializationException) {
+        // Not an error
+    }
+
+    if (response.status == HttpStatusCode.InternalServerError) {
+        return EmailPasswordAssessment(
+            error = StoatAPIError(
+                "InternalServerError"
+            )
+        )
+    }
+
+    val responseJson = StoatJson.decodeFromString(MfaCheck.serializer(), responseContent)
+
+    return when (responseJson.result) {
+        "Success" -> EmailPasswordAssessment(
+            firstUserHints = StoatJson.decodeFromString(UserHints.serializer(), responseContent)
+        )
+
+        "MFA" -> EmailPasswordAssessment(
+            proceedMfa = true,
+            mfaSpec = StoatJson.decodeFromString(MfaLoginSpec.serializer(), responseContent)
+        )
+
+        else -> throw Exception("Unknown result: ${responseJson.result}")
+    }
+}
+
+/**
+ * Log in (or silently create an account the first time) using a Google
+ * Sign-In ID token obtained through Credential Manager. This is the exact
+ * same `/auth/session/login` endpoint the password flow uses, with a
+ * different credential shape -- so it goes through the same MFA/onboarding
+ * branching as [negotiateAuthentication].
+ */
+suspend fun negotiateGoogleAuthentication(idToken: String): EmailPasswordAssessment {
+    val sessionName = friendlySessionName()
+
+    val response: HttpResponse = StoatHttp.post("/auth/session/login".api()) {
+        contentType(ContentType.Application.Json)
+        setBody(GoogleLoginNegotiation(idToken, sessionName))
+    }
+
+    val responseContent = response.bodyAsText()
+    Log.d("Stoat", "negotiateGoogleAuthentication: $responseContent")
 
     try {
         val error = StoatJson.decodeFromString(StoatAPIError.serializer(), responseContent)

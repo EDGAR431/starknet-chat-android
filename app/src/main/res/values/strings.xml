@@ -53,6 +53,8 @@
     <string name="could_not_log_in_cta_logout">Log out</string>
 
     <string name="login_heading">Let\'s log you in</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="or_divider">or</string>
     <string name="password_forgot">Forgot password?</string>
     <string name="resend_verification">Resend a verification email</string>
     <string name="password_manager_hint">Using a password manager?</string>
