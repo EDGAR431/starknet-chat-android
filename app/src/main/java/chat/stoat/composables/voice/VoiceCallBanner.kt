@@ -17,6 +17,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -27,6 +29,7 @@ import chat.stoat.R
 import chat.stoat.api.StoatAPI
 import chat.stoat.api.internals.ChannelUtils
 import chat.stoat.voice.VoiceCallManager
+import io.livekit.android.util.flow
 
 @Composable
 fun VoiceCallBanner(modifier: Modifier = Modifier) {
@@ -73,6 +76,42 @@ fun VoiceCallBanner(modifier: Modifier = Modifier) {
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
+                }
+                // Quick controls (like Discord's mini call bar): mute and deafen
+                // without having to open the full call sheet.
+                val room = VoiceCallManager.room
+                if (room != null) {
+                    val isMicOn by room.localParticipant::isMicrophoneEnabled.flow.collectAsState()
+                    val isDeafened = VoiceCallManager.isDeafened
+                    val isPushToTalk = VoiceCallManager.isPushToTalkEnabled
+
+                    IconButton(
+                        onClick = { VoiceCallManager.toggleMicrophone() },
+                        enabled = !isPushToTalk
+                    ) {
+                        Icon(
+                            painter = painterResource(
+                                if (isMicOn) R.drawable.ic_mic_24dp else R.drawable.ic_mic_off_24dp
+                            ),
+                            contentDescription = stringResource(
+                                if (isMicOn) R.string.voice_action_mute else R.string.voice_action_unmute
+                            ),
+                            tint = if (isMicOn) MaterialTheme.colorScheme.onSurface
+                            else MaterialTheme.colorScheme.error
+                        )
+                    }
+                    IconButton(onClick = { VoiceCallManager.toggleDeafen() }) {
+                        Icon(
+                            painter = painterResource(
+                                if (isDeafened) R.drawable.ic_headset_off_24dp else R.drawable.ic_headset_24dp
+                            ),
+                            contentDescription = stringResource(
+                                if (isDeafened) R.string.voice_action_undeafen else R.string.voice_action_deafen
+                            ),
+                            tint = if (isDeafened) MaterialTheme.colorScheme.error
+                            else MaterialTheme.colorScheme.onSurface
+                        )
+                    }
                 }
                 IconButton(onClick = { VoiceCallManager.leave() }) {
                     Icon(
