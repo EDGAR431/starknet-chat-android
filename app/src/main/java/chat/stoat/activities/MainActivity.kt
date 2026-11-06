@@ -86,6 +86,7 @@ import chat.stoat.c2dm.NotificationDeepLink
 import chat.stoat.composables.AppLockScreen
 import chat.stoat.composables.generic.HealthAlert
 import chat.stoat.composables.voice.VoicePermissionSwitch
+import chat.stoat.composables.voice.IncomingCallHost
 import chat.stoat.composables.voice.VoiceSheet
 import chat.stoat.core.model.schemas.HealthNotice
 import chat.stoat.internals.StoatWebLink
@@ -924,6 +925,8 @@ fun AppEntrypoint(
                     composable("changelog/{id}") { ReadChangelogScreen(navController) }
                 }
             }
+
+            IncomingCallHost(Modifier.align(Alignment.TopCenter))
 
             if (showVoiceUI) { // if tapped outside the voice UI, close it
                 Box(

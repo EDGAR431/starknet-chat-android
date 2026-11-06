@@ -669,4 +669,7 @@
     <string name="voice_join_offering">Unirse al canal de voz</string>
     <string name="voice_join_offering_description_other">con %1$d más</string>
     <string name="voice_error_no_nodes">Todos los nodos de voz no están disponibles en este momento. Por favor, inténtalo de nuevo más tarde.</string>
+    <string name="voice_incoming_call">Llamada entrante</string>
+    <string name="voice_incoming_call_accept">Contestar</string>
+    <string name="voice_incoming_call_decline">Rechazar</string>
 </resources>
