@@ -70,7 +70,9 @@ private suspend fun requestGoogleIdToken(
         return GoogleIdTokenCredential.createFrom(credential.data).idToken
     }
 
-    throw GoogleIdTokenParsingException("Unexpected credential type returned: ${credential.type}")
+    throw GoogleIdTokenParsingException(
+        IllegalStateException("Unexpected credential type returned: ${credential.type}")
+    )
 }
 
 /**
