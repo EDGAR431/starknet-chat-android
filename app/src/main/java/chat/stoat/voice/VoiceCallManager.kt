@@ -422,7 +422,7 @@ object VoiceCallManager {
                     val res = chat.stoat.api.StoatHttp.get(
                         "${chat.stoat.core.model.data.STOAT_FILES}/attachments/$fileId"
                     )
-                    if (!res.isSuccess()) return@launch
+                    if (!res.status.isSuccess()) return@launch
                     file.writeBytes(res.body<ByteArray>())
                 }
                 kotlinx.coroutines.withContext(Dispatchers.Main) {
