@@ -77,6 +77,12 @@ class MfaPromptSession internal constructor() {
         events.trySend(MfaPromptEvent.Submit(method.buildResponse(text)))
     }
 
+    /** For methods that do not use the text field (e.g. Google), submit a ready response. */
+    fun submitResponse(response: MfaResponse) {
+        if (busy) return
+        events.trySend(MfaPromptEvent.Submit(response))
+    }
+
     fun retryLoad() {
         if (!busy) events.trySend(MfaPromptEvent.RetryLoad)
     }
@@ -114,7 +120,8 @@ class MfaPromptSession internal constructor() {
             val available = fetchMfaMethods()
             val known = available.mapNotNull(MfaMethod::fromApiName).sortedBy { it.ordinal }
             methods = known
-            selected = known.firstOrNull()
+            // Google-created accounts have no usable password, so offer Google first.
+            selected = known.firstOrNull { it == MfaMethod.Google } ?: known.firstOrNull()
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {

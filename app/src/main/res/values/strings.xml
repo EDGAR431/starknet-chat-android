@@ -95,6 +95,8 @@
 
     <string name="mfa_recovery_header">Enter a recovery code</string>
     <string name="mfa_recovery_lead">Enter one of your recovery codes.</string>
+    <string name="mfa_method_google">Google account</string>
+    <string name="mfa_google_lead">Confirm it is you by signing in with your Google account.</string>
     <string name="mfa_recovery_code">Code</string>
 
     <string name="mfa_password_header">Enter your password</string>

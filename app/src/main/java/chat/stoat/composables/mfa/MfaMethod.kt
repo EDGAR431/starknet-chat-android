@@ -5,6 +5,7 @@ import androidx.compose.ui.autofill.ContentType
 import androidx.compose.ui.text.input.KeyboardType
 import chat.stoat.R
 import chat.stoat.api.routes.account.MfaResponse
+import chat.stoat.api.routes.account.MfaResponseGoogleIdToken
 import chat.stoat.api.routes.account.MfaResponsePassword
 import chat.stoat.api.routes.account.MfaResponseRecoveryCode
 import chat.stoat.api.routes.account.MfaResponseTotpCode
@@ -67,6 +68,25 @@ enum class MfaMethod(
         sanitizeInput = { it.trim() },
         isSubmittable = { it.isNotBlank() },
         buildResponse = { MfaResponseRecoveryCode(it) }
+    ),
+
+    /**
+     * Confirm with the Google account linked to this account. There is no text input:
+     * the UI shows a Google button and submits the ID token it returns.
+     */
+    Google(
+        apiName = "Google",
+        label = R.string.mfa_method_google,
+        lead = R.string.mfa_google_lead,
+        inputLabel = R.string.mfa_method_google,
+        keyboardType = KeyboardType.Text,
+        secureInput = false,
+        monospaceInput = false,
+        autofillContentType = null,
+        autoSubmit = false,
+        sanitizeInput = { it },
+        isSubmittable = { false },
+        buildResponse = { MfaResponseGoogleIdToken(it) }
     );
 
     companion object {

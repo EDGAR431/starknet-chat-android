@@ -47,6 +47,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import chat.stoat.R
+import chat.stoat.api.routes.account.MfaResponseGoogleIdToken
+import chat.stoat.composables.auth.GoogleSignInButton
 import chat.stoat.composables.generic.NonIdealState
 import chat.stoat.ui.theme.FragmentMono
 
@@ -249,7 +251,7 @@ private fun MfaPromptForm(session: MfaPromptSession) {
                 Text(stringResource(R.string.cancel))
             }
 
-            Button(
+            if (selected != MfaMethod.Google) Button(
                 onClick = { session.submit() },
                 enabled = !session.busy &&
                         selected.isSubmittable(session.input.text.toString())
@@ -271,6 +273,16 @@ private fun MfaMethodInput(session: MfaPromptSession, method: MfaMethod) {
     val inputModifier = Modifier
         .fillMaxWidth()
         .semantics { method.autofillContentType?.let { contentType = it } }
+
+    if (method == MfaMethod.Google) {
+        GoogleSignInButton(
+            onIdToken = { session.submitResponse(MfaResponseGoogleIdToken(it)) },
+            onError = { session.error = it },
+            enabled = !session.busy,
+            modifier = Modifier.fillMaxWidth()
+        )
+        return
+    }
 
     if (method.secureInput) {
         SecureTextField(

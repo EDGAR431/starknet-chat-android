@@ -208,6 +208,8 @@
     <string name="settings_appearance_theme_m3dynamic">Material You</string>
     <string name="settings_feedback">Comentario</string>
     <string name="mfa_recovery_lead">Ingresa uno de tus códigos de recuperación.</string>
+    <string name="mfa_method_google">Cuenta de Google</string>
+    <string name="mfa_google_lead">Confirma que eres tú iniciando sesión con tu cuenta de Google.</string>
     <string name="no_connection_message">No estás conectado a Internet. Por favor, comprueba la conexión y vuelve a intentarlo.</string>
     <string name="channel_context_sheet_actions_copy_id_copied">ID del canal copiado en el portapapeles</string>
     <string name="report_reason_user_underage">No tiene la edad mínima para usar la plataforma</string>

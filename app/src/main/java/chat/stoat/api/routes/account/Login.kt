@@ -92,6 +92,12 @@ data class MfaResponseTotpCode(
     val totpCode: String
 ) : MfaResponse
 
+@Serializable
+data class MfaResponseGoogleIdToken(
+    @SerialName("google_id_token")
+    val googleIdToken: String
+) : MfaResponse
+
 object MfaResponseSerializer : KSerializer<MfaResponse> {
     @OptIn(InternalSerializationApi::class, ExperimentalSerializationApi::class)
     override val descriptor: SerialDescriptor =
@@ -106,6 +112,9 @@ object MfaResponseSerializer : KSerializer<MfaResponse> {
 
         is MfaResponseTotpCode ->
             encoder.encodeSerializableValue(MfaResponseTotpCode.serializer(), value)
+
+        is MfaResponseGoogleIdToken ->
+            encoder.encodeSerializableValue(MfaResponseGoogleIdToken.serializer(), value)
     }
 
     override fun deserialize(decoder: Decoder): MfaResponse =
