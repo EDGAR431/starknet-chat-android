@@ -53,6 +53,8 @@ import kotlin.time.Duration.Companion.seconds
  * The LiveKit [Room] lives here
  */
 object VoiceCallManager {
+    const val DEAFENED_ATTRIBUTE = "deafened"
+
     private val context: Context get() = StoatApplication.instance
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
@@ -281,6 +283,7 @@ object VoiceCallManager {
             micWasOnBeforeDeafen = room.localParticipant.isMicrophoneEnabled
             isDeafened = true
             applyDeafenState(room)
+            publishDeafened(room, true)
             scope.launch {
                 room.localParticipant.setMicrophoneEnabled(false)
             }
@@ -288,11 +291,23 @@ object VoiceCallManager {
             soundPlayer?.play(VoiceSound.UNDEAFEN)
             isDeafened = false
             applyDeafenState(room)
+            publishDeafened(room, false)
             if (micWasOnBeforeDeafen) {
                 scope.launch {
                     room.localParticipant.setMicrophoneEnabled(true)
                 }
             }
+        }
+    }
+
+    /** Avisa al resto de la llamada de que nos hemos ensordecido (atributo de LiveKit). */
+    private fun publishDeafened(room: Room, deafened: Boolean) {
+        try {
+            room.localParticipant.updateAttributes(
+                mapOf(DEAFENED_ATTRIBUTE to if (deafened) "1" else "0")
+            )
+        } catch (_: Exception) {
+            // Sin permiso en el token (servidor antiguo): solo no se difunde.
         }
     }
 

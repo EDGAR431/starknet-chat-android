@@ -298,10 +298,13 @@ fun VoiceSheet(onDisconnect: () -> Unit) {
                         val cameraEnabled by participant::isCameraEnabled.flow.collectAsState()
                         val screenShareEnabled by participant::isScreenShareEnabled.flow.collectAsState()
                         val cachedState = voiceStates?.participants?.find { it.id == userId }
+                        val attributes by participant::attributes.flow.collectAsState()
+                        val selfDeafened =
+                            attributes[VoiceCallManager.DEAFENED_ATTRIBUTE] == "1"
                         VoiceParticipant(
                             state = UserVoiceState(
                                 id = userId,
-                                isReceiving = cachedState?.isReceiving ?: true,
+                                isReceiving = (cachedState?.isReceiving ?: true) && !selfDeafened,
                                 isPublishing = micEnabled,
                                 screensharing = screenShareEnabled,
                                 camera = cameraEnabled,
