@@ -88,7 +88,6 @@ object VoiceCallManager {
         streamVolume = volume.coerceIn(0f, 1f)
         room?.let(::applyDeafenState)
     }
-        private set
 
     var isSheetVisible: Boolean by mutableStateOf(false)
 
