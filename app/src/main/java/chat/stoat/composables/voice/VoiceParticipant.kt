@@ -68,16 +68,18 @@ fun VoiceParticipant(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier
             ) {
-                if (!state.isPublishing) {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_mic_off_24dp),
-                        contentDescription = stringResource(R.string.voice_muted),
-                    )
-                }
+                // Si esta ensordecido se muestra solo ese icono (en rojo), para no
+                // confundirlo con el de silenciado, que tambien tendria.
                 if (!state.isReceiving) {
                     Icon(
                         painter = painterResource(R.drawable.ic_headset_off_24dp),
                         contentDescription = stringResource(R.string.voice_deafened),
+                        tint = MaterialTheme.colorScheme.error
+                    )
+                } else if (!state.isPublishing) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_mic_off_24dp),
+                        contentDescription = stringResource(R.string.voice_muted),
                     )
                 }
                 if (state.camera) {
