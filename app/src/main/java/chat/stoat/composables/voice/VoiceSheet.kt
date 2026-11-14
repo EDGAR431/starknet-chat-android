@@ -43,6 +43,8 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.HorizontalFloatingToolbar
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Slider
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.LocalContentColor
@@ -61,6 +63,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.window.DialogProperties
+import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
@@ -114,6 +119,55 @@ fun VoiceSheet(onDisconnect: () -> Unit) {
         val trackRefs by rememberTracks(passedRoom = room)
         val isDeafened = VoiceCallManager.isDeafened
         val pingMs = VoiceCallManager.pingMs
+        var fullscreenTrack by remember { mutableStateOf<io.livekit.android.room.track.TrackPublication?>(null) }
+
+        fullscreenTrack?.let { pub ->
+            val ref = trackRefs.firstOrNull { it.publication == pub }
+            if (ref == null) {
+                fullscreenTrack = null
+            } else {
+                Dialog(
+                    onDismissRequest = { fullscreenTrack = null },
+                    properties = DialogProperties(
+                        usePlatformDefaultWidth = false,
+                        decorFitsSystemWindows = false
+                    )
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(Color.Black)
+                    ) {
+                        VideoTrackView(
+                            trackReference = ref,
+                            room = room,
+                            scaleType = ScaleType.FitInside,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                        IconButton(
+                            onClick = { fullscreenTrack = null },
+                            modifier = Modifier
+                                .align(Alignment.TopEnd)
+                                .padding(16.dp)
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_fullscreen_exit_24dp),
+                                contentDescription = null,
+                                tint = Color.White
+                            )
+                        }
+                        if (ref.source == Track.Source.SCREEN_SHARE) {
+                            StreamControls(
+                                modifier = Modifier
+                                    .align(Alignment.BottomCenter)
+                                    .padding(24.dp),
+                                onFullscreen = null
+                            )
+                        }
+                    }
+                }
+            }
+        }
 
         val audioHandler = room.audioSwitchHandler
         var audioDevices by remember {
@@ -187,6 +241,7 @@ fun VoiceSheet(onDisconnect: () -> Unit) {
                                     .aspectRatio(16f / 9f)
                                     .clip(MaterialTheme.shapes.large)
                                     .background(MaterialTheme.colorScheme.surfaceContainerLowest)
+                                    .clickable { fullscreenTrack = publication }
                             ) {
                                 VideoTrackView(
                                     trackReference = trackRef,
@@ -226,6 +281,14 @@ fun VoiceSheet(onDisconnect: () -> Unit) {
                                             style = MaterialTheme.typography.labelMedium
                                         )
                                     }
+                                }
+                                if (trackRef.source == Track.Source.SCREEN_SHARE) {
+                                    StreamControls(
+                                        modifier = Modifier
+                                            .align(Alignment.BottomEnd)
+                                            .padding(8.dp),
+                                        onFullscreen = { fullscreenTrack = publication }
+                                    )
                                 }
                             }
                         }
@@ -655,4 +718,42 @@ private fun audioDeviceLabel(device: AudioDevice): String = when (device) {
     is AudioDevice.WiredHeadset -> stringResource(R.string.voice_audio_output_wired_headset)
     is AudioDevice.Earpiece -> stringResource(R.string.voice_audio_output_earpiece)
     is AudioDevice.Speakerphone -> stringResource(R.string.voice_audio_output_speaker)
+}
+
+
+/** Volume slider (and optional fullscreen button) for a stream. */
+@Composable
+private fun StreamControls(modifier: Modifier = Modifier, onFullscreen: (() -> Unit)?) {
+    Surface(
+        color = MaterialTheme.colorScheme.surfaceContainer.copy(alpha = 0.85f),
+        shape = MaterialTheme.shapes.small,
+        modifier = modifier
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
+        ) {
+            Icon(
+                painter = painterResource(R.drawable.ic_volume_up_24dp),
+                contentDescription = null,
+                modifier = Modifier.size(18.dp)
+            )
+            Slider(
+                value = VoiceCallManager.streamVolume,
+                onValueChange = { VoiceCallManager.updateStreamVolume(it) },
+                valueRange = 0f..1f,
+                modifier = Modifier.width(120.dp)
+            )
+            if (onFullscreen != null) {
+                IconButton(onClick = onFullscreen, modifier = Modifier.size(32.dp)) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_fullscreen_24dp),
+                        contentDescription = null,
+                        modifier = Modifier.size(20.dp)
+                    )
+                }
+            }
+        }
+    }
 }

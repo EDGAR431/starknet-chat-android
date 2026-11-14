@@ -65,6 +65,15 @@ object VoiceCallManager {
         private set
 
     var isDeafened: Boolean by mutableStateOf(false)
+
+    /** Volume (0..1) of other people's stream audio, set from the stream viewer. */
+    var streamVolume: Float by mutableStateOf(1f)
+        private set
+
+    fun updateStreamVolume(volume: Float) {
+        streamVolume = volume.coerceIn(0f, 1f)
+        room?.let(::applyDeafenState)
+    }
         private set
 
     var isSheetVisible: Boolean by mutableStateOf(false)
@@ -165,6 +174,7 @@ object VoiceCallManager {
         activeChannelId = null
         errorResource = null
         isDeafened = false
+        streamVolume = 1f
         micWasOnBeforeDeafen = false
 
         if (leftRoom != null) {
@@ -275,8 +285,13 @@ object VoiceCallManager {
 
     private fun applyDeafenState(room: Room) {
         room.remoteParticipants.values.forEach { participant ->
-            participant.audioTrackPublications.forEach { (_, track) ->
-                (track as? RemoteAudioTrack)?.setVolume(if (isDeafened) 0.0 else 1.0)
+            participant.audioTrackPublications.forEach { (publication, track) ->
+                val volume = when {
+                    isDeafened -> 0.0
+                    publication.source == Track.Source.SCREEN_SHARE_AUDIO -> streamVolume.toDouble()
+                    else -> 1.0
+                }
+                (track as? RemoteAudioTrack)?.setVolume(volume)
             }
         }
     }
