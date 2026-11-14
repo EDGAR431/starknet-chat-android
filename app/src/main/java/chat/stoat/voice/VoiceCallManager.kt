@@ -265,7 +265,7 @@ object VoiceCallManager {
                 } catch (e: Exception) {
                     logcat(LogPriority.ERROR) { "No se pudo obtener el ping real\n" + e.asLog() }
                 }
-                delay(2000)
+                delay(5000) // bateria: antes 2 s
             }
         }
     }

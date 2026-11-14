@@ -130,7 +130,8 @@ internal fun rememberAudioPlaybackState(url: String): AudioPlaybackState {
             if (state.player.isPlaying) {
                 withFrameMillis { }
             } else {
-                delay(100.milliseconds)
+                // bateria: en pausa basta con mirar de vez en cuando
+                delay(500.milliseconds)
             }
         }
     }

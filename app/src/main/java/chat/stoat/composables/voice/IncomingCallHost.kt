@@ -74,9 +74,16 @@ fun IncomingCallHost(modifier: Modifier = Modifier) {
     var handled by remember { mutableStateOf(setOf<String>()) }
 
     val now by produceState(System.currentTimeMillis()) {
+        // Bateria: solo hace falta un tick por segundo si hay alguna llamada
+        // activa que pudiera estar sonando; si no, no se recompone nada.
         while (true) {
-            delay(1_000)
-            value = System.currentTimeMillis()
+            val anyCall = StoatAPI.voiceStateCache.values.any { it.participants.isNotEmpty() }
+            if (anyCall) {
+                delay(1_000)
+                value = System.currentTimeMillis()
+            } else {
+                delay(5_000)
+            }
         }
     }
 
