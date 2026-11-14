@@ -20,6 +20,7 @@ import chat.stoat.internals.VoiceAudioSettings
 import chat.stoat.services.OngoingCallService
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.http.isSuccess
 import io.livekit.android.LiveKit
@@ -353,6 +354,11 @@ object VoiceCallManager {
             when (event) {
                 is RoomEvent.TrackSubscribed -> applyDeafenState(room)
 
+                is RoomEvent.DataReceived -> handleSoundboardMessage(
+                    event.data,
+                    event.participant?.identity?.value,
+                )
+
                 is RoomEvent.ParticipantConnected -> soundPlayer?.play(VoiceSound.USER_JOIN)
                 is RoomEvent.ParticipantDisconnected -> soundPlayer?.play(VoiceSound.USER_LEAVE)
 
@@ -373,6 +379,65 @@ object VoiceCallManager {
                 }
 
                 else -> Unit
+            }
+        }
+    }
+
+    private val lastSoundboardAt = mutableMapOf<String, Long>()
+
+    /**
+     * Otro participante lanzó un sonido del soundboard: llega como orden
+     * ({"type":"starknet-soundboard","fileId":...,"volume":...}) y se
+     * reproduce en local, respetando ensordecer y el volumen de ese usuario.
+     */
+    private fun handleSoundboardMessage(data: ByteArray, identity: String?) {
+        if (identity == null || isDeafened) return
+        val json = try {
+            org.json.JSONObject(String(data, Charsets.UTF_8))
+        } catch (_: Exception) {
+            return
+        }
+        if (json.optString("type") != "starknet-soundboard") return
+        val fileId = json.optString("fileId")
+        if (!Regex("^[A-Za-z0-9_-]{8,64}$").matches(fileId)) return
+        val sent = json.optDouble("volume", 1.0).let {
+            if (it.isNaN()) 1.0 else it.coerceIn(0.0, 2.0)
+        }
+
+        val now = System.currentTimeMillis()
+        if (now - (lastSoundboardAt[identity] ?: 0L) < 250) return
+        lastSoundboardAt[identity] = now
+
+        val volume = (sent * userVolume(identity).coerceAtMost(2f)).toFloat().coerceIn(0f, 1f)
+        if (volume <= 0f) return
+
+        scope.launch(Dispatchers.IO) {
+            try {
+                val file = java.io.File(context.cacheDir, "sb_$fileId")
+                if (!file.exists() || file.length() == 0L) {
+                    val res = chat.stoat.api.StoatHttp.get(
+                        "${chat.stoat.core.model.data.STOAT_FILES}/attachments/$fileId"
+                    )
+                    if (!res.isSuccess()) return@launch
+                    file.writeBytes(res.body<ByteArray>())
+                }
+                kotlinx.coroutines.withContext(Dispatchers.Main) {
+                    val player = android.media.MediaPlayer()
+                    player.setAudioAttributes(
+                        android.media.AudioAttributes.Builder()
+                            .setUsage(android.media.AudioAttributes.USAGE_VOICE_COMMUNICATION)
+                            .setContentType(android.media.AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                            .build()
+                    )
+                    player.setDataSource(file.absolutePath)
+                    player.setVolume(volume, volume)
+                    player.setOnCompletionListener { it.release() }
+                    player.setOnErrorListener { mp, _, _ -> mp.release(); true }
+                    player.setOnPreparedListener { it.start() }
+                    player.prepareAsync()
+                }
+            } catch (e: Exception) {
+                logcat(LogPriority.ERROR) { "Soundboard remoto fallo\n" + e.asLog() }
             }
         }
     }
