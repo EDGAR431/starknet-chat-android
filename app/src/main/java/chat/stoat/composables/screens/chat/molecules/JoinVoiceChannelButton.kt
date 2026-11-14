@@ -24,6 +24,7 @@ import chat.stoat.core.model.schemas.User
 import chat.stoat.callbacks.Action
 import chat.stoat.callbacks.ActionChannel
 import chat.stoat.composables.screens.chat.StackedUserAvatars
+import chat.stoat.voice.VoiceCallManager
 import kotlinx.coroutines.launch
 
 @Composable
@@ -57,8 +58,13 @@ fun JoinVoiceChannelButton(channelId: String, modifier: Modifier = Modifier) {
                 modifier = Modifier.size(24.dp)
             )
         }
+        // Ya estamos en otra llamada: unirse cambia de canal (join() cierra la anterior)
+        val activeCall = VoiceCallManager.activeChannelId
+        val switching = activeCall != null && activeCall != channelId
         Text(
-            stringResource(R.string.voice_join_offering),
+            stringResource(
+                if (switching) R.string.voice_switch_offering else R.string.voice_join_offering
+            ),
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Start
         )

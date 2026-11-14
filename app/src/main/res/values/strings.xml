@@ -723,6 +723,8 @@
     <string name="emoji_picker_clear_search">Clear search</string>
 
     <string name="voice_join_offering">Join the voice channel</string>
+
+    <string name="voice_switch_offering">Switch to this voice channel</string>
     <string name="voice_join_offering_description_zero">Start the call</string>
     <string name="voice_join_offering_description_one">with %1$s</string>
     <string name="voice_join_offering_description_other">with %1$d others</string>

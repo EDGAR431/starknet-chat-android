@@ -667,6 +667,7 @@
     <string name="voice_join_offering_description_one">con %1$s</string>
     <string name="geogate_description">StarknetChat puede bloquear contenido en ciertas jurisdicciones en respuesta a la legislación o a notificaciones legales</string>
     <string name="voice_join_offering">Unirse al canal de voz</string>
+    <string name="voice_switch_offering">Cambiar a este canal de voz</string>
     <string name="voice_join_offering_description_other">con %1$d más</string>
     <string name="voice_error_no_nodes">Todos los nodos de voz no están disponibles en este momento. Por favor, inténtalo de nuevo más tarde.</string>
     <string name="voice_incoming_call">Llamada entrante</string>

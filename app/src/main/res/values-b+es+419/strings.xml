@@ -627,6 +627,7 @@
     <string name="voice_error_not_supported">Los canales de voz no están disponibles en este momento.</string>
     <string name="geogate_channel_icon_alt">Canal no disponible</string>
     <string name="voice_join_offering">Unirse al canal de voz</string>
+    <string name="voice_switch_offering">Cambiar a este canal de voz</string>
     <string name="voice_error_generic">Ocurrió un error. Intenta de nuevo mas tarde.</string>
     <string name="geogate_acknowledge">Reconocer</string>
     <string name="user_info_sheet_category_owner">Propietario</string>
