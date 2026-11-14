@@ -142,6 +142,10 @@ object VoiceCallManager {
         val newRoom = LiveKit.create(
             context.applicationContext,
             RoomOptions(
+                // Bateria/datos: solo se recibe/decodifica el video a la
+                // calidad que realmente se ve, y se pausa si no se ve.
+                adaptiveStream = true,
+                dynacast = true,
                 audioTrackCaptureDefaults = LocalAudioTrackOptions(
                     noiseSuppression = VoiceAudioSettings.isNoiseSuppressionEnabled(context),
                     echoCancellation = VoiceAudioSettings.isEchoCancellationEnabled(context),

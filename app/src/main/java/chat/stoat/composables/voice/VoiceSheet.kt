@@ -75,6 +75,7 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -129,6 +130,39 @@ fun VoiceSheet(onDisconnect: () -> Unit) {
         var fullscreenTrack by remember { mutableStateOf<io.livekit.android.room.track.TrackPublication?>(null) }
         var volumeUserId by remember { mutableStateOf<String?>(null) }
 
+        // Al girar el movil a horizontal, el directo pasa solo a pantalla
+        // completa (como Discord); al volver a vertical se cierra.
+        val isLandscape = LocalConfiguration.current.orientation ==
+            android.content.res.Configuration.ORIENTATION_LANDSCAPE
+        var autoOpened by remember { mutableStateOf(false) }
+        var dismissedInLandscape by remember { mutableStateOf(false) }
+        fun closeFullscreen() {
+            fullscreenTrack = null
+            autoOpened = false
+            if (isLandscape) dismissedInLandscape = true
+        }
+        val firstVideoPublication = trackRefs
+            .firstOrNull {
+                it.participant != room.localParticipant &&
+                    it.publication != null && it.publication?.muted == false
+            }
+            ?.publication
+        LaunchedEffect(isLandscape) {
+            dismissedInLandscape = false
+            if (!isLandscape && autoOpened) {
+                fullscreenTrack = null
+                autoOpened = false
+            }
+        }
+        LaunchedEffect(isLandscape, firstVideoPublication) {
+            if (isLandscape && !dismissedInLandscape &&
+                fullscreenTrack == null && firstVideoPublication != null
+            ) {
+                fullscreenTrack = firstVideoPublication
+                autoOpened = true
+            }
+        }
+
         volumeUserId?.let { uid ->
             val name = displayNameInChannel(uid, channelId)
             val volume = VoiceCallManager.userVolume(uid)
@@ -170,7 +204,7 @@ fun VoiceSheet(onDisconnect: () -> Unit) {
                 fullscreenTrack = null
             } else {
                 Dialog(
-                    onDismissRequest = { fullscreenTrack = null },
+                    onDismissRequest = { closeFullscreen() },
                     properties = DialogProperties(
                         usePlatformDefaultWidth = false,
                         decorFitsSystemWindows = false
@@ -229,7 +263,7 @@ fun VoiceSheet(onDisconnect: () -> Unit) {
                                 )
                         )
                         IconButton(
-                            onClick = { fullscreenTrack = null },
+                            onClick = { closeFullscreen() },
                             modifier = Modifier
                                 .align(Alignment.TopEnd)
                                 .padding(16.dp)
