@@ -50,6 +50,17 @@ object VoiceAudioSettings {
         prefs(context).edit().putBoolean("push_to_talk", enabled).apply()
     }
 
+    /** Volumen (0..2) con el que se oye a cada usuario; 1 = normal. Solo en este dispositivo. */
+    fun getUserVolume(context: Context, userId: String): Float =
+        prefs(context).getFloat("user_volume_$userId", 1f).coerceIn(0f, 2f)
+
+    fun setUserVolume(context: Context, userId: String, volume: Float) {
+        val editor = prefs(context).edit()
+        if (volume == 1f) editor.remove("user_volume_$userId")
+        else editor.putFloat("user_volume_$userId", volume.coerceIn(0f, 2f))
+        editor.apply()
+    }
+
     /**
      * Sends the three synced toggles up to the account, under the same
      * "voice" key the web client uses (only these fields — see

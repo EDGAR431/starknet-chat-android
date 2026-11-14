@@ -1416,4 +1416,8 @@
     <string name="voice_incoming_call">Incoming call</string>
     <string name="voice_incoming_call_accept">Answer</string>
     <string name="voice_incoming_call_decline">Decline</string>
+    <string name="voice_user_volume_title">Volume of %1$s</string>
+    <string name="voice_user_volume_percent">%1$d%%</string>
+    <string name="voice_user_volume_done">Done</string>
+    <string name="voice_user_volume_reset">Reset</string>
 </resources>

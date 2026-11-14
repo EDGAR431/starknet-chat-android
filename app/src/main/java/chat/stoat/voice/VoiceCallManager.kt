@@ -2,6 +2,7 @@ package chat.stoat.voice
 
 import android.content.Context
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import chat.stoat.R
@@ -69,6 +70,19 @@ object VoiceCallManager {
     /** Volume (0..1) of other people's stream audio, set from the stream viewer. */
     var streamVolume: Float by mutableStateOf(1f)
         private set
+
+    /** Volumen individual (0..2) de cada usuario; se guarda en el dispositivo. */
+    private val userVolumes = mutableStateMapOf<String, Float>()
+
+    fun userVolume(userId: String): Float =
+        userVolumes[userId] ?: VoiceAudioSettings.getUserVolume(context, userId)
+
+    fun updateUserVolume(userId: String, volume: Float, persist: Boolean = true) {
+        val v = volume.coerceIn(0f, 2f)
+        userVolumes[userId] = v
+        if (persist) VoiceAudioSettings.setUserVolume(context, userId, v)
+        room?.let(::applyDeafenState)
+    }
 
     fun updateStreamVolume(volume: Float) {
         streamVolume = volume.coerceIn(0f, 1f)
@@ -289,7 +303,7 @@ object VoiceCallManager {
                 val volume = when {
                     isDeafened -> 0.0
                     publication.source == Track.Source.SCREEN_SHARE_AUDIO -> streamVolume.toDouble()
-                    else -> 1.0
+                    else -> userVolume(participant.identity?.value ?: "").toDouble()
                 }
                 (track as? RemoteAudioTrack)?.setVolume(volume)
             }

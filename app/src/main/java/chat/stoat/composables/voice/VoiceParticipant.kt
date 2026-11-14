@@ -4,6 +4,7 @@ import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.shape.CircleShape
@@ -30,7 +31,8 @@ fun VoiceParticipant(
     state: UserVoiceState,
     channelId: String,
     speaking: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: (() -> Unit)? = null
 ) {
     val speakingBorderColour by animateColorAsState(
         targetValue = if (speaking) MaterialTheme.colorScheme.primary else Color.Transparent,
@@ -43,7 +45,7 @@ fun VoiceParticipant(
 
     val user = StoatAPI.userCache[state.id]
     ListItem(
-        modifier = modifier,
+        modifier = if (onClick != null) modifier.clickable(onClick = onClick) else modifier,
         colors = TransparentListItemColours,
         headlineContent = {
             Text(displayNameInChannel(state.id, channelId))

@@ -19,6 +19,13 @@ import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.gestures.detectTransformGestures
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -120,6 +127,42 @@ fun VoiceSheet(onDisconnect: () -> Unit) {
         val isDeafened = VoiceCallManager.isDeafened
         val pingMs = VoiceCallManager.pingMs
         var fullscreenTrack by remember { mutableStateOf<io.livekit.android.room.track.TrackPublication?>(null) }
+        var volumeUserId by remember { mutableStateOf<String?>(null) }
+
+        volumeUserId?.let { uid ->
+            val name = displayNameInChannel(uid, channelId)
+            val volume = VoiceCallManager.userVolume(uid)
+            AlertDialog(
+                onDismissRequest = { volumeUserId = null },
+                title = { Text(stringResource(R.string.voice_user_volume_title, name)) },
+                text = {
+                    Column {
+                        Text(
+                            text = stringResource(R.string.voice_user_volume_percent, (volume * 100).toInt()),
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                        Slider(
+                            value = volume,
+                            onValueChange = { VoiceCallManager.updateUserVolume(uid, it, persist = false) },
+                            onValueChangeFinished = {
+                                VoiceCallManager.updateUserVolume(uid, VoiceCallManager.userVolume(uid))
+                            },
+                            valueRange = 0f..2f
+                        )
+                    }
+                },
+                confirmButton = {
+                    TextButton(onClick = { volumeUserId = null }) {
+                        Text(stringResource(R.string.voice_user_volume_done))
+                    }
+                },
+                dismissButton = {
+                    TextButton(onClick = { VoiceCallManager.updateUserVolume(uid, 1f) }) {
+                        Text(stringResource(R.string.voice_user_volume_reset))
+                    }
+                }
+            )
+        }
 
         fullscreenTrack?.let { pub ->
             val ref = trackRefs.firstOrNull { it.publication == pub }
@@ -133,16 +176,57 @@ fun VoiceSheet(onDisconnect: () -> Unit) {
                         decorFitsSystemWindows = false
                     )
                 ) {
+                    var zoom by remember { mutableFloatStateOf(1f) }
+                    var pan by remember { mutableStateOf(Offset.Zero) }
+                    var boxSize by remember { mutableStateOf(IntSize.Zero) }
+
+                    fun clampPan(offset: Offset, scale: Float): Offset {
+                        val maxX = boxSize.width * (scale - 1f) / 2f
+                        val maxY = boxSize.height * (scale - 1f) / 2f
+                        return Offset(offset.x.coerceIn(-maxX, maxX), offset.y.coerceIn(-maxY, maxY))
+                    }
+
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
                             .background(Color.Black)
+                            .onSizeChanged { boxSize = it }
+                            .pointerInput(Unit) {
+                                detectTransformGestures { centroid, panChange, zoomChange, _ ->
+                                    val newZoom = (zoom * zoomChange).coerceIn(1f, 6f)
+                                    val ratio = newZoom / zoom
+                                    val centre = Offset(boxSize.width / 2f, boxSize.height / 2f)
+                                    // Mantiene fijo el punto bajo los dedos al hacer zoom.
+                                    val moved = pan * ratio + (centroid - centre) * (1f - ratio) + panChange
+                                    zoom = newZoom
+                                    pan = if (newZoom <= 1f) Offset.Zero else clampPan(moved, newZoom)
+                                }
+                            }
+                            .pointerInput(Unit) {
+                                detectTapGestures(onDoubleTap = { tap ->
+                                    if (zoom > 1f) {
+                                        zoom = 1f
+                                        pan = Offset.Zero
+                                    } else {
+                                        val centre = Offset(boxSize.width / 2f, boxSize.height / 2f)
+                                        zoom = 2.5f
+                                        pan = clampPan((centre - tap) * 1.5f, 2.5f)
+                                    }
+                                })
+                            }
                     ) {
                         VideoTrackView(
                             trackReference = ref,
                             room = room,
                             scaleType = ScaleType.FitInside,
-                            modifier = Modifier.fillMaxSize()
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .graphicsLayer(
+                                    scaleX = zoom,
+                                    scaleY = zoom,
+                                    translationX = pan.x,
+                                    translationY = pan.y
+                                )
                         )
                         IconButton(
                             onClick = { fullscreenTrack = null },
@@ -224,7 +308,10 @@ fun VoiceSheet(onDisconnect: () -> Unit) {
                                 joinedAt = cachedState?.joinedAt
                             ),
                             channelId = channelId,
-                            speaking = activeSpeakers.any { it.identity == participant.identity }
+                            speaking = activeSpeakers.any { it.identity == participant.identity },
+                            onClick = if (participant != room.localParticipant) {
+                                { volumeUserId = userId }
+                            } else null
                         )
                     }
                 }

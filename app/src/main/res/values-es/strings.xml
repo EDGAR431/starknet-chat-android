@@ -675,4 +675,8 @@
     <string name="voice_incoming_call">Llamada entrante</string>
     <string name="voice_incoming_call_accept">Contestar</string>
     <string name="voice_incoming_call_decline">Rechazar</string>
+    <string name="voice_user_volume_title">Volumen de %1$s</string>
+    <string name="voice_user_volume_percent">%1$d%%</string>
+    <string name="voice_user_volume_done">Hecho</string>
+    <string name="voice_user_volume_reset">Restablecer</string>
 </resources>
