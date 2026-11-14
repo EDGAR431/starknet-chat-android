@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "487698849491",
+    "project_id": "starknetchat",
+    "storage_bucket": "starknetchat.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487698849491:android:a01ac24ec6098037f97e26",
+        "android_client_info": {
+          "package_name": "com.edgar.starknetchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "487698849491-6046vqiiiansu50ri0ggcbdsee6ii6ob.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUia9t1KqbrUvbVhNXxj71UyD0SPs0Ox8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "487698849491-6046vqiiiansu50ri0ggcbdsee6ii6ob.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487698849491:android:10bd2df2a1b1d9f8f97e26",
+        "android_client_info": {
+          "package_name": "com.edgar.starknetchat.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "487698849491-6046vqiiiansu50ri0ggcbdsee6ii6ob.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUia9t1KqbrUvbVhNXxj71UyD0SPs0Ox8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "487698849491-6046vqiiiansu50ri0ggcbdsee6ii6ob.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
