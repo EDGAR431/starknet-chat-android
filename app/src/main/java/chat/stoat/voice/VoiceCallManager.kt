@@ -419,7 +419,7 @@ object VoiceCallManager {
                 is RoomEvent.TrackSubscribed -> {
                     applyDeafenState(room)
                     if (appInBackground && event.publication.kind == Track.Kind.VIDEO) {
-                        event.publication.setSubscribed(false)
+                        (event.publication as? RemoteTrackPublication)?.setSubscribed(false)
                     }
                 }
 
