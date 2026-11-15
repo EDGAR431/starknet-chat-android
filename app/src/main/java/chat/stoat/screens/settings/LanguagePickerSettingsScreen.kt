@@ -37,6 +37,8 @@ import chat.stoat.internals.extensions.getSupportedLocales
 import kotlinx.coroutines.launch
 import java.util.Locale
 
+private val VISIBLE_LANGUAGE_CODES = setOf("es", "gl", "en")
+
 class LanguagePickerSettingsScreen : ViewModel() {
     val locales = mutableStateListOf<Locale>()
 
@@ -44,7 +46,12 @@ class LanguagePickerSettingsScreen : ViewModel() {
 
     fun initLanguages(context: Context) {
         locales.clear()
-        locales.addAll(context.getSupportedLocales())
+        // Solo se ofrecen los idiomas que tenemos traducidos (igual que en la web);
+        // el resto de recursos siguen en la app pero quedan ocultos en el selector.
+        locales.addAll(
+            context.getSupportedLocales()
+                .filter { it.language in VISIBLE_LANGUAGE_CODES && it.toLanguageTag() != "es-419" }
+        )
         currentLocale = determineCurrentlySelectedLocale()
     }
 
