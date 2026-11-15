@@ -17,6 +17,9 @@ import chat.stoat.api.routes.voice.joinCall
 import chat.stoat.composables.voice.VoiceSound
 import chat.stoat.composables.voice.VoiceSoundPlayer
 import chat.stoat.internals.VoiceAudioSettings
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.ProcessLifecycleOwner
 import chat.stoat.services.OngoingCallService
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
@@ -30,6 +33,7 @@ import io.livekit.android.room.Room
 import io.livekit.android.room.track.LocalAudioTrackOptions
 import io.livekit.android.room.track.LocalVideoTrackOptions
 import io.livekit.android.room.track.RemoteAudioTrack
+import io.livekit.android.room.track.RemoteTrackPublication
 import io.livekit.android.room.track.ScreenSharePresets
 import io.livekit.android.room.track.Track
 import io.livekit.android.util.flow
@@ -110,6 +114,60 @@ object VoiceCallManager {
 
     private var pingJob: Job? = null
 
+    /**
+     * Bateria: con la app en segundo plano nadie ve el video, asi que se
+     * deja de recibir/decodificar (streams y camaras) y se reanuda al volver.
+     * El audio de la llamada no se toca.
+     */
+    private var appInBackground = false
+    private val backgroundObserver = LifecycleEventObserver { _, event ->
+        val room = room ?: return@LifecycleEventObserver
+        when (event) {
+            Lifecycle.Event.ON_STOP -> {
+                appInBackground = true
+                setRemoteVideoSubscribed(room, false)
+            }
+            Lifecycle.Event.ON_START -> {
+                appInBackground = false
+                setRemoteVideoSubscribed(room, true)
+            }
+            else -> Unit
+        }
+    }
+    private var backgroundObserverAttached = false
+
+    private fun setRemoteVideoSubscribed(room: Room, subscribed: Boolean) {
+        try {
+            for (participant in room.remoteParticipants.values) {
+                for (publication in participant.trackPublications.values) {
+                    if (publication.kind == Track.Kind.VIDEO) {
+                        (publication as? RemoteTrackPublication)?.setSubscribed(subscribed)
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            logcat(LogPriority.WARN) { "No se pudo cambiar la suscripcion de video\n" + e.asLog() }
+        }
+    }
+
+    private fun attachBackgroundObserver() {
+        if (backgroundObserverAttached) return
+        backgroundObserverAttached = true
+        appInBackground = false
+        scope.launch(Dispatchers.Main) {
+            ProcessLifecycleOwner.get().lifecycle.addObserver(backgroundObserver)
+        }
+    }
+
+    private fun detachBackgroundObserver() {
+        if (!backgroundObserverAttached) return
+        backgroundObserverAttached = false
+        appInBackground = false
+        scope.launch(Dispatchers.Main) {
+            ProcessLifecycleOwner.get().lifecycle.removeObserver(backgroundObserver)
+        }
+    }
+
     fun openSheet(channelId: String) {
         requestedChannelId = channelId
         isSheetVisible = true
@@ -158,6 +216,7 @@ object VoiceCallManager {
             )
         )
         room = newRoom
+        attachBackgroundObserver()
 
         sessionJob = scope.launch {
             launch { watchRoomState(newRoom, channelId) }
@@ -187,6 +246,7 @@ object VoiceCallManager {
         sessionJob?.cancel()
         sessionJob = null
         stopPingPolling()
+        detachBackgroundObserver()
         isPushToTalkActive = false
 
         val leftRoom = room
@@ -356,7 +416,12 @@ object VoiceCallManager {
     private suspend fun watchRoomEvents(room: Room) {
         room.events.events.collect { event ->
             when (event) {
-                is RoomEvent.TrackSubscribed -> applyDeafenState(room)
+                is RoomEvent.TrackSubscribed -> {
+                    applyDeafenState(room)
+                    if (appInBackground && event.publication.kind == Track.Kind.VIDEO) {
+                        event.publication.setSubscribed(false)
+                    }
+                }
 
                 is RoomEvent.DataReceived -> handleSoundboardMessage(
                     event.data,
