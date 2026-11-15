@@ -28,6 +28,7 @@ import io.ktor.client.request.get
 import io.ktor.http.isSuccess
 import io.livekit.android.LiveKit
 import io.livekit.android.RoomOptions
+import chat.stoat.api.realtime.frames.receivable.UserMoveVoiceChannelFrame
 import io.livekit.android.events.RoomEvent
 import io.livekit.android.room.Room
 import io.livekit.android.room.track.LocalAudioTrackOptions
@@ -184,6 +185,15 @@ object VoiceCallManager {
     init {
         scope.launch {
             OngoingCallService.hangupEvents.collect { leave() }
+        }
+        // Un moderador nos ha movido a otro canal de voz: seguimos la llamada
+        scope.launch {
+            StoatAPI.wsFrameChannel.collect { frame ->
+                if (frame is UserMoveVoiceChannelFrame) {
+                    val target = frame.to
+                    if (target != null && activeChannelId != null) join(target)
+                }
+            }
         }
     }
 

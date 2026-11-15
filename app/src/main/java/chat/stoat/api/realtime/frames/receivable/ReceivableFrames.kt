@@ -296,4 +296,6 @@ data class UserMoveVoiceChannelFrame(
     val type: String = "UserMoveVoiceChannel",
     val node: String,
     val token: String,
+    val from: String? = null,
+    val to: String? = null,
 )
