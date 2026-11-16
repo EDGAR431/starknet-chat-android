@@ -36,7 +36,7 @@ fun SessionItem(
     ListItem(
         headlineContent = {
             Text(
-                text = session.name,
+                text = session.name.replace("Stoat", "StarknetChat"),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )

@@ -305,5 +305,5 @@ suspend fun authenticateWithMfaRecoveryCode(
 }
 
 fun friendlySessionName(): String {
-    return "Stoat for Android on ${Build.MANUFACTURER} ${Build.MODEL}"
+    return "StarknetChat for Android on ${Build.MANUFACTURER} ${Build.MODEL}"
 }
