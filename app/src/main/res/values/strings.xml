@@ -126,6 +126,7 @@
     <string name="about_section_debug_information_description">If you\'re experiencing issues with the app, this information may be helpful to include when contacting support or submitting a bug report.</string>
     <string name="about_section_debug_information_copy_as_json">Copy as JSON</string>
     <string name="about_section_oss_licenses">Open Source Licenses</string>
+    <string name="about_section_source_code">Source Code</string>
 
     <string name="oss_attribution">OSS Licenses</string>
     <string name="oss_attribution_tap_to_view_license">Tap to view license</string>

@@ -10,6 +10,14 @@
     <br/><br/><br/>
 </div>
 
+## StarknetChat
+
+This repository is a modified fork of Stoat's Android app, powering [starknet-chat.tech](https://starknet-chat.tech). It is published here to comply with the AGPLv3 license. Related repositories:
+
+- Web client: https://github.com/EDGAR431/starknet-chat-web
+- Desktop app: https://github.com/EDGAR431/starknet-chat-desktop
+- Backend: https://github.com/EDGAR431/starknet-chat-backend
+
 ## Description
 
 The codebase includes the app itself, as well as an internal library for interacting with the Stoat

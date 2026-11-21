@@ -1,6 +1,7 @@
 package chat.stoat.screens.about
 
 import android.content.ClipData
+import android.content.Intent
 import android.os.Build
 import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
@@ -45,6 +46,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import androidx.core.net.toUri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -285,6 +287,45 @@ fun AboutScreen(navController: NavController, viewModel: AboutViewModel = viewMo
                     ) {
                         Text(
                             text = stringResource(R.string.about_section_oss_licenses),
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                    }
+                    Spacer(Modifier.weight(1f))
+                    Icon(
+                        painter = painterResource(R.drawable.ic_chevron_forward_24dp),
+                        contentDescription = null,
+                        tint = LocalContentColor.current.copy(alpha = 0.5f)
+                    )
+                }
+            }
+
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(MaterialTheme.shapes.large)
+                    .background(MaterialTheme.colorScheme.surfaceContainer),
+                horizontalAlignment = Alignment.Start
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center,
+                    modifier = Modifier
+                        .clickable {
+                            val intent = Intent(
+                                Intent.ACTION_VIEW,
+                                "https://github.com/EDGAR431/starknet-chat-android".toUri()
+                            )
+                            context.startActivity(intent)
+                        }
+                        .fillMaxWidth()
+                        .padding(24.dp)
+                ) {
+                    Column(
+                        modifier = Modifier.fillMaxWidth(0.7f),
+                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.about_section_source_code),
                             style = MaterialTheme.typography.titleMedium
                         )
                     }

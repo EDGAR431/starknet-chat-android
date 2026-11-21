@@ -168,6 +168,7 @@
     <string name="about_section_debug_information_description">Si tienes problemas con la aplicación, esta información puede ser útil al contactar con soporte o enviar un informe de error.</string>
     <string name="about_section_debug_information_copy_as_json">Copiar como JSON</string>
     <string name="about_section_oss_licenses">Licencias de código abierto</string>
+    <string name="about_section_source_code">Código fuente</string>
     <string name="oss_attribution_open_library_website">Abrir el sitio web de la biblioteca</string>
     <string name="slowmode_immune">Exento</string>
     <string name="voice_message_start_recording">Grabar un mensaje de voz</string>
